@@ -77,7 +77,7 @@ Save the service account's token to a file:
 `kubectl get secrets $(kubectl get sa kubiscan-sa -o json | jq -r '.secrets[0].name') -o json | jq -r '.data.token' | base64 -d > token` 
 
 Run the container from anywhere you want:  
-`docker run -it --rm -v $PWD/token:/token kubiscan:latest /bin/bash`  
+`docker run -it --rm -v $PWD/token:/token kubiscan:latest`  
 
 In the shell you will be able to to use kubiscan like that:   
 `kubiscan -ho <master_ip:master_port> -t /token <command>`  
@@ -86,7 +86,7 @@ For example:
 `kubiscan -ho 192.168.21.129:8443 -t /token -rs`  
 
 Notice that you can also use the certificate authority (ca.crt) to verify the SSL connection:  
-`docker run -it --rm -v $PWD/token:/token -v <ca_path>/ca.crt:/ca.crt kubiscan:latest /bin/bash`  
+`docker run -it --rm -v $PWD/token:/token -v <ca_path>/ca.crt:/ca.crt kubiscan:latest`  
 
 Inside the container:    
 `kubiscan -ho <master_ip:master_port> -t /token -c /ca.crt <command>`  
