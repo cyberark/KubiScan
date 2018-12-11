@@ -1,4 +1,4 @@
-
+<img src="https://github.com/cyberark/KubiScan/blob/assets/kubiscan_logo.png" width="260">  
 A tool for scanning Kubernetes cluster for risky permissions.  
 The tool was published as part of the "Securing Kubernetes Clusters by Eliminating Risky Permissions" research.  
 
