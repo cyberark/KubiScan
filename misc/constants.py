@@ -1,0 +1,8 @@
+RISKY_NAMESPACE = 'risky-namespace'
+ROLE_KIND = 'Role'
+CLUSTER_ROLE_KIND = 'ClusterRole'
+ROLE_BINDING_KIND = 'RoleBinding'
+CLUSTER_ROLE_BINDING_KIND = 'ClusterRoleBinding'
+USER_KIND = 'User'
+GROUP_KIND = 'Group'
+SERVICEACCOUNT_KIND = 'ServiceAccount'
