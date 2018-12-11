@@ -1,5 +1,5 @@
 <img src="https://github.com/cyberark/KubiScan/blob/assets/kubiscan_logo.png" width="260">  
-A tool for scanning Kubernetes cluster for risky permissions.  
+A tool for scanning Kubernetes cluster for risky permissions in Kubernetes's Role-based access control (RBAC) authorization model.   
 The tool was published as part of the "Securing Kubernetes Clusters by Eliminating Risky Permissions" research.  
 
 ## Overview
