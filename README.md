@@ -102,7 +102,7 @@ To remove the privileged service account, run the following commands:
 -	__Python 3.5+__
 -	__Pip3__
 -	[__Kubernetes Python Client__](https://github.com/kubernetes-client/python) 
--	__Prettytable__
+-	[__Prettytable__](https://pypi.org/project/PTable)
 -	__openssl__ (built-in in ubuntu) - used only for join token
 
 #### Example for installation on Ubuntu:
