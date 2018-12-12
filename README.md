@@ -131,17 +131,11 @@ To see all the examples, run `python3 KubiScan.py -e` or from within the contain
 A small example of KubiScan usage: 
 <p><a href="https://cyberark.wistia.com/medias/0lt642okgn?wvideo=0lt642okgn"><img src="https://github.com/cyberark/KubiScan/blob/assets/kubiscan_embeded.png?raw=true" width="600"></a></p>
 
-
 ## Risky Roles YAML
 There is a file named `risky_roles.yaml`. This file contains templates for risky roles with priority.    
 Although the kind in each role is `Role`, these templates will be compared against any Role\ClusterRole in the cluster.  
 When each of these roles is checked against a role in the cluster, it checks if the role in the cluster contains the rules from the risky role. If it does, it will be marked as risky.  
 We added all the roles we found to be risky, but because each one can define the term "risky" in a different way, you can modify the file by adding\removing roles you think are more\less risky.  
-
-## Known Bugs
-If there is a query to objects with `None` rules, the Kubernetes Python Client library are throwing an exception and exit the program. This is a [known](https://github.com/kubernetes-client/python/issues/577) issue waiting to be fixed.
-To prevent modification of the original library, there is a temporary package (`api_client_temp.py`) that was created to provide a workaround. This package provides a solution only for listing `ClusterRoleBindings` but can be extended for other API calls that will be affected by this bug.
-Once the original bug is solved, this temporary package should be removed and change part of the code that was using for the original API calls.
 
 ## References:
 For more comments, suggestions or questions, you can contact Eviatar Gerzi (@g3rzi) and CyberArk Labs.
