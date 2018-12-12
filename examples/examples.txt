@@ -4,6 +4,7 @@ Use 'python3 <path>/KubiScan.py' or run alias kubiscan='python3 <path>/KubiScan.
 # Get all risky Roles
 python3 KubiScan.py --risky-roles
 python3 KubiScan.py -rr
+# all risky roles exist less than 100 days
 python3 KubiScan.py -rr -lt 100
 
 # With rules
