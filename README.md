@@ -24,11 +24,11 @@ KubiScan gathers information about risky roles\clusterroles, rolebindings\cluste
 ### Container
 #### With `~/.kube/config` file
 This should be executed within the **Master** node where the config file is located:  
-`docker run -it --rm -e CONF_PATH=~/.kube/config -v /:/tmp cyberark/kubiscan /bin/bash`
-* `CONF_PATH` - the cluster config file's path
+`docker run -it --rm -e CONF_PATH=~/.kube/config -v /:/tmp cyberark/kubiscan`  
+* `CONF_PATH` - the cluster config file's path  
 
-Inside the container the command `kubiscan` is equivalent to `python3 /KubiScan/KubiScan.py`.
-Notice that in this case, the **whole file system will be mounted**. This is due to the fact that the config files contain paths to other places in the filesystem that will be different in other environments.
+Inside the container the command `kubiscan` is equivalent to `python3 /KubiScan/KubiScan.py`.  
+Notice that in this case, the **whole file system will be mounted**. This is due to the fact that the config files contain paths to other places in the filesystem that will be different in other environments.  
 
 #### With service account token (good from remote)
 It requires a **privileged** service account with the following permissions:  
@@ -78,7 +78,7 @@ Save the service account's token to a file:
 `kubectl get secrets $(kubectl get sa kubiscan-sa -o json | jq -r '.secrets[0].name') -o json | jq -r '.data.token' | base64 -d > token` 
 
 Run the container from anywhere you want:  
-`docker run -it --rm -v $PWD/token:/token kubiscan:latest`  
+`docker run -it --rm -v $PWD/token:/token cyberark/kubiscan`  
 
 In the shell you will be able to to use kubiscan like that:   
 `kubiscan -ho <master_ip:master_port> -t /token <command>`  
@@ -87,7 +87,7 @@ For example:
 `kubiscan -ho 192.168.21.129:8443 -t /token -rs`  
 
 Notice that you can also use the certificate authority (ca.crt) to verify the SSL connection:  
-`docker run -it --rm -v $PWD/token:/token -v <ca_path>/ca.crt:/ca.crt kubiscan:latest`  
+`docker run -it --rm -v $PWD/token:/token -v <ca_path>/ca.crt:/ca.crt cyberark/kubiscan`  
 
 Inside the container:    
 `kubiscan -ho <master_ip:master_port> -t /token -c /ca.crt <command>`  
@@ -98,7 +98,7 @@ To remove the privileged service account, run the following commands:
 `kubectl delete sa kubiscan-sa`
 
 ### Directly with Python3
-#### Requirements:
+#### Prerequisites:
 -	__Python 3.5+__
 -	__Pip3__
 -	[__Kubernetes Python Client__](https://github.com/kubernetes-client/python) 
