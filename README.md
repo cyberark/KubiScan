@@ -120,7 +120,7 @@ On the Master node where `~/.kube/config` exist and all the relevant certificate
 For example: `kubiscan -rs` will show all the risky subjects (users, service accounts and groups).  
 
 #### From a remote host:
-To use this tool from a remote host, you will need a **privileged** service account like we ![explained](https://github.com/cyberark/KubiScan/blob/master/README.md#with-service-account-token-good-from-remote) in the container section.  
+To use this tool from a remote host, you will need a **privileged** service account like we explained in the container section.  
 After you have the token inside a file you can run:  
 `kubiscan -ho <master_ip:master_port> -t /token <command>`  
 
