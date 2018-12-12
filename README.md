@@ -6,6 +6,7 @@ The tool was published as part of the "Securing Kubernetes Clusters by Eliminati
 KubiScan helps cluster administrators identify permissions that attackers could potentially exploit to compromise the clusters.
 This can be especially helpful on large environments where there are lots of permissions that can be challenging to track. 
 KubiScan gathers information about risky roles\clusterroles, rolebindings\clusterrolebindings, users and pods, automating traditional manual processes and giving administrators the visibility they need to reduce risk.  
+
 ## What can it do? 
 -	Identify risky Roles\ClusterRoles
 -	Identify risky RoleBindings\ClusterRoleBindings
@@ -123,8 +124,13 @@ To use this tool from a remote host, you will need a **privileged** service acco
 After you have the token inside a file you can run:  
 `kubiscan -ho <master_ip:master_port> -t /token <command>`  
 
-## Examples:
+## Examples  
 To see all the examples, run `python3 KubiScan.py -e` or from within the container `kubiscan -e`.  
+
+## Demo  
+A small example of KubiScan usage: 
+<p><a href="https://cyberark.wistia.com/medias/0lt642okgn?wvideo=0lt642okgn"><img src="https://github.com/cyberark/KubiScan/blob/assets/kubiscan_embeded.png?raw=true" width="600"></a></p>
+
 
 ## Risky Roles YAML
 There is a file named `risky_roles.yaml`. This file contains templates for risky roles with priority.    
@@ -139,4 +145,3 @@ Once the original bug is solved, this temporary package should be removed and ch
 
 ## References:
 For more comments, suggestions or questions, you can contact Eviatar Gerzi (@g3rzi) and CyberArk Labs.
-	
