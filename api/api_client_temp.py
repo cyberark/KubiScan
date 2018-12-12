@@ -671,5 +671,4 @@ class ApiClientTemp(object):
              cluster_role_binding = V1ClusterRoleBinding(metadata=metadata, role_ref=role_ref, subjects=subjects)
              cluster_role_bindings.append(cluster_role_binding)
 
-        a = 3
         return cluster_role_bindings
