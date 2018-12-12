@@ -2,12 +2,8 @@ KubiScan is using the following open source components:
 
 Official Python client library for kubernetes (https://github.com/kubernetes-client/python) : Apache-2.0 License 
 	Copyright 2014 The Kubernetes Authors. All rights reserved.
-
-Part of the code was copied and modified to the file (/api/api_client_temp.py) from:
-https://github.com/kubernetes-client/python/blob/71b5abce5a4e2d747c0bb26d4eaa17eeb08f8ac5/kubernetes/client/api_client.py
-This is due to a known bug (https://github.com/kubernetes-client/gen/issues/52) which caused exception and exit the program when there is a query to object with None rules. 
-Once this code will be fixed, it can be removed and do the relevant changes.
-
+	* Two files were modified, see the footnote at the end of this file.
+	
 PTable (https://github.com/kxxoling/PTable/blob/master/COPYING) : PTable License
 	Copyright (c) 2009-2014 Luke Maurits <luke@maurits.id.au>. All rights reserved.
 
@@ -251,3 +247,14 @@ Two licenses:
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+
+Footnote:
+1. Part of the code was copied and modified to the file (/api/api_client_temp.py) from:
+https://github.com/kubernetes-client/python/blob/71b5abce5a4e2d747c0bb26d4eaa17eeb08f8ac5/kubernetes/client/api_client.py
+This is due to a known bug (https://github.com/kubernetes-client/gen/issues/52) which caused exception and exit the program when there is a query to objects with None rules. 
+Once this code will be fixed, it can be removed and do the relevant changes.
+2. Some of the code from:
+https://github.com/kubernetes-client/python-base/blob/07ef6263685802ee5a8532662bf589adaa07b592/config/incluster_config.py#L36
+Was used (with some modifications) in: 
+https://github.com/cyberark/KubiScan/blob/aee973487cb50164a734c2f4d72fa2f7ea331147/api/api_client.py#L75
+
