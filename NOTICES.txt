@@ -1,15 +1,19 @@
 KubiScan is using the following open source components:
 
-Official Python client library for kubernetes (https://github.com/kubernetes-client/python) : Apache-2.0 license 
+Official Python client library for kubernetes (https://github.com/kubernetes-client/python) : Apache-2.0 License 
 	Copyright 2014 The Kubernetes Authors. All rights reserved.
+
+Part of the code was copied and modified to the file (/api/api_client_temp.py) from:
+https://github.com/kubernetes-client/python/blob/71b5abce5a4e2d747c0bb26d4eaa17eeb08f8ac5/kubernetes/client/api_client.py
+This is due to a known bug (https://github.com/kubernetes-client/gen/issues/52) which caused exception and exit the program when there is a query to object with None rules. 
+Once this code will be fixed, it can be removed and do the relevant changes.
 
 PTable (https://github.com/kxxoling/PTable/blob/master/COPYING) : PTable License
 	Copyright (c) 2009-2014 Luke Maurits <luke@maurits.id.au>. All rights reserved.
 
+Two licenses:
 
-Licenses:
-
-Apache-2.0 license 
+1. Apache-2.0 license 
 ======================
                                  Apache License
                            Version 2.0, January 2004
@@ -215,8 +219,8 @@ Apache-2.0 license
 
 ---
 
-PTable License
-===============
+2. PTable License
+=================
 
 # Copyright (c) 2009-2014 Luke Maurits <luke@maurits.id.au>
 # All rights reserved.
