@@ -128,7 +128,7 @@ To see all the examples, run `python3 KubiScan.py -e` or from within the contain
 
 ## Demo  
 A small example of KubiScan usage: 
-<p><a href="https://cyberark.wistia.com/medias/0lt642okgn?wvideo=0lt642okgn"><img src="https://github.com/cyberark/KubiScan/blob/assets/kubiscan_embeded.png?raw=true" width="600"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://cyberark.wistia.com/medias/0lt642okgn?wvideo=0lt642okgn"><img src="https://github.com/cyberark/KubiScan/blob/assets/kubiscan_embeded.png?raw=true" width="600"></a></p>
 
 ## Risky Roles YAML
 There is a file named `risky_roles.yaml`. This file contains templates for risky roles with priority.    
