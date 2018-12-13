@@ -137,4 +137,4 @@ When each of these roles is checked against a role in the cluster, it checks if 
 We added all the roles we found to be risky, but because each one can define the term "risky" in a different way, you can modify the file by adding\removing roles you think are more\less risky.  
 
 ## References:
-For more comments, suggestions or questions, you can contact Eviatar Gerzi (@g3rzi) and CyberArk Labs.
+For more comments, suggestions or questions, you can contact Eviatar Gerzi ([@g3rzi](https://twitter.com/g3rzi)) and CyberArk Labs.
