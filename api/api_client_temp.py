@@ -644,10 +644,9 @@ class ApiClientTemp(object):
         cluster_role_bindings = []
         for i in json_data[0]['items']:
 
-             metadata = V1ObjectMeta(name=i['metadata']['name'])
+             metadata = V1ObjectMeta(name=i['metadata']['name'], creation_timestamp=self._ApiClientTemp__deserialize_datatime(i['metadata']['creationTimestamp']))
              role_ref = V1RoleRef(api_group=i['roleRef']['apiGroup'], name=i['roleRef']['name'], kind=i['roleRef']['kind'])
              subjects = []
-
 
              if i['subjects'] is not None:
                  for s in i['subjects']:
