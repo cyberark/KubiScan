@@ -28,7 +28,7 @@ from datetime import date, datetime
 from six import PY3, integer_types, iteritems, text_type
 from six.moves.urllib.parse import quote
 
-from kubernetes.client import models, V1ObjectMeta, V1RoleRef, V1Subject, V1ClusterRoleBinding
+from kubernetes.client import models, V1ObjectMeta, V1RoleRef, V1Subject, V1ClusterRoleBinding, V1ClusterRole, V1ClusterRoleList, V1ClusterRoleBindingList, V1PolicyRule
 from kubernetes.client.configuration import Configuration
 from kubernetes.client.rest import ApiException, RESTClientObject
 
@@ -659,3 +659,34 @@ class ApiClientTemp(object):
              cluster_role_bindings.append(cluster_role_binding)
 
         return cluster_role_bindings
+
+       def list_cluster_role(self):
+        json_data = self.__call_api('/apis/rbac.authorization.k8s.io/v1/clusterroles', 'GET',
+                                        path_params={}, query_params=[],
+                                        header_params={'Content-Type': 'application/json', 'Accept': 'application/json'},
+                                        body=None, post_params=[], files={},
+                                        response_type='V1ClusterRoleList', auth_settings=['BearerToken'],
+                                        _return_http_data_only=None, collection_formats={}, _preload_content=True,
+                                        _request_timeout=None)
+        cluster_roles = []
+        for i in json_data[0]['items']:
+            metadata = V1ObjectMeta(name=i['metadata']['name'],
+                                    creation_timestamp=self._ApiClientTemp__deserialize_datatime(
+                                        i['metadata']['creationTimestamp']))
+
+            rules = []
+            if i['rules'] is not None:
+                for rule in i['rules']:
+                    resources = None
+                    if 'resources' in rule.keys():
+                        resources = rule['resources']
+                    verbs = None
+                    if 'verbs' in rule.keys():
+                        verbs = rule['verbs']
+
+                    rules.append(V1PolicyRule(resources=resources, verbs=verbs))
+
+            cluster_role = V1ClusterRole(kind='ClusterRole', metadata=metadata, rules=rules)
+            cluster_roles.append(cluster_role)
+
+        return V1ClusterRoleList(items=cluster_roles)
