@@ -67,7 +67,6 @@ def is_rule_contains_risky_rule(source_role_name, source_rule, risky_rule):
 
 def get_role_by_name_and_kind(name, kind, namespace=None):
     requested_role = None
-    api_client.RbacAuthorizationV1Api.list_cluster_role()
     roles = get_roles_by_kind(kind)
     for role in roles.items:
         if role.metadata.name == name:
@@ -114,8 +113,8 @@ def get_roles_by_kind(kind):
     if kind == ROLE_KIND:
         all_roles = api_client.RbacAuthorizationV1Api.list_role_for_all_namespaces()
     else:
-        all_roles = api_client.RbacAuthorizationV1Api.list_cluster_role()
-
+        #all_roles = api_client.RbacAuthorizationV1Api.list_cluster_role()
+        all_roles = api_client.api_temp.list_cluster_role()
     return all_roles
 
 def get_risky_role_by_kind(kind):
