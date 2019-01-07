@@ -289,10 +289,9 @@ items:
 
 ######################### REGION - HIGH Roles #########################
 
-# Risk: Allowing run of a malicious pod
+# Risk: Allowing to create a malicious pod
 # Verb: create
 # Resources: deployments
-
 
 - kind: Role
   metadata:
@@ -304,7 +303,7 @@ items:
     resources: ["deployments"]
     verbs: ["create"]
 
-# Risk: Allowing update of a malicious pod
+# Risk: Allowing to update a malicious pod
 # Verb: update
 # Resources: deployments
 
@@ -318,8 +317,7 @@ items:
     resources: ["deployments"]
     verbs: ["update"]
 
-
-# Risk: Allowing run of a malicious pod
+# Risk: Allowing to create a malicious pod
 # Verb: create
 # Resources: daemonsets
 
@@ -333,9 +331,8 @@ items:
     resources: ["daemonsets"]
     verbs: ["create"]
 
-
-# Risk: Allowing run of a malicious pod
-# Verb: create
+# Risk: Allowing to update a malicious pod
+# Verb: update
 # Resources: daemonsets
 
 - kind: Role
@@ -348,7 +345,91 @@ items:
     resources: ["daemonsets"]
     verbs: ["update"]
 
-# Risk: Allowing run of a malicious pod
+# Risk: Allowing to create a malicious pod
+# Verb: create
+# Resources: statefulsets
+
+- kind: Role
+  metadata:
+    namespace: default
+    name: risky-create-statefulsets
+    priority: HIGH
+  rules:
+  - apiGroups: ["*"]
+    resources: ["statefulsets"]
+    verbs: ["create"]
+
+# Risk: Allowing to update a malicious pod
+# Verb: update
+# Resources: statefulsets
+
+- kind: Role
+  metadata:
+    namespace: default
+    name: risky-update-statefulsets
+    priority: HIGH
+  rules:
+  - apiGroups: ["*"]
+    resources: ["statefulsets"]
+    verbs: ["update"]
+
+# Risk: Allowing to create a malicious pod
+# Verb: create
+# Resources: replicationcontrollers
+
+- kind: Role
+  metadata:
+    namespace: default
+    name: risky-create-replicationcontrollers
+    priority: HIGH
+  rules:
+  - apiGroups: ["*"]
+    resources: ["replicationcontrollers"]
+    verbs: ["create"]
+
+# Risk: Allowing to update a malicious pod
+# Verb: update
+# Resources: replicationcontrollers
+
+- kind: Role
+  metadata:
+    namespace: default
+    name: risky-update-replicationcontrollers
+    priority: HIGH
+  rules:
+  - apiGroups: ["*"]
+    resources: ["replicationcontrollers"]
+    verbs: ["update"]
+
+# Risk: Allowing to create a malicious pod
+# Verb: create
+# Resources: replicasets
+
+- kind: Role
+  metadata:
+    namespace: default
+    name: risky-create-replicasets
+    priority: HIGH
+  rules:
+  - apiGroups: ["*"]
+    resources: ["replicasets"]
+    verbs: ["create"]
+
+# Risk: Allowing to update a malicious pod
+# Verb: update
+# Resources: replicasets
+
+- kind: Role
+  metadata:
+    namespace: default
+    name: risky-update-replicasets
+    priority: HIGH
+  rules:
+  - apiGroups: ["*"]
+    resources: ["replicasets"]
+    verbs: ["update"]
+
+# Risk: Allowing to create a malicious pod
 # Verb: create
 # Resources: jobs
 
@@ -363,8 +444,8 @@ items:
     verbs: ["create"]
 
 
-# Risk: Allowing run of a malicious pod
-# Verb: create
+# Risk: Allowing to update a malicious pod
+# Verb: update
 # Resources: jobs
 
 - kind: Role
@@ -377,7 +458,7 @@ items:
     resources: ["jobs"]
     verbs: ["update"]
 
-# Risk: Allowing run of a malicious pod
+# Risk: Allowing to create a malicious pod
 # Verb: create
 # Resources: cronjobs
 
@@ -392,9 +473,9 @@ items:
     verbs: ["create"]
 
 
-# Risk: Allowing run of a malicious pod
-# Verb: create
-# Resources: jobs
+# Risk: Allowing to update a malicious pod
+# Verb: update
+# Resources: cronjobs
 
 - kind: Role
   metadata:
