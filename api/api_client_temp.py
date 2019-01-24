@@ -648,7 +648,7 @@ class ApiClientTemp(object):
              role_ref = V1RoleRef(api_group=i['roleRef']['apiGroup'], name=i['roleRef']['name'], kind=i['roleRef']['kind'])
              subjects = []
 
-             if i['subjects'] is not None:
+             if 'subjects' in i and i['subjects'] is not None:
                  for s in i['subjects']:
                        namespace = None
                        if 'namespace' in s.keys():
