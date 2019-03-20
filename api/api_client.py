@@ -93,7 +93,7 @@ class BearerTokenLoader(object):
             raise Exception("Service token file does not exists.")
 
         with open(self._token_filename) as f:
-            self.token = f.read()
+            self.token = f.read().rstrip('\n')
             if not self.token:
                 raise Exception("Token file exists but empty.")
 
@@ -103,7 +103,7 @@ class BearerTokenLoader(object):
                     "Service certification file does not exists.")
 
             with open(self._cert_filename) as f:
-                if not f.read():
+                if not f.read().rstrip('\n'):
                     raise Exception("Cert file exists but empty.")
 
         self.ssl_ca_cert = self._cert_filename
