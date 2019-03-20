@@ -22,7 +22,7 @@ def set_risky_roles_from_yaml(items):
 
 with open(os.path.dirname(os.path.realpath(__file__)) + '/risky_roles.yaml', 'r') as stream:
     try:
-        loaded_yaml = yaml.load(stream, Loader=yaml.FullLoader)
+        loaded_yaml = yaml.load(stream)
         set_risky_roles_from_yaml(loaded_yaml['items'])
     except yaml.YAMLError as exc:
         print(exc)
