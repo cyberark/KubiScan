@@ -377,7 +377,7 @@ Requirements:
     opt.add_argument('-jt', '--join-token', action='store_true', help='Get join token for the cluster. OpenSsl must be installed + kubeadm', required=False)
     opt.add_argument('-psv', '--pods-secrets-volume', action='store_true', help='Show all pods with access to secret data throught a Volume', required=False)
     opt.add_argument('-pse', '--pods-secrets-env', action='store_true', help='Show all pods with access to secret data throught a environment variables', required=False)
-
+    opt.add_argument('-ctx', '--context', action='store', help='Context to run. If none, it will run in the current context.', required=False)
 
     helper_switches = opt.add_argument_group('Helper switches')
     helper_switches.add_argument('-lt', '--less-than', action='store', metavar='NUMBER', help='Used to filter object exist less than X days.\nSupported on Roles\ClusterRoles and RoleBindings\ClusterRoleBindings.'
@@ -449,7 +449,7 @@ Requirements:
         print_examples()
         exit()
 
-    api_init(host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename)
+    api_init(host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename, context=args.context)
 
     if args.risky_roles:
         print_risky_roles(show_rules=args.rules, days=args.less_than)
