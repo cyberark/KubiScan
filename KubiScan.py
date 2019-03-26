@@ -27,44 +27,64 @@ def filter_objects_less_than_days(days, objects):
     objects = filtered_objects
     return objects
 
+def filter_objects_by_priority(priority, objects):
+    filtered_objects= []
+    for object in objects:
+        if object.priority.name == priority.upper():
+            filtered_objects.append(object)
+    objects = filtered_objects
+    return objects
+
 def get_delta_days_from_now(date):
     current_datetime = datetime.datetime.now()
     return (current_datetime.date() - date.date()).days
 
-def print_all_risky_roles(show_rules=False, days=None):
+def print_all_risky_roles(show_rules=False, days=None, priority=None):
     risky_any_roles = engine.utils.get_risky_roles_and_clusterroles()
     if days:
         risky_any_roles = filter_objects_less_than_days(int(days), risky_any_roles)
+    if priority:
+        risky_any_roles = filter_objects_by_priority(priority, risky_any_roles)
     generic_print('|Risky Roles and ClusterRoles|', risky_any_roles, show_rules)
 
-def print_risky_roles(show_rules=False, days=None):
+def print_risky_roles(show_rules=False, days=None, priority=None):
     risky_roles = engine.utils.get_risky_roles()
     if days:
         risky_roles = filter_objects_less_than_days(int(days), risky_roles)
+    if priority:
+        risky_roles = filter_objects_by_priority(priority, risky_roles)
     generic_print('|Risky Roles |', risky_roles, show_rules)
 
-def print_risky_clusterroles(show_rules=False, days=None):
+def print_risky_clusterroles(show_rules=False, days=None, priority=None):
     risky_clusterroles = engine.utils.get_risky_clusterroles()
     if days:
         risky_clusterroles = filter_objects_less_than_days(int(days), risky_clusterroles)
+    if priority:
+        risky_clusterroles = filter_objects_by_priority(priority, risky_clusterroles)
     generic_print('|Risky ClusterRoles |', risky_clusterroles, show_rules)
 
-def print_all_risky_rolebindings(days=None):
+def print_all_risky_rolebindings(days=None, priority=None):
     risky_any_rolebindings = engine.utils.get_all_risky_rolebinding()
     if days:
         risky_any_rolebindings = filter_objects_less_than_days(int(days), risky_any_rolebindings)
+    if priority:
+        risky_any_rolebindings = filter_objects_by_priority(priority, risky_any_rolebindings)
     generic_print('|Risky RoleBindings and ClusterRoleBindings|', risky_any_rolebindings)
 
-def print_risky_rolebindings(days=None):
+def print_risky_rolebindings(days=None, priority=None):
     risky_rolebindings = engine.utils.get_risky_rolebindings()
     if days:
         risky_rolebindings = filter_objects_less_than_days(int(days), risky_rolebindings)
+    if priority:
+        risky_rolebindings = filter_objects_by_priority(priority, risky_rolebindings)
     generic_print('|Risky RoleBindings|', risky_rolebindings)
 
-def print_risky_clusterrolebindings(days=None):
+def print_risky_clusterrolebindings(days=None, priority=None):
     risky_clusterrolebindings = engine.utils.get_risky_clusterrolebindings()
     if days:
         risky_clusterrolebindings = filter_objects_less_than_days(int(days), risky_clusterrolebindings)
+    if priority:
+        risky_clusterrolebindings = filter_objects_by_priority(priority, risky_clusterrolebindings)
     generic_print('|Risky ClusterRoleBindings|', risky_clusterrolebindings)
 
 def generic_print(header, objects, show_rules=False):
@@ -88,20 +108,23 @@ def generic_print(header, objects, show_rules=False):
 
     print_table_aligned_left(t)
 
-def print_all_risky_containers():
+def print_all_risky_containers(priority=None):
     pods = engine.utils.get_risky_pods()
 
     print("+----------------+")
     print("|Risky Containers|")
     t = PrettyTable(['Priority', 'PodName', 'ContainerName', 'ServiceAccountNamespace', 'ServiceAccountName'])
     for pod in pods:
+        if priority:
+            pod.containers = filter_objects_by_priority(priority, pod.containers)
         for container in pod.containers:
             t.add_row([get_color_by_priority(container.priority)+container.priority.name+WHITE, pod.name, container.name, container.service_account_namespace, container.service_account_name])
     print_table_aligned_left(t)
 
-def print_all_risky_subjects():
+def print_all_risky_subjects(priority=None):
     subjects = engine.utils.get_all_risky_subjects()
-
+    if priority:
+        subjects = filter_objects_by_priority(priority, subjects)
     print("+-----------+")
     print("|Risky Users|")
     t = PrettyTable(['Priority', 'Kind', 'Namespace', 'Name'])
@@ -110,11 +133,11 @@ def print_all_risky_subjects():
 
     print_table_aligned_left(t)
 
-def print_all(days=None):
-    print_all_risky_roles(days=days)
-    print_all_risky_rolebindings(days=days)
-    print_all_risky_subjects()
-    print_all_risky_containers()
+def print_all(days=None, priority=None):
+    print_all_risky_roles(days=days, priority=priority)
+    print_all_risky_rolebindings(days=days, priority=priority)
+    print_all_risky_subjects(priority=priority)
+    print_all_risky_containers(priority=priority)
 
 def print_associated_rolebindings_to_role(role_name, namespace=None):
     associated_rolebindings = engine.utils.get_rolebindings_associated_to_role(role_name=role_name, namespace=namespace)
@@ -378,6 +401,8 @@ Requirements:
     opt.add_argument('-psv', '--pods-secrets-volume', action='store_true', help='Show all pods with access to secret data throught a Volume', required=False)
     opt.add_argument('-pse', '--pods-secrets-env', action='store_true', help='Show all pods with access to secret data throught a environment variables', required=False)
     opt.add_argument('-ctx', '--context', action='store', help='Context to run. If none, it will run in the current context.', required=False)
+    opt.add_argument('-p', '--priority', action='store', help='Filter by priority (CRITICAL\HIGH\LOW)', required=False)
+
 
     helper_switches = opt.add_argument_group('Helper switches')
     helper_switches.add_argument('-lt', '--less-than', action='store', metavar='NUMBER', help='Used to filter object exist less than X days.\nSupported on Roles\ClusterRoles and RoleBindings\ClusterRoleBindings.'
@@ -452,23 +477,23 @@ Requirements:
     api_init(host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename, context=args.context)
 
     if args.risky_roles:
-        print_risky_roles(show_rules=args.rules, days=args.less_than)
+        print_risky_roles(show_rules=args.rules, days=args.less_than, priority=args.priority)
     if args.risky_clusterroles:
-        print_risky_clusterroles(show_rules=args.rules, days=args.less_than)
+        print_risky_clusterroles(show_rules=args.rules, days=args.less_than, priority=args.priority)
     if args.risky_any_roles:
-        print_all_risky_roles(show_rules=args.rules, days=args.less_than)
+        print_all_risky_roles(show_rules=args.rules, days=args.less_than, priority=args.priority)
     if args.risky_rolebindings:
-        print_risky_rolebindings(days=args.less_than)
+        print_risky_rolebindings(days=args.less_than, priority=args.priority)
     if args.risky_clusterrolebindings:
-        print_risky_clusterrolebindings(days=args.less_than)
+        print_risky_clusterrolebindings(days=args.less_than, priority=args.priority)
     if args.risky_any_rolebindings:
-        print_all_risky_rolebindings(days=args.less_than)
+        print_all_risky_rolebindings(days=args.less_than, priority=args.priority)
     if args.risky_subjects:
-        print_all_risky_subjects()
+        print_all_risky_subjects(priority=args.priority)
     if args.risky_pods:
-        print_all_risky_containers()
+        print_all_risky_containers(priority=args.priority)
     if args.all:
-        print_all(days=args.less_than)
+        print_all(days=args.less_than, priority=args.priority)
     elif args.join_token:
         print_join_token()
     elif args.pods_secrets_volume:
