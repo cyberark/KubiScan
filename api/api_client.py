@@ -42,7 +42,7 @@ def replace(file_path, pattern, subst):
     #Move new file
     move(abs_path, file_path)
 
-def api_init(host=None, token_filename=None, cert_filename=None):
+def api_init(host=None, token_filename=None, cert_filename=None, context=None):
     global CoreV1Api
     global RbacAuthorizationV1Api
     global api_temp
@@ -64,9 +64,9 @@ def api_init(host=None, token_filename=None, cert_filename=None):
                 copyfile(container_volume_prefix + os.path.expandvars('$CONF_PATH'), kube_config_bak_path)
                 replace(kube_config_bak_path, ': /', ': /tmp/')
 
-            config.load_kube_config(kube_config_bak_path)
+            config.load_kube_config(kube_config_bak_path, context=context)
         else:
-            config.load_kube_config()
+            config.load_kube_config(context=context)
 
     CoreV1Api = client.CoreV1Api()
     RbacAuthorizationV1Api = client.RbacAuthorizationV1Api()
