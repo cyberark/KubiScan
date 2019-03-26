@@ -287,6 +287,7 @@ def get_risky_containers(pod, risky_users):
     if pod.status.container_statuses:
         for container in pod.status.container_statuses:
             if container.ready:
+		# Consider adding option to the token from the ETCD instead of the container. It faster but less reliable
                 jwt_body, _ = get_jwt_token_from_container(pod, container.name)
                 if jwt_body:
                     for risky_user in risky_users:
@@ -381,6 +382,7 @@ def dump_containers_tokens_by_pod(pod_name, namespace):
     if pod.status.container_statuses:
         for container in pod.status.container_statuses:
             if container.ready:
+		# Consider adding option to the token from the ETCD instead of the container. It faster but less reliable
                 jwt_body, raw_jwt_token = get_jwt_token_from_container(pod, container.name)
                 if jwt_body:
                     containers_with_tokens.append(Container(container.name, token=jwt_body, raw_jwt_token=raw_jwt_token))
