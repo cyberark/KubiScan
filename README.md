@@ -68,7 +68,7 @@ rules:
   resources: ["roles", "clusterroles", "rolebindings", "clusterrolebindings", "pods", "secrets"]
   verbs: ["get", "list"]
 - apiGroups: ["*"]
-  resources: ["pod/exec"]
+  resources: ["pods/exec"]
   verbs: ["create"]
 EOF
 ```
