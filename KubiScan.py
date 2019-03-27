@@ -413,7 +413,7 @@ Requirements:
     helper_switches.add_argument('-r', '--rules', action='store_true', help='Show rules. Supported only on pinrting risky Roles\ClusterRoles.', required=False)
     helper_switches.add_argument('-e', '--examples', action='store_true', help='Show examples.', required=False)
     helper_switches.add_argument('-n', '--name', action='store', help='Name', required=False)
-    dumping_tokens = opt.add_argument_group('Dumping tokens', description='Use the switches: name (-n\--name) or namespace (-ns\ --namespace)'')
+    dumping_tokens = opt.add_argument_group('Dumping tokens', description='Use the switches: name (-n\--name) or namespace (-ns\ --namespace)')
     dumping_tokens.add_argument('-dt', '--dump-tokens', action='store_true', help='Dump tokens from pod\pods\n'
                                                                                   'Example: -dt OR -dt -ns \"kube-system\"\n'
                                                                                   '-dt -n \"nginx1\" -ns \"default\"', required=False)
