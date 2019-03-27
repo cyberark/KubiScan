@@ -300,9 +300,9 @@ def get_risky_containers(pod, risky_users):
         # TODO: list all the not ready containers ??
     return risky_containers
 
-def get_risky_pods():
+def get_risky_pods(namespace=None):
     risky_pods = []
-    pods = api_client.CoreV1Api.list_pod_for_all_namespaces(watch=False)
+    pods = list_pods_for_all_namespaces_or_one_namspace(namespace)
     risky_users = get_all_risky_subjects()
     for pod in pods.items:
         risky_containers = get_risky_containers(pod, risky_users)
@@ -476,7 +476,7 @@ def get_roles_associated_to_subject(subject_name, kind, namespace):
 
 def list_pods_for_all_namespaces_or_one_namspace(namespace=None):
     if namespace is None:
-        pods = api_client.CoreV1Api.list_pod_for_all_namespaces()
+        pods = api_client.CoreV1Api.list_pod_for_all_namespaces(watch=False)
     else:
         pods = api_client.CoreV1Api.list_namespaced_pod(namespace)
     return pods
