@@ -108,8 +108,8 @@ def generic_print(header, objects, show_rules=False):
 
     print_table_aligned_left(t)
 
-def print_all_risky_containers(priority=None):
-    pods = engine.utils.get_risky_pods()
+def print_all_risky_containers(priority=None, namespace=None):
+    pods = engine.utils.get_risky_pods(namespace)
 
     print("+----------------+")
     print("|Risky Containers|")
@@ -491,7 +491,7 @@ Requirements:
     if args.risky_subjects:
         print_all_risky_subjects(priority=args.priority)
     if args.risky_pods:
-        print_all_risky_containers(priority=args.priority)
+        print_all_risky_containers(priority=args.priority, namespace=args.namespace)
     if args.all:
         print_all(days=args.less_than, priority=args.priority)
     elif args.join_token:
