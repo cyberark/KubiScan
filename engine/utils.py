@@ -421,7 +421,6 @@ def dump_containers_tokens_by_pod(pod_name, namespace, read_token_from_container
     containers_with_tokens = []
     pod = api_client.CoreV1Api.read_namespaced_pod(name=pod_name, namespace=namespace)
     if read_token_from_container:
-        print('from container')
         if pod.status.container_statuses:
             for container in pod.status.container_statuses:
                 if container.ready:
@@ -430,7 +429,6 @@ def dump_containers_tokens_by_pod(pod_name, namespace, read_token_from_container
                         containers_with_tokens.append(Container(container.name, token=jwt_body, raw_jwt_token=raw_jwt_token))
 
     else:
-        print('other place')
         for container in pod.spec.containers:
             pod_mounted_secrets = {}
             for volume in pod.spec.volumes:
