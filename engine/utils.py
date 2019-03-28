@@ -278,34 +278,75 @@ def get_jwt_token_from_container(pod, container_name):
 
     return token_body, resp
 
+def get_jwt_token_from_container_by_etcd(pod, container, pod_mounted_secrets):
+    from engine.jwt_token import decode_base64_jwt_token
+    token_body = ''
+    if pod_mounted_secrets:
+        for mounted_volume in container.volume_mounts:
+            if mounted_volume.mount_path == '/var/run/secrets/kubernetes.io/serviceaccount' or mounted_volume.mount_path == '/run/secrets/kubernetes.io/serviceaccount':
+               if mounted_volume.name in pod_mounted_secrets:
+                    secret = api_client.CoreV1Api.read_namespaced_secret(mounted_volume.name, pod.metadata.namespace)
+                    decoded_data = decode_base64_jwt_token(secret.data['token'])
+                    token_body = json.loads(decoded_data)
+                    break
+
+    return token_body
+
 def is_same_user(a_username, a_namespace, b_username, b_namespace):
     return (a_username == b_username and a_namespace == b_namespace)
 
-def get_risky_containers(pod, risky_users):
-    risky_containers = []
-    # Skipping terminated and evicted pods
-    if pod.status.container_statuses:
-        for container in pod.status.container_statuses:
-            if container.ready:
-		# Consider adding option to the token from the ETCD instead of the container. It faster but less reliable
-                jwt_body, _ = get_jwt_token_from_container(pod, container.name)
-                if jwt_body:
-                    for risky_user in risky_users:
-                        if risky_user.user_info.kind == 'ServiceAccount':
-                            if is_same_user(jwt_body['kubernetes.io/serviceaccount/service-account.name'],
-                                            jwt_body['kubernetes.io/serviceaccount/namespace'],
-                                            risky_user.user_info.name, risky_user.user_info.namespace):
-                                            risky_containers.append(Container(container.name, risky_user.user_info.name, risky_user.user_info.namespace, risky_user.priority))
+def get_risky_user_from_container(jwt_body, risky_users):
+    risky_user_in_container = None
+    for risky_user in risky_users:
+        if risky_user.user_info.kind == 'ServiceAccount':
+            if is_same_user(jwt_body['kubernetes.io/serviceaccount/service-account.name'],
+                            jwt_body['kubernetes.io/serviceaccount/namespace'],
+                            risky_user.user_info.name, risky_user.user_info.namespace):
+                risky_user_in_container = risky_user
+                break
 
-        # TODO: list all the not ready containers ??
+    return risky_user_in_container
+
+def get_risky_containers(pod, risky_users, read_token_from_container=False):
+    risky_containers = []
+    risky_user = None
+
+    if read_token_from_container:
+        # Skipping terminated and evicted pods
+        # This will run only on the containers with the "ready" status
+        if pod.status.container_statuses:
+            for container in pod.status.container_statuses:
+                if container.ready:
+                    jwt_body, _ = get_jwt_token_from_container(pod, container.name)
+                    if jwt_body:
+                        risky_user = get_risky_user_from_container(jwt_body, risky_users)
+                        if risky_user:
+                            risky_containers.append(
+                                Container(container.name, risky_user.user_info.name, risky_user.user_info.namespace,
+                                          risky_user.priority))
+    else:
+        for container in pod.spec.containers:
+            pod_mounted_secrets = {}
+            for volume in pod.spec.volumes:
+                if volume.secret:
+                    pod_mounted_secrets[volume.secret.secret_name] = True
+
+            jwt_body = get_jwt_token_from_container_by_etcd(pod, container, pod_mounted_secrets)
+            if jwt_body:
+                risky_user = get_risky_user_from_container(jwt_body, risky_users)
+                if risky_user:
+                    risky_containers.append(
+                        Container(container.name, risky_user.user_info.name, risky_user.user_info.namespace,
+                                  risky_user.priority))
+
     return risky_containers
 
-def get_risky_pods(namespace=None):
+def get_risky_pods(namespace=None, deep_analysis=False):
     risky_pods = []
     pods = list_pods_for_all_namespaces_or_one_namspace(namespace)
     risky_users = get_all_risky_subjects()
     for pod in pods.items:
-        risky_containers = get_risky_containers(pod, risky_users)
+        risky_containers = get_risky_containers(pod, risky_users, deep_analysis)
         if len(risky_containers) > 0:
             risky_pods.append(Pod(pod.metadata.name, pod.metadata.namespace, risky_containers))
 
@@ -376,32 +417,45 @@ def get_rolebindings_and_clusterrolebindings_associated_to_clusterrole(role_name
 
     return associated_rolebindings, associated_clusterrolebindings
 
-def dump_containers_tokens_by_pod(pod_name, namespace):
+def dump_containers_tokens_by_pod(pod_name, namespace, read_token_from_container=False):
     containers_with_tokens = []
     pod = api_client.CoreV1Api.read_namespaced_pod(name=pod_name, namespace=namespace)
-    if pod.status.container_statuses:
-        for container in pod.status.container_statuses:
-            if container.ready:
-		# Consider adding option to the token from the ETCD instead of the container. It faster but less reliable
-                jwt_body, raw_jwt_token = get_jwt_token_from_container(pod, container.name)
-                if jwt_body:
-                    containers_with_tokens.append(Container(container.name, token=jwt_body, raw_jwt_token=raw_jwt_token))
+    if read_token_from_container:
+        print('from container')
+        if pod.status.container_statuses:
+            for container in pod.status.container_statuses:
+                if container.ready:
+                    jwt_body, raw_jwt_token = get_jwt_token_from_container(pod, container.name)
+                    if jwt_body:
+                        containers_with_tokens.append(Container(container.name, token=jwt_body, raw_jwt_token=raw_jwt_token))
+
+    else:
+        print('other place')
+        for container in pod.spec.containers:
+            pod_mounted_secrets = {}
+            for volume in pod.spec.volumes:
+                if volume.secret:
+                    pod_mounted_secrets[volume.secret.secret_name] = True
+
+            jwt_body = get_jwt_token_from_container_by_etcd(pod, container, pod_mounted_secrets)
+            if jwt_body:
+                containers_with_tokens.append(Container(container.name, token=jwt_body, raw_jwt_token=None))
 
     return containers_with_tokens
 
 
-def dump_all_pods_tokens_or_by_namespace(namespace=None):
+def dump_all_pods_tokens_or_by_namespace(namespace=None, read_token_from_container=False):
     pods_with_tokens = []
     pods = list_pods_for_all_namespaces_or_one_namspace(namespace)
     for pod in pods.items:
-        containers = dump_containers_tokens_by_pod(pod.metadata.name, pod.metadata.namespace)
+        containers = dump_containers_tokens_by_pod(pod.metadata.name, pod.metadata.namespace, read_token_from_container)
         pods_with_tokens.append(Pod(pod.metadata.name, pod.metadata.namespace, containers))
 
     return pods_with_tokens
 
-def dump_pod_tokens(name, namespace):
+def dump_pod_tokens(name, namespace, read_token_from_container=False):
     pod_with_tokens = []
-    containers = dump_containers_tokens_by_pod(name, namespace)
+    containers = dump_containers_tokens_by_pod(name, namespace, read_token_from_container)
     pod_with_tokens.append(Pod(name, namespace, containers))
 
     return pod_with_tokens
