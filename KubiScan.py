@@ -108,8 +108,8 @@ def generic_print(header, objects, show_rules=False):
 
     print_table_aligned_left(t)
 
-def print_all_risky_containers(priority=None, namespace=None):
-    pods = engine.utils.get_risky_pods(namespace)
+def print_all_risky_containers(priority=None, namespace=None, read_token_from_container=False):
+    pods = engine.utils.get_risky_pods(namespace, read_token_from_container)
 
     print("+----------------+")
     print("|Risky Containers|")
@@ -133,11 +133,11 @@ def print_all_risky_subjects(priority=None):
 
     print_table_aligned_left(t)
 
-def print_all(days=None, priority=None):
+def print_all(days=None, priority=None, read_token_from_container=False):
     print_all_risky_roles(days=days, priority=priority)
     print_all_risky_rolebindings(days=days, priority=priority)
     print_all_risky_subjects(priority=priority)
-    print_all_risky_containers(priority=priority)
+    print_all_risky_containers(priority=priority, read_token_from_container=False)
 
 def print_associated_rolebindings_to_role(role_name, namespace=None):
     associated_rolebindings = engine.utils.get_rolebindings_associated_to_role(role_name=role_name, namespace=namespace)
@@ -187,11 +187,11 @@ def desrialize_token(token):
         desirialized_token += '\n'
     return desirialized_token
 
-def dump_tokens_from_pods(pod_name=None, namespace=None):
+def dump_tokens_from_pods(pod_name=None, namespace=None, read_token_from_container=False):
     if pod_name is not None:
-        pods_with_tokens = engine.utils.dump_pod_tokens(pod_name, namespace)
+        pods_with_tokens = engine.utils.dump_pod_tokens(pod_name, namespace, read_token_from_container)
     else:
-        pods_with_tokens = engine.utils.dump_all_pods_tokens_or_by_namespace(namespace)
+        pods_with_tokens = engine.utils.dump_all_pods_tokens_or_by_namespace(namespace, read_token_from_container)
 
     t = PrettyTable(['PodName',  'Namespace', 'ContainerName', 'Decoded Token'])
     for pod in pods_with_tokens:
@@ -394,7 +394,11 @@ Requirements:
     opt.add_argument('-rab', '--risky-any-rolebindings', action='store_true', help='Get all risky RoleBindings and ClusterRoleBindings', required=False)
 
     opt.add_argument('-rs', '--risky-subjects', action='store_true',help='Get all risky Subjects (Users, Groups or Service Accounts)', required=False)
-    opt.add_argument('-rp', '--risky-pods', action='store_true', help='Get all risky Pods\Containers', required=False)
+    opt.add_argument('-rp', '--risky-pods', action='store_true', help='Get all risky Pods\Containers.\n'
+                                                                      'Use the -d\--deep switch to read the tokens from the current running containers', required=False)
+    opt.add_argument('-d', '--deep', action='store_true', help='Works only with -rp\--risky-pods switch. If this is specified, it will execute each pod to get its token.\n'
+                                                               'Without it, it will read the pod mounted service account secret from the ETCD, it less reliable but much faster.', required=False)
+
     opt.add_argument('-a', '--all', action='store_true',help='Get all risky Roles\ClusterRoles, RoleBindings\ClusterRoleBindings, users and pods\containers', required=False)
 
     opt.add_argument('-jt', '--join-token', action='store_true', help='Get join token for the cluster. OpenSsl must be installed + kubeadm', required=False)
@@ -491,9 +495,9 @@ Requirements:
     if args.risky_subjects:
         print_all_risky_subjects(priority=args.priority)
     if args.risky_pods:
-        print_all_risky_containers(priority=args.priority, namespace=args.namespace)
+        print_all_risky_containers(priority=args.priority, namespace=args.namespace, read_token_from_container=args.deep)
     if args.all:
-        print_all(days=args.less_than, priority=args.priority)
+        print_all(days=args.less_than, priority=args.priority, read_token_from_container=args.deep)
     elif args.join_token:
         print_join_token()
     elif args.pods_secrets_volume:
@@ -534,13 +538,13 @@ Requirements:
     elif args.dump_tokens:
         if args.name:
             if args.namespace:
-                dump_tokens_from_pods(pod_name=args.name, namespace=args.namespace)
+                dump_tokens_from_pods(pod_name=args.name, namespace=args.namespace, read_token_from_container=args.deep)
             else:
                 print('When specificing Pod name, need also namespace')
         elif args.namespace:
-            dump_tokens_from_pods(namespace=args.namespace)
+            dump_tokens_from_pods(namespace=args.namespace, read_token_from_container=args.deep)
         else:
-            dump_tokens_from_pods()
+            dump_tokens_from_pods(read_token_from_container=args.deep)
     elif args.subject_users:
         print_subjects_by_kind(constants.USER_KIND)
     elif args.subject_groups:
