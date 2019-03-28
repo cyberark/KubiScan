@@ -34,7 +34,7 @@ It requires a **privileged** service account with the following permissions:
 - **resources**: `["roles", "clusterroles", "rolebindings", "clusterrolebindings", "pods", "secrets"]`  
   **verbs**: `["get", "list"]`  
 - **resources**: `["pods/exec"]`  
-  **verbs**: `["create"]`  
+  **verbs**: `["create", "get"]`  
 
 It can be created by running:
 ```
