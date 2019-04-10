@@ -517,8 +517,12 @@ def get_roles_associated_to_subject(subject_name, kind, namespace):
 
     associated_roles = []
     for rolebind in associated_rolebindings:
-        role = get_rolebinding_role(rolebind.metadata.name, namespace)
-        associated_roles.append(role)
+        try:
+            role = get_rolebinding_role(rolebind.metadata.name, namespace)
+            associated_roles.append(role)
+        except ApiException as e:
+            # 404 not found
+            continue
 
     for clusterrolebinding in associated_clusterrolebindings:
         role = get_clusterrolebinding_role(clusterrolebinding.metadata.name)
