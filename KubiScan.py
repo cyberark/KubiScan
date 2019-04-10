@@ -113,12 +113,12 @@ def print_all_risky_containers(priority=None, namespace=None, read_token_from_co
 
     print("+----------------+")
     print("|Risky Containers|")
-    t = PrettyTable(['Priority', 'PodName', 'ContainerName', 'ServiceAccountNamespace', 'ServiceAccountName'])
+    t = PrettyTable(['Priority', 'PodName', 'Namespace', 'ContainerName', 'ServiceAccountNamespace', 'ServiceAccountName'])
     for pod in pods:
         if priority:
             pod.containers = filter_objects_by_priority(priority, pod.containers)
         for container in pod.containers:
-            t.add_row([get_color_by_priority(container.priority)+container.priority.name+WHITE, pod.name, container.name, container.service_account_namespace, container.service_account_name])
+            t.add_row([get_color_by_priority(container.priority)+container.priority.name+WHITE, pod.name, pod.namespace, container.name, container.service_account_namespace, container.service_account_name])
     print_table_aligned_left(t)
 
 def print_all_risky_subjects(priority=None):
