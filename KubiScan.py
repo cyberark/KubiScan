@@ -1,5 +1,6 @@
 from argparse import ArgumentParser
 import engine.utils
+import engine.privleged_containers
 from prettytable import PrettyTable
 from engine.priority import Priority
 from misc.colours import *
@@ -305,6 +306,26 @@ def print_pods_with_access_secret_via_environment(namespace=None):
 
     print_table_aligned_left(t)
 
+def parse_security_context(security_context):
+    context = ''
+    if security_context:
+        dict =  security_context.to_dict()
+        for key in dict.keys():
+            if dict[key] is not None:
+                context += '{0}: {1}\n'.format(key, dict[key])
+    return context
+
+def print_privileged_containers(namespace=None):
+    print("+---------------------+")
+    print("|Privileged Containers|")
+    t = PrettyTable(['Pod', 'Namespace', 'Pod Security Context', 'Container', 'Container Security Context'])
+    pods = engine.privleged_containers.get_privileged_containers(namespace)
+    for pod in pods:
+        for container in pod.spec.containers:
+            t.add_row([pod.metadata.name, pod.metadata.namespace, parse_security_context(pod.spec.security_context), container.name, parse_security_context(container.security_context)])
+
+    print_table_aligned_left(t)
+
 def print_join_token():
     import os
     from api.api_client import running_in_docker_container
@@ -356,7 +377,7 @@ osss:.::`...`- ..`.:/`+ssss+`/:``.. -`...`::.:ssso
          -osssssssssssssssssssssssssssss-         
           `/ssssssssssssssssssssssssss/`       
     
-               KubiScan version 1.1
+               KubiScan version 1.2
                Author: Eviatar Gerzi
     '''
     print(logo)
@@ -398,7 +419,7 @@ Requirements:
                                                                       'Use the -d\--deep switch to read the tokens from the current running containers', required=False)
     opt.add_argument('-d', '--deep', action='store_true', help='Works only with -rp\--risky-pods switch. If this is specified, it will execute each pod to get its token.\n'
                                                                'Without it, it will read the pod mounted service account secret from the ETCD, it less reliable but much faster.', required=False)
-
+    opt.add_argument('-pp', '--privleged-pods', action='store_true', help='Get all privileged Pods\Containers.',  required=False)
     opt.add_argument('-a', '--all', action='store_true',help='Get all risky Roles\ClusterRoles, RoleBindings\ClusterRoleBindings, users and pods\containers', required=False)
 
     opt.add_argument('-jt', '--join-token', action='store_true', help='Get join token for the cluster. OpenSsl must be installed + kubeadm', required=False)
@@ -498,6 +519,8 @@ Requirements:
         print_all_risky_containers(priority=args.priority, namespace=args.namespace, read_token_from_container=args.deep)
     if args.all:
         print_all(days=args.less_than, priority=args.priority, read_token_from_container=args.deep)
+    elif args.privleged_pods:
+        print_privileged_containers(namespace=args.namespace)
     elif args.join_token:
         print_join_token()
     elif args.pods_secrets_volume:
