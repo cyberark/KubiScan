@@ -368,7 +368,7 @@ def get_rolebindings_and_clusterrolebindings_associated_to_subject(subject_name,
 
     for rolebinding in rolebindings_all_namespaces.items:
         for subject in rolebinding.subjects:
-            if subject.name.lower() == subject_name.lower() and subject.namespace.lower() == namespace.lower() and subject.kind.lower() == kind.lower():
+            if subject.name.lower() == subject_name.lower() and subject.kind.lower() == kind.lower():
                 if kind == SERVICEACCOUNT_KIND:
                     if subject.namespace.lower() == namespace.lower():
                         associated_rolebindings.append(rolebinding)
@@ -518,7 +518,7 @@ def get_roles_associated_to_subject(subject_name, kind, namespace):
     associated_roles = []
     for rolebind in associated_rolebindings:
         try:
-            role = get_rolebinding_role(rolebind.metadata.name, namespace)
+            role = get_rolebinding_role(rolebind.metadata.name, rolebind.metadata.namespace)
             associated_roles.append(role)
         except ApiException as e:
             # 404 not found
