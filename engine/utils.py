@@ -327,6 +327,7 @@ def get_risky_containers(pod, risky_users, read_token_from_container=False):
     else:
         for container in pod.spec.containers:
             pod_mounted_secrets = {}
+	    # TODO: Use VolumeMount from the container for more reliable results
             for volume in pod.spec.volumes:
                 if volume.secret:
                     pod_mounted_secrets[volume.secret.secret_name] = True
