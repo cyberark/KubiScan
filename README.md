@@ -1,3 +1,6 @@
+[![GitHub release][release-img]][release]
+[![License][license-img]][license]
+
 <img src="https://github.com/cyberark/KubiScan/blob/assets/kubiscan_logo.png" width="260">  
 A tool for scanning Kubernetes cluster for risky permissions in Kubernetes's Role-based access control (RBAC) authorization model.   
 The tool was published as part of the "Securing Kubernetes Clusters by Eliminating Risky Permissions" research https://www.cyberark.com/threat-research-blog/securing-kubernetes-clusters-by-eliminating-risky-permissions/.
@@ -138,3 +141,9 @@ We added all the roles we found to be risky, but because each one can define the
 
 ## References:
 For more comments, suggestions or questions, you can contact Eviatar Gerzi ([@g3rzi](https://twitter.com/g3rzi)) and CyberArk Labs.
+
+[release-img]: https://img.shields.io/github/release/cyberark/kubiscan.svg
+[release]: https://github.com/cyberark/kubiscan/releases
+
+[license-img]: https://img.shields.io/github/license/cyberark/kubiscan.svg
+[license]: https://github.com/cyberark/kubiscan/blob/master/LICENSE
