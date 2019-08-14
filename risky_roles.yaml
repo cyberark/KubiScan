@@ -42,7 +42,7 @@ items:
 # Verb: list
 # Resources: secrets
 # Example: kubectl get secrets -o yaml
-  - kind: Role
+- kind: Role
   metadata:
     namespace: default
     name: risky-impersonate-groups
