@@ -359,6 +359,7 @@ def parse_pod_spec(pod_spec, container):
                                     spec += '   host_path:\n'
                                     spec += '     {0}: {1}\n'.format('path', volume_obj['host_path']['path'])
                                     spec += '     {0}: {1}\n'.format('type', volume_obj['host_path']['type'])
+                                    spec += '     {0}: {1}\n'.format('container_path', volume_mount.mount_path)
 
     spec += parse_security_context(pod_spec.security_context)
     return spec
