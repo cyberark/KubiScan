@@ -315,14 +315,23 @@ def parse_security_context(security_context):
                 context += '{0}: {1}\n'.format(key, dict[key])
     return context
 
+def parse_pod_spec(pod_spec):
+    spec = ''
+    dict =  pod_spec.to_dict()
+    for key in dict.keys():
+        if dict[key] is not None:
+            if key == 'host_pid' or key == 'host_ipc':
+                spec += '{0}: {1}\n'.format(key, dict[key])
+    return spec
+
 def print_privileged_containers(namespace=None):
     print("+---------------------+")
     print("|Privileged Containers|")
-    t = PrettyTable(['Pod', 'Namespace', 'Pod Security Context', 'Container', 'Container Security Context'])
+    t = PrettyTable(['Pod', 'Namespace', 'Pod Spec', 'Pod Security Context', 'Container', 'Container Security Context'])
     pods = engine.privleged_containers.get_privileged_containers(namespace)
     for pod in pods:
         for container in pod.spec.containers:
-            t.add_row([pod.metadata.name, pod.metadata.namespace, parse_security_context(pod.spec.security_context), container.name, parse_security_context(container.security_context)])
+            t.add_row([pod.metadata.name, pod.metadata.namespace, parse_pod_spec(pod.spec), parse_security_context(pod.spec.security_context), container.name, parse_security_context(container.security_context)])
 
     print_table_aligned_left(t)
 
