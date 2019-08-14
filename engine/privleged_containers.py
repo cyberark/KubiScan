@@ -39,13 +39,25 @@ def get_privileged_containers(namespace=None):
             privileged_containers = pod.spec.containers
         else:
             for container in pod.spec.containers:
+                found_privileged_container = False
                 if is_privileged(container.security_context, is_container=True):
                     privileged_containers.append(container)
                 elif container.ports:
                     for ports in container.ports:
                         if ports.host_port:
                             privileged_containers.append(container)
+                            found_privileged_container = True
                             break
+                if not found_privileged_container:
+                    for volume in pod.spec.volumes:
+                        if found_privileged_container:
+                            break
+                        if volume.host_path:
+                            for volume_mount in container.volume_mounts:
+                                 if volume_mount.name == volume.name:
+                                     privileged_containers.append(container)
+                                     found_privileged_container = True
+                                     break
 
         if privileged_containers:
             pod.spec.containers = privileged_containers
