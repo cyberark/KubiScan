@@ -334,19 +334,32 @@ def parse_container_spec(container_spec):
                         spec += '  {0}: {1}\n'.format('container_port', port_obj['container_port'])
                         spec += '  {0}: {1}\n'.format('host_port', port_obj['host_port'])
                         break
-            if key == 'host_pid' or key == 'host_ipc':
-                spec += '{0}: {1}\n'.format(key, dict[key])
-
     spec += parse_security_context(container_spec.security_context)
     return spec
 
-def parse_pod_spec(pod_spec):
+def parse_pod_spec(pod_spec, container):
     spec = ''
     dict =  pod_spec.to_dict()
+    is_volumes_header_set = False
     for key in dict.keys():
         if dict[key] is not None:
             if key == 'host_pid' or key == 'host_ipc' or key == 'host_network':
                 spec += '{0}: {1}\n'.format(key, dict[key])
+
+            if key == 'volumes':
+                for volume_obj in dict[key]:
+                    if 'host_path' in volume_obj:
+                        if volume_obj['host_path']:
+                            for volume_mount in container.volume_mounts:
+                                if volume_obj['name'] == volume_mount.name:
+                                    if not is_volumes_header_set:
+                                        spec += "Volumes:\n"
+                                        is_volumes_header_set = True
+                                    spec += '  -{0}: {1}\n'.format('name', volume_obj['name'])
+                                    spec += '   host_path:\n'
+                                    spec += '     {0}: {1}\n'.format('path', volume_obj['host_path']['path'])
+                                    spec += '     {0}: {1}\n'.format('type', volume_obj['host_path']['type'])
+
     spec += parse_security_context(pod_spec.security_context)
     return spec
 
@@ -357,7 +370,7 @@ def print_privileged_containers(namespace=None):
     pods = engine.privleged_containers.get_privileged_containers(namespace)
     for pod in pods:
         for container in pod.spec.containers:
-            t.add_row([pod.metadata.name, pod.metadata.namespace, parse_pod_spec(pod.spec), container.name, parse_container_spec(container)])
+            t.add_row([pod.metadata.name, pod.metadata.namespace, parse_pod_spec(pod.spec, container), container.name, parse_container_spec(container)])
 
     print_table_aligned_left(t)
 
