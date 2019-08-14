@@ -35,7 +35,7 @@ def get_privileged_containers(namespace=None):
     pods = list_pods_for_all_namespaces_or_one_namspace(namespace)
     for pod in pods.items:
         privileged_containers = []
-        if is_privileged(pod.spec.security_context, is_container=False):
+        if pod.spec.host_ipc or pod.spec.host_pid or is_privileged(pod.spec.security_context, is_container=False):
             privileged_containers = pod.spec.containers
         else:
             for container in pod.spec.containers:
