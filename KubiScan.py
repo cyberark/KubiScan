@@ -356,7 +356,6 @@ def print_privileged_containers(namespace=None):
     t = PrettyTable(['Pod', 'Namespace', 'Pod Spec', 'Container', 'Container info'])
     pods = engine.privleged_containers.get_privileged_containers(namespace)
     for pod in pods:
-        print(pod.metadata.name)
         for container in pod.spec.containers:
             t.add_row([pod.metadata.name, pod.metadata.namespace, parse_pod_spec(pod.spec), container.name, parse_container_spec(container)])
 
