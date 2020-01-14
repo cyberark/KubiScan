@@ -108,7 +108,7 @@ python3 KubiScan.py --pods-secrets-volume
 python3 KubiScan.py -psv
 python3 KubiScan.py -psv -ns "kube-system"
 
-# Show Pods that has access to the secret data through a Volume
-python3 KubiScan.py --pods-secrets-volume
+# Show Pods that has access to the secret data through environment variables
+python3 KubiScan.py --pods-secrets-env
 python3 KubiScan.py -pse
 python3 KubiScan.py -pse -ns "kube-system"
