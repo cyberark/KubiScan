@@ -283,12 +283,12 @@ class ApiClientTemp(object):
     def call_api(self, resource_path, method,
                  path_params=None, query_params=None, header_params=None,
                  body=None, post_params=None, files=None,
-                 response_type=None, auth_settings=None, async_=None,
+                 response_type=None, auth_settings=None, async_req=None,
                  _return_http_data_only=None, collection_formats=None, _preload_content=True,
                  _request_timeout=None):
         """
         Makes the HTTP request (synchronous) and return the deserialized data.
-        To make an async request, set the async parameter.
+        To make an async_req request, set the async_req parameter.
 
         :param resource_path: Path to method endpoint.
         :param method: Method to call.
@@ -303,7 +303,7 @@ class ApiClientTemp(object):
         :param response: Response data type.
         :param files dict: key -> filename, value -> filepath,
             for `multipart/form-data`.
-        :param async_ bool: execute request asynchronously
+        :param async_req bool: execute request asynchronously
         :param _return_http_data_only: response data without head status code and headers
         :param collection_formats: dict of collection formats for path, query,
             header, and post parameters.
@@ -312,13 +312,13 @@ class ApiClientTemp(object):
         :param _request_timeout: timeout setting for this request. If one number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of (connection, read) timeouts.
         :return:
-            If async_ parameter is True,
+            If async_req parameter is True,
             the request will be called asynchronously.
             The method will return the request thread.
-            If parameter async_ is False or missing,
+            If parameter async_req is False or missing,
             then the method will return the response directly.
         """
-        if not async_:
+        if not async_req:
             return self.__call_api(resource_path, method,
                                    path_params, query_params, header_params,
                                    body, post_params, files,
