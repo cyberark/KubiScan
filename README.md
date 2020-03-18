@@ -77,7 +77,7 @@ EOF
 ```
 
 Save the service account's token to a file:  
-`kubectl get secrets $(kubectl get sa kubiscan-sa -o json | jq -r '.secrets[0].name') -o json | jq -r '.data.token' | base64 -d > token` 
+`kubectl get secrets $(kubectl get sa kubiscan-sa -o=jsonpath='{.secrets[0].name}') -o=jsonpath='{.data.token}' | base64 -d > token`
 
 Run the container from anywhere you want:  
 `docker run -it --rm -v $PWD/token:/token cyberark/kubiscan`  
