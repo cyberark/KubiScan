@@ -56,7 +56,8 @@ def api_init(host=None, token_filename=None, cert_filename=None, context=None):
         BearerTokenLoader(host=host, token_filename=token_filename, cert_filename=cert_filename).load_and_set()
 
     else:
-        if running_in_docker_container():
+        kubeconfig_path = os.getenv('KUBISCAN_CONFIG_PATH')
+        if running_in_docker_container() and kubeconfig_path is None:
             # TODO: Consider using config.load_incluster_config() from container created by Kubernetes. Required service account with privileged permissions.
             # Must have mounted volume
             container_volume_prefix = os.getenv('KUBISCAN_VOLUME_PATH', '/tmp')
@@ -67,7 +68,7 @@ def api_init(host=None, token_filename=None, cert_filename=None, context=None):
 
             config.load_kube_config(kube_config_bak_path, context=context)
         else:
-            config.load_kube_config(context=context)
+            config.load_kube_config(config_file=kubeconfig_path, context=context)
 
     CoreV1Api = client.CoreV1Api()
     RbacAuthorizationV1Api = client.RbacAuthorizationV1Api()
