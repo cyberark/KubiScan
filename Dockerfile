@@ -60,7 +60,7 @@ USER kubiscan
 RUN kubiscan --examples
 
 # Default to /tmp/kubiscan/kubeconfig
-ENV CONF_PATH=/kubiscan/kubeconfig
+ENV CONF_PATH=/kubiscan/kubeconfig.yaml
 
 ENTRYPOINT ["python3", "/opt/kubiscan/KubiScan.py"]
 CMD ["--examples"]
