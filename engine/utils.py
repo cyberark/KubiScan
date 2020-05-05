@@ -222,7 +222,7 @@ def get_all_risky_subjects():
             # Removing duplicated users
             if ''.join((user.kind, user.name, str(user.namespace))) not in passed_users:
                 passed_users[''.join((user.kind, user.name, str(user.namespace)))] = True
-		if user.namespace == None and (user.kind).lower() == "serviceaccount":
+                if user.namespace == None and (user.kind).lower() == "serviceaccount":
                     user.namespace = risky_rolebinding.namespace
                 all_risky_users.append(Subject(user, risky_rolebinding.priority))
 
