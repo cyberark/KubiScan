@@ -330,9 +330,10 @@ def get_risky_containers(pod, risky_users, read_token_from_container=False):
         for container in pod.spec.containers:
             pod_mounted_secrets = {}
 	    # TODO: Use VolumeMount from the container for more reliable results
-            for volume in pod.spec.volumes:
-                if volume.secret:
-                    pod_mounted_secrets[volume.secret.secret_name] = True
+            if pod.spec.volumes is not None:
+              for volume in pod.spec.volumes:
+                  if volume.secret:
+                      pod_mounted_secrets[volume.secret.secret_name] = True
 
             jwt_body = get_jwt_token_from_container_by_etcd(pod, container, pod_mounted_secrets)
             if jwt_body:
