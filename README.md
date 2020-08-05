@@ -39,7 +39,7 @@ Some functionality requires a **privileged** service account with the following 
 - **resources**: `["pods/exec"]`  
   **verbs**: `["create", "get"]`  
 
-But most of the functionality not, so you can use this settings for limited service account:  
+But most of the functionalities are not, so you can use this settings for limited service account:  
 It can be created by running:
 ```
 kubectl apply -f - << EOF
