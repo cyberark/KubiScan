@@ -33,12 +33,13 @@ Inside the container the command `kubiscan` is equivalent to `python3 /KubiScan/
 Notice that in this case, the **whole file system will be mounted**. This is due to the fact that the config files contain paths to other places in the filesystem that will be different in other environments.  
 
 #### With service account token (good from remote)
-It requires a **privileged** service account with the following permissions:  
+Some functionality requires a **privileged** service account with the following permissions:  
 - **resources**: `["roles", "clusterroles", "rolebindings", "clusterrolebindings", "pods", "secrets"]`  
   **verbs**: `["get", "list"]`  
 - **resources**: `["pods/exec"]`  
   **verbs**: `["create", "get"]`  
 
+But most of the functionality not, so you can use this settings for limited service account:  
 It can be created by running:
 ```
 kubectl apply -f - << EOF
