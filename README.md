@@ -68,11 +68,8 @@ metadata:
   name: kubiscan-clusterrole
 rules: 
 - apiGroups: ["*"]
-  resources: ["roles", "clusterroles", "rolebindings", "clusterrolebindings", "pods", "secrets"]
+  resources: ["roles", "clusterroles", "rolebindings", "clusterrolebindings", "pods"]
   verbs: ["get", "list"]
-- apiGroups: ["*"]
-  resources: ["pods/exec"]
-  verbs: ["create", "get"]
 EOF
 ```
 
