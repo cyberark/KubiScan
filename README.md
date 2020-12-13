@@ -137,6 +137,10 @@ Although the kind in each role is `Role`, these templates will be compared again
 When each of these roles is checked against a role in the cluster, it checks if the role in the cluster contains the rules from the risky role. If it does, it will be marked as risky.  
 We added all the roles we found to be risky, but because each one can define the term "risky" in a different way, you can modify the file by adding\removing roles you think are more\less risky.  
 
+## License
+Copyright (c) 2020 CyberArk Software Ltd. All rights reserved
+This repository is licensed under GPL-3.0 License - see [`LICENSE`](LICENSE) for more details.
+
 ## References:
 For more comments, suggestions or questions, you can contact Eviatar Gerzi ([@g3rzi](https://twitter.com/g3rzi)) and CyberArk Labs.
 
