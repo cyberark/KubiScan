@@ -78,12 +78,13 @@ def are_rules_contain_other_rules(source_role_name, source_rules, target_rules):
     is_contains = False
     matched_rules = 0
     for target_rule in target_rules:
-        for source_rule in source_rules:
-            if is_rule_contains_risky_rule(source_role_name, source_rule, target_rule):
-                matched_rules += 1
-                if matched_rules == len(target_rules):
-                    is_contains = True
-                    return is_contains
+        if source_rules is not None:
+            for source_rule in source_rules:
+                if is_rule_contains_risky_rule(source_role_name, source_rule, target_rule):
+                    matched_rules += 1
+                    if matched_rules == len(target_rules):
+                        is_contains = True
+                        return is_contains
 
     return is_contains
 
