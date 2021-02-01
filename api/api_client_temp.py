@@ -658,7 +658,7 @@ class ApiClientTemp(object):
         return cluster_role_bindings
 
     def list_cluster_role(self):
-        json_data = self.__call_api('/apis/rbac.authorization.k8s.io/v1/clusterroles', 'GET',
+        json_data = self.__call_api(resource_path='/apis/rbac.authorization.k8s.io/v1/clusterroles', method='GET',
                                         path_params={}, query_params=[],
                                         header_params={'Content-Type': 'application/json', 'Accept': 'application/json'},
                                         body=None, post_params=[], files={},
