@@ -71,7 +71,7 @@ def api_init(host=None, token_filename=None, cert_filename=None, context=None):
 
     CoreV1Api = client.CoreV1Api()
     RbacAuthorizationV1Api = client.RbacAuthorizationV1Api()
-    api_temp = ApiClientTemp()
+    api_temp = ApiClientTemp(configuration=client.configuration.Configuration.get_default_copy())
 
 class BearerTokenLoader(object):
     def __init__(self, host, token_filename, cert_filename=None):
