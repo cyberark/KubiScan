@@ -346,7 +346,7 @@ def parse_pod_spec(pod_spec, container):
             if key == 'host_pid' or key == 'host_ipc' or key == 'host_network':
                 spec += '{0}: {1}\n'.format(key, dict[key])
 
-            if key == 'volumes':
+            if key == 'volumes' and container.volume_mounts is not None:
                 for volume_obj in dict[key]:
                     if 'host_path' in volume_obj:
                         if volume_obj['host_path']:
