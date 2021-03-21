@@ -77,6 +77,8 @@ def get_role_by_name_and_kind(name, kind, namespace=None):
 def are_rules_contain_other_rules(source_role_name, source_rules, target_rules):
     is_contains = False
     matched_rules = 0
+    if not (target_rules and source_rules):
+        return is_contains
     for target_rule in target_rules:
         if source_rules is not None:
             for source_rule in source_rules:
