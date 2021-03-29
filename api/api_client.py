@@ -59,7 +59,7 @@ def api_init(host=None, token_filename=None, cert_filename=None, context=None):
 
         CoreV1Api = client.CoreV1Api()
         RbacAuthorizationV1Api = client.RbacAuthorizationV1Api()
-        api_temp = ApiClientTemp(configuration=client.configuration.Configuration.get_default_copy())
+        api_temp = ApiClientTemp()
 
     else:
         configuration = Configuration()
