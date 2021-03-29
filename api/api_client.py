@@ -50,17 +50,25 @@ def api_init(host=None, token_filename=None, cert_filename=None, context=None):
     global RbacAuthorizationV1Api
     global api_temp
 
-    if host and token_filename:
-        # remotely
-        token_filename = os.path.abspath(token_filename)
-        if cert_filename:
-            cert_filename = os.path.abspath(cert_filename)
-        BearerTokenLoader(host=host, token_filename=token_filename, cert_filename=cert_filename).load_and_set()
+    if host and (token_filename):
+
+        if token_filename:
+            # remotely
+            token_filename = os.path.abspath(token_filename)
+            if cert_filename:
+                cert_filename = os.path.abspath(cert_filename)
+            BearerTokenLoader(host=host, token_filename=token_filename, cert_filename=cert_filename).load_and_set()
 
         CoreV1Api = client.CoreV1Api()
         RbacAuthorizationV1Api = client.RbacAuthorizationV1Api()
         api_temp = ApiClientTemp()
 
+    elif kube_config_file:
+        config.load_kube_config(os.path.abspath(kube_config_file))
+        CoreV1Api = client.CoreV1Api()
+        RbacAuthorizationV1Api = client.RbacAuthorizationV1Api()
+        api_from_config = config.new_client_from_config(kube_config_file)
+        api_temp = ApiClientTemp(configuration=api_from_config.configuration)
     else:
         configuration = Configuration()
         api_client = ApiClient()
