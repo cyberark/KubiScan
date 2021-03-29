@@ -499,7 +499,7 @@ Requirements:
                                                                             'Inside Pods the default location is \'/var/run/secrets/kubernetes.io/serviceaccount/ca.crt\''
                                                                             'Or \'/run/secrets/kubernetes.io/serviceaccount/ca.crt\'.', required=False)
 
-   helper_switches.add_argument('-co', '--kube-config', action='store', metavar='KUBE_CONFIG_FILENAME',
+    helper_switches.add_argument('-co', '--kube-config', action='store', metavar='KUBE_CONFIG_FILENAME',
                                  help='The kube config file.\n'
                                       'For example: ~/.kube/config', required=False)
         
