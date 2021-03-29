@@ -45,7 +45,7 @@ def replace(file_path, pattern, subst):
     #Move new file
     move(abs_path, file_path)
 
-def api_init(host=None, token_filename=None, cert_filename=None, context=None):
+def api_init(kube_config_file=None, host=None, token_filename=None, cert_filename=None, context=None):
     global CoreV1Api
     global RbacAuthorizationV1Api
     global api_temp
