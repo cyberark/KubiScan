@@ -499,6 +499,10 @@ Requirements:
                                                                             'Inside Pods the default location is \'/var/run/secrets/kubernetes.io/serviceaccount/ca.crt\''
                                                                             'Or \'/run/secrets/kubernetes.io/serviceaccount/ca.crt\'.', required=False)
 
+    helper_switches.add_argument('-co', '--kube-config', action='store', metavar='KUBE_CONFIG_FILENAME',
+                                 help='The kube config file.\n'
+                                      'For example: ~/.kube/config', required=False)
+        
     helper_switches.add_argument('-t', '--token-filename', action='store', metavar='TOKEN_FILENAME',
                                  help='A bearer token. If this token does not have the required permissions for this application,'
                                       'the application will faill to get some of the information.\n'
@@ -548,7 +552,7 @@ Requirements:
         print_examples()
         exit()
 
-    api_init(host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename, context=args.context)
+    api_init(kube_config_file=args.kube_config, host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename, context=args.context)
 
     if args.risky_roles:
         print_risky_roles(show_rules=args.rules, days=args.less_than, priority=args.priority)
