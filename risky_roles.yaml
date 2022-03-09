@@ -289,6 +289,20 @@ items:
 
 ######################### REGION - HIGH Roles #########################
 
+# Risk: Privilege Escalation from Node/Proxy
+# Verb: get, create
+# Resources: nodes/proxy
+
+- kind: Role
+  metadata:
+    namespace: default
+    name: risky-execute-command-node-proxy
+    priority: HIGH
+  rules:
+  - apiGroups: ["*"]
+    resources: ["nodes/proxy"]
+    verbs: ["get", "create"]
+    
 # Risk: Allowing to create a malicious pod
 # Verb: create
 # Resources: deployments
