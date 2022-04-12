@@ -1,3 +1,5 @@
+Copyright (c) 2020 CyberArk Software Ltd. All rights reserved
+
 KubiScan is using the following open source components:
 
 Official Python client library for kubernetes (https://github.com/kubernetes-client/python) : Apache-2.0 License 
