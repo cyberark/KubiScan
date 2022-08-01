@@ -50,7 +50,7 @@ metadata:
   namespace: default
 ---
 kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 metadata: 
   name: kubiscan-clusterrolebinding
 subjects: 
@@ -64,7 +64,7 @@ roleRef:
   apiGroup: ""
 ---
 kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 metadata: 
   name: kubiscan-clusterrole
 rules: 
