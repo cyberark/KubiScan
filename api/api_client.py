@@ -97,6 +97,8 @@ class BearerTokenLoader(object):
 
         if not self._cert_filename:
             self._verify_ssl = False
+            import urllib3
+            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     def load_and_set(self):
         self._load_config()

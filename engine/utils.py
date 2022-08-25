@@ -10,9 +10,6 @@ from api import api_client
 from engine.subject import Subject
 from misc.constants import *
 from kubernetes.client.rest import ApiException
-import urllib3
-# Using it to disable warning when using only bearer token without ca.crt to verify the SSL
-#urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 #region - Roles and ClusteRoles
 
