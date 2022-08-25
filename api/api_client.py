@@ -55,11 +55,11 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
         token_filename = os.path.abspath(token_filename)
         if cert_filename:
             cert_filename = os.path.abspath(cert_filename)
-        BearerTokenLoader(host=host, token_filename=token_filename, cert_filename=cert_filename).load_and_set()
+        configuration = BearerTokenLoader(host=host, token_filename=token_filename, cert_filename=cert_filename).load_and_set()
 
         CoreV1Api = client.CoreV1Api()
         RbacAuthorizationV1Api = client.RbacAuthorizationV1Api()
-        api_temp = ApiClientTemp()
+        api_temp = ApiClientTemp(configuration=configuration)
 
     elif kube_config_file:
         config.load_kube_config(os.path.abspath(kube_config_file))
@@ -102,7 +102,9 @@ class BearerTokenLoader(object):
 
     def load_and_set(self):
         self._load_config()
-        self._set_config()
+        configuration = self._set_config()
+        return configuration
+
 
     def _load_config(self):
         self._host = "https://" + self._host
@@ -133,3 +135,4 @@ class BearerTokenLoader(object):
         configuration.verify_ssl = self._verify_ssl
         configuration.api_key['authorization'] = "bearer " + self.token
         client.Configuration.set_default(configuration)
+        return configuration
