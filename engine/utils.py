@@ -218,7 +218,7 @@ def get_all_risky_subjects():
     all_risky_rolebindings = get_all_risky_rolebinding()
     passed_users = {}
     for risky_rolebinding in all_risky_rolebindings:
-        for user in risky_rolebinding.subjects:
+        for user in risky_rolebinding.subjects or []:
             # Removing duplicated users
             if ''.join((user.kind, user.name, str(user.namespace))) not in passed_users:
                 passed_users[''.join((user.kind, user.name, str(user.namespace)))] = True
@@ -371,7 +371,7 @@ def get_rolebindings_and_clusterrolebindings_associated_to_subject(subject_name,
     associated_rolebindings = []
 
     for rolebinding in rolebindings_all_namespaces.items:
-        for subject in rolebinding.subjects:
+        for subject in rolebinding.subjects or []:
             if subject.name.lower() == subject_name.lower() and subject.kind.lower() == kind.lower():
                 if kind == SERVICEACCOUNT_KIND:
                     if subject.namespace.lower() == namespace.lower():
@@ -381,7 +381,7 @@ def get_rolebindings_and_clusterrolebindings_associated_to_subject(subject_name,
 
     associated_clusterrolebindings = []
     for clusterrolebinding in cluster_rolebindings:
-        for subject in clusterrolebinding.subjects:
+        for subject in clusterrolebinding.subjects or []:
             if subject.name == subject_name.lower() and subject.kind.lower() == kind.lower():
                 if kind == SERVICEACCOUNT_KIND:
                     if subject.namespace.lower() == namespace.lower():
@@ -475,10 +475,12 @@ def get_subjects_by_kind(kind):
     rolebindings = api_client.RbacAuthorizationV1Api.list_role_binding_for_all_namespaces()
     clusterrolebindings = api_client.api_temp.list_cluster_role_binding()
     for rolebinding in rolebindings.items:
-        subjects_found += search_subject_in_subjects_by_kind(rolebinding.subjects, kind)
+        if rolebinding.subjects is not None:
+            subjects_found += search_subject_in_subjects_by_kind(rolebinding.subjects, kind)
 
     for clusterrolebinding in clusterrolebindings:
-        subjects_found += search_subject_in_subjects_by_kind(clusterrolebinding.subjects, kind)
+        if clusterrolebinding.subjects is not None:
+            subjects_found += search_subject_in_subjects_by_kind(clusterrolebinding.subjects, kind)
 
     return remove_duplicated_subjects(subjects_found)
 
