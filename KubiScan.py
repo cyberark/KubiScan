@@ -7,7 +7,8 @@ from engine.priority import Priority
 from misc.colours import *
 from misc import constants
 import datetime
-from api.api_client import api_init
+from api.api_client import api_init, running_in_container
+
 
 def get_color_by_priority(priority):
     color = WHITE
@@ -415,7 +416,7 @@ def print_join_token():
     if not os.path.exists(ca_cert):
         ca_cert = '/etc/kubernetes/ca.crt'
 
-    if running_in_docker_container():
+    if running_in_container():
         ca_cert = '/tmp' + ca_cert
 
     join_token_path = os.path.dirname(os.path.realpath(__file__)) + '/engine/join_token.sh'
