@@ -21,15 +21,14 @@ api_temp = None
 CoreV1Api = None
 RbacAuthorizationV1Api = None
 
-def running_in_docker_container():
-    if os.path.isfile('/proc/self/cgroup'):
-        with open('/proc/self/cgroup', 'r') as procfile:
-            for line in procfile:
-                fields = line.strip().split('/')
-                if 'docker' in fields or '/docker-' in line:
-                    return True
-    return False
-
+def running_in_container():
+    with open('/proc/1/comm') as file:
+        line = file.readline().strip()
+        while line:
+            if 'systemd' in line:
+                return False
+            line = file.readline().strip()
+    return True
 def replace(file_path, pattern, subst):
     #Create temp file
     fh, abs_path = mkstemp()
@@ -70,7 +69,7 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
     else:
         configuration = Configuration()
         api_client = ApiClient()
-        if running_in_docker_container():
+        if running_in_container():
             # TODO: Consider using config.load_incluster_config() from container created by Kubernetes. Required service account with privileged permissions.
             # Must have mounted volume
             container_volume_prefix = '/tmp'
