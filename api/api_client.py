@@ -23,11 +23,11 @@ RbacAuthorizationV1Api = None
 
 def running_in_container():
     with open('/proc/1/comm') as file:
-        line = file.readline()
+        line = file.readline().strip()
         while line:
             if 'systemd' in line:
                 return False
-            line = file.readline()
+            line = file.readline().strip()
     return True
 def replace(file_path, pattern, subst):
     #Create temp file
