@@ -269,6 +269,7 @@ def pod_exec_read_token_two_paths(pod, container_name):
 
     return result
 
+
 def get_jwt_token_from_container(pod, container_name):
     resp = pod_exec_read_token_two_paths(pod, container_name)
 
@@ -280,22 +281,10 @@ def get_jwt_token_from_container(pod, container_name):
 
     return token_body, resp
 
-def get_jwt_token_from_container_by_etcd(pod, container, pod_mounted_secrets):
-    from engine.jwt_token import decode_base64_jwt_token
-    token_body = ''
-    if pod_mounted_secrets:
-        for mounted_volume in container.volume_mounts:
-            if mounted_volume.mount_path == '/var/run/secrets/kubernetes.io/serviceaccount' or mounted_volume.mount_path == '/run/secrets/kubernetes.io/serviceaccount':
-               if mounted_volume.name in pod_mounted_secrets:
-                    secret = api_client.CoreV1Api.read_namespaced_secret(mounted_volume.name, pod.metadata.namespace)
-                    decoded_data = decode_base64_jwt_token(secret.data['token'])
-                    token_body = json.loads(decoded_data)
-                    break
-
-    return token_body
 
 def is_same_user(a_username, a_namespace, b_username, b_namespace):
     return (a_username == b_username and a_namespace == b_namespace)
+
 
 def get_risky_user_from_container(jwt_body, risky_users):
     risky_user_in_container = None
@@ -309,10 +298,13 @@ def get_risky_user_from_container(jwt_body, risky_users):
 
     return risky_user_in_container
 
+
 def get_risky_containers(pod, risky_users, read_token_from_container=False):
     risky_containers = []
-    risky_user = None
 
+
+
+    fetched_containers = []
     if read_token_from_container:
         # Skipping terminated and evicted pods
         # This will run only on the containers with the "ready" status
@@ -326,24 +318,75 @@ def get_risky_containers(pod, risky_users, read_token_from_container=False):
                             risky_containers.append(
                                 Container(container.name, risky_user.user_info.name, risky_user.user_info.namespace,
                                           risky_user.priority))
+
     else:
         for container in pod.spec.containers:
-            pod_mounted_secrets = {}
-	    # TODO: Use VolumeMount from the container for more reliable results
-            if pod.spec.volumes is not None:
-              for volume in pod.spec.volumes:
-                  if volume.secret:
-                      pod_mounted_secrets[volume.secret.secret_name] = True
-
-            jwt_body = get_jwt_token_from_container_by_etcd(pod, container, pod_mounted_secrets)
-            if jwt_body:
-                risky_user = get_risky_user_from_container(jwt_body, risky_users)
-                if risky_user:
-                    risky_containers.append(
-                        Container(container.name, risky_user.user_info.name, risky_user.user_info.namespace,
-                                  risky_user.priority))
+            # Check for duplications
+            fetched_service_accounts = []
+            if container.volume_mounts is not None:
+                for volume_mount in container.volume_mounts:
+                    risky_user = check_name_in_volume(volume_mount, pod, risky_users)
+                    if risky_user is not None:
+                        if risky_user not in fetched_service_accounts:
+                            if not container_exists_in_risky_containers(risky_containers, container.name, risky_user.user_info.name):
+                                risky_containers.append(
+                                    Container(container.name, risky_user.user_info.name, risky_user.user_info.namespace,
+                                              risky_user.priority))
+                            fetched_service_accounts.append(risky_user)
 
     return risky_containers
+
+def container_exists_in_risky_containers(risky_containers, container_name, user_name):
+    for risky_container in risky_containers:
+        if risky_container.name == container_name:
+            risky_container.service_account_name.append(user_name)
+            return True
+    return False
+
+
+
+
+def check_name_in_volume(volume_mount, pod, risky_users):
+    risky_user = None
+    for volume in pod.spec.volumes:
+        if volume.name == volume_mount.name:
+            if volume.projected is not None:
+                for source in volume.projected.sources:
+                    if source.service_account_token is not None:
+                        risky_user = is_user_risky(risky_users, pod.spec.service_account, pod.metadata.namespace)
+            elif volume.secret is not None:
+                #if volume_mount.mount_path == '/var/run/secrets/kubernetes.io/serviceaccount' or volume_mount.mount_path == '/run/secrets/kubernetes.io/serviceaccount':
+                risky_user = get_jwt_and_decode(pod, risky_users, volume)
+    return risky_user
+
+
+def default_path_exists(volume_mounts):
+    for volume_mount in volume_mounts:
+        if volume_mount.mount_path == "/var/run/secrets/kubernetes.io/serviceaccount":
+            return True
+    return False
+
+
+def is_user_risky(risky_users, service_account, namespace):
+    for risky_user in risky_users:
+        if risky_user.user_info.name == service_account and risky_user.user_info.namespace == namespace:
+            return risky_user
+    return None
+
+
+def get_jwt_and_decode(pod, risky_users, volume):
+    from engine.jwt_token import decode_base64_jwt_token
+    secret = api_client.CoreV1Api.read_namespaced_secret(name=volume.secret.secret_name,
+                                                         namespace=pod.metadata.namespace)
+    if secret.data['token'] is not None:
+        decoded_data = decode_base64_jwt_token(secret.data['token'])
+        token_body = json.loads(decoded_data)
+        if token_body:
+            risky_user = get_risky_user_from_container(token_body, risky_users)
+            return risky_user
+
+    return None
+
 
 def get_risky_pods(namespace=None, deep_analysis=False):
     risky_pods = []
