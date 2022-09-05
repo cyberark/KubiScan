@@ -218,6 +218,8 @@ def get_all_risky_subjects():
     all_risky_rolebindings = get_all_risky_rolebinding()
     passed_users = {}
     for risky_rolebinding in all_risky_rolebindings:
+
+        # checking is None with 'or []'
         for user in risky_rolebinding.subjects or []:
             # Removing duplicated users
             if ''.join((user.kind, user.name, str(user.namespace))) not in passed_users:
@@ -415,6 +417,8 @@ def get_rolebindings_and_clusterrolebindings_associated_to_subject(subject_name,
     associated_rolebindings = []
 
     for rolebinding in rolebindings_all_namespaces.items:
+
+        # checking is None with 'or []'
         for subject in rolebinding.subjects or []:
             if subject.name.lower() == subject_name.lower() and subject.kind.lower() == kind.lower():
                 if kind == SERVICEACCOUNT_KIND:
@@ -425,6 +429,8 @@ def get_rolebindings_and_clusterrolebindings_associated_to_subject(subject_name,
 
     associated_clusterrolebindings = []
     for clusterrolebinding in cluster_rolebindings:
+
+        # checking is None with 'or []'
         for subject in clusterrolebinding.subjects or []:
             if subject.name == subject_name.lower() and subject.kind.lower() == kind.lower():
                 if kind == SERVICEACCOUNT_KIND:
