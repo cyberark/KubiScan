@@ -378,12 +378,13 @@ def get_jwt_and_decode(pod, risky_users, volume):
     from engine.jwt_token import decode_base64_jwt_token
     secret = api_client.CoreV1Api.read_namespaced_secret(name=volume.secret.secret_name,
                                                          namespace=pod.metadata.namespace)
-    if secret.data['token'] is not None:
-        decoded_data = decode_base64_jwt_token(secret.data['token'])
-        token_body = json.loads(decoded_data)
-        if token_body:
-            risky_user = get_risky_user_from_container(token_body, risky_users)
-            return risky_user
+    if secret is not None and secret.data is not None:
+        if secret.data['token'] is not None:
+            decoded_data = decode_base64_jwt_token(secret.data['token'])
+            token_body = json.loads(decoded_data)
+            if token_body:
+                risky_user = get_risky_user_from_container(token_body, risky_users)
+                return risky_user
 
     return None
 
