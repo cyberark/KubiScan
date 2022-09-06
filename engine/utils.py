@@ -442,6 +442,8 @@ def get_rolebindings_and_clusterrolebindings_associated_to_subject(subject_name,
     return associated_rolebindings, associated_clusterrolebindings
 
 # Role can be only inside RoleBinding
+
+
 def get_rolebindings_associated_to_role(role_name, namespace):
     rolebindings_all_namespaces = api_client.RbacAuthorizationV1Api.list_role_binding_for_all_namespaces()
     associated_rolebindings = []
