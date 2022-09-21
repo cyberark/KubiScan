@@ -461,7 +461,7 @@ osss:.::`...`- ..`.:/`+ssss+`/:``.. -`...`::.:ssso
          -osssssssssssssssssssssssssssss-         
           `/ssssssssssssssssssssssssss/`       
     
-               KubiScan version 1.5
+               KubiScan version 1.6-beta
                Author: Eviatar Gerzi
     '''
     print(logo)
