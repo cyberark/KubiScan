@@ -50,6 +50,7 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
     global api_temp
 
     if host and token_filename:
+        print("Using token from " + token_filename + " on ip address " + host)
         # remotely
         token_filename = os.path.abspath(token_filename)
         if cert_filename:
@@ -61,12 +62,14 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
         api_temp = ApiClientTemp(configuration=configuration)
 
     elif kube_config_file:
+        print("Using kube congif file.")
         config.load_kube_config(os.path.abspath(kube_config_file))
         CoreV1Api = client.CoreV1Api()
         RbacAuthorizationV1Api = client.RbacAuthorizationV1Api()
         api_from_config = config.new_client_from_config(kube_config_file)
         api_temp = ApiClientTemp(configuration=api_from_config.configuration)
     else:
+        print("Using kube congif file.")
         configuration = Configuration()
         api_client = ApiClient()
         kubeconfig_path = os.getenv('KUBISCAN_CONFIG_PATH')
@@ -74,14 +77,14 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
             # TODO: Consider using config.load_incluster_config() from container created by Kubernetes. Required service account with privileged permissions.
             # Must have mounted volume
             container_volume_prefix = os.getenv('KUBISCAN_VOLUME_PATH', '/tmp')
-            kube_config_bak_path = os.getenv('KUBISCAN_CONFIG_BACKUP_PATH', '/KubiScan/config_bak')
+            kube_config_bak_path = os.getenv('KUBISCAN_CONFIG_BACKUP_PATH', '/opt/KubiScan/config_bak')
             if not os.path.isfile(kube_config_bak_path):
                 copyfile(container_volume_prefix + os.path.expandvars('$CONF_PATH'), kube_config_bak_path)
                 replace(kube_config_bak_path, ': /', f': {container_volume_prefix}/')
 
             config.load_kube_config(kube_config_bak_path, context=context, client_configuration=configuration)
         else:
-            config.load_kube_config(config_file=kubeconfig_path, context=context)
+            config.load_kube_config(config_file=kubeconfig_path, context=context, client_configuration=configuration)
 
         api_client = ApiClient(configuration=configuration)
         CoreV1Api = client.CoreV1Api(api_client=api_client)

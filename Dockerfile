@@ -53,14 +53,5 @@ RUN set -ex \
   && > /var/log/faillog \
   && > /var/log/lastlog
 
-# Default to the previously created kubiscan user
-USER kubiscan
-
-# Test runnability of the shortcut by invoking the command to list examples
-RUN kubiscan --examples
-
 # Default to /tmp/kubiscan/kubeconfig
 ENV CONF_PATH=/kubiscan/kubeconfig.yaml
-
-ENTRYPOINT ["python3", "/opt/kubiscan/KubiScan.py"]
-CMD ["--examples"]
