@@ -69,8 +69,8 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
     else:
         configuration = Configuration()
         api_client = ApiClient()
-        if running_in_container():
         kubeconfig_path = os.getenv('KUBISCAN_CONFIG_PATH')
+        if running_in_container() and kubeconfig_path is None:
             # TODO: Consider using config.load_incluster_config() from container created by Kubernetes. Required service account with privileged permissions.
             # Must have mounted volume
             container_volume_prefix = os.getenv('KUBISCAN_VOLUME_PATH', '/tmp')
