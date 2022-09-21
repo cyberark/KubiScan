@@ -81,7 +81,7 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
 
             config.load_kube_config(kube_config_bak_path, context=context, client_configuration=configuration)
         else:
-            config.load_kube_config(context=context)
+            config.load_kube_config(config_file=kubeconfig_path, context=context)
 
         api_client = ApiClient(configuration=configuration)
         CoreV1Api = client.CoreV1Api(api_client=api_client)
