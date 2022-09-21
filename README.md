@@ -24,13 +24,56 @@ KubiScan gathers information about risky roles\clusterroles, rolebindings\cluste
 
 ## Usage
 ### Container
-#### With `~/.kube/config` file
-This should be executed within the **Master** node where the config file is located:  
-`docker run -it --rm -e CONF_PATH=~/.kube/config -v /:/tmp cyberark/kubiscan`  
-* `CONF_PATH` - the cluster config file's path  
+Build the Docker image using
 
-Inside the container the command `kubiscan` is equivalent to `python3 /KubiScan/KubiScan.py`.  
-Notice that in this case, the **whole file system will be mounted**. This is due to the fact that the config files contain paths to other places in the filesystem that will be different in other environments.  
+```
+docker build -t kubiscan .
+```
+
+> For usage within Docker, it should be noted that KubiScan expects to be able
+> to write to `/KubiScan`. The examples below mount a directory indicated by
+> the KUBISCAN_VOLUME variable as a writable volume to the container's
+> `/KubiScan` path into which KubiScan will write a config_bak file.
+
+The following variables are recognized by the application:
+- `KUBISCAN_CONFIG_PATH` path to the mounted kubeconfig, undefined by default
+  and setting this skips the previous behaviour (see
+  [source][running-in-docker]) and renders to `KUBISCAN_CONFIG_BACKUP_PATH` and
+  `KUBISCAN_VOLUME_PATH` obsolete as the branches utilizing these become
+  unreachable.
+- `KUBISCAN_CONFIG_BACKUP_PATH` path to the config_bak path, defaults to
+  `/KubiScan/config_bak`
+- `KUBISCAN_VOLUME_PATH` defaults to `/tmp`
+
+[running-in-docker]: https://github.com/cyberark/KubiScan/blob/2531bbdd268c9a7c729a2e6826590516c6aab201/api/api_client.py#L59
+
+#### With `~/.kube/config` file
+This should be executed within the **Master** node where the config file is located:
+
+```
+docker run -it --rm \
+  -v ~/.kube/config:/tmp/kubiscan/kubeconfig.yaml:ro \
+  -e KUBISCAN_CONFIG_PATH=/tmp/kubiscan/kubeconfig.yaml \
+  kubiscan <command>
+```
+
+Replace `<command>` with the actual arguments to the KubiScan application that you want to run.
+
+```
+# Example running `kubiscan --help`
+docker run -it --rm \
+  -v ~/.kube/config:/tmp/kubiscan/kubeconfig.yaml:ro \
+  -e KUBISCAN_CONFIG_PATH=/tmp/kubiscan/kubeconfig.yaml \
+  kubiscan --help
+```
+
+```
+# Example running `kubiscan --all`
+docker run -it --rm \
+  -v ~/.kube/config:/tmp/kubiscan/kubeconfig.yaml:ro \
+  -e KUBISCAN_CONFIG_PATH=/tmp/kubiscan/kubeconfig.yaml \
+  kubiscan --all
+```
 
 #### With service account token (good from remote)
 Some functionality requires a **privileged** service account with the following permissions:  
@@ -75,10 +118,25 @@ EOF
 ```
 
 Save the service account's token to a file:  
-`kubectl get secrets $(kubectl get sa kubiscan-sa -o json | jq -r '.secrets[0].name') -o json | jq -r '.data.token' | base64 -d > token` 
+`kubectl get secrets $(kubectl get sa kubiscan-sa -o=jsonpath='{.secrets[0].name}') -o=jsonpath='{.data.token}' | base64 -d > token`
 
-Run the container from anywhere you want:  
-`docker run -it --rm -v $PWD/token:/token cyberark/kubiscan`  
+> Note that a valid kubeconfig can be configured to utilize the token by
+> updating the `users` object to contain the appropriate `name` and
+> `user.token` values.  Arguably, the usage of kubeconfig files is a more
+> idiomatic and user-friendly approach to connecting to Kubernetes clusters.
+
+Spawn a Bash shell into the container:
+```
+docker run -it --rm \
+  -v ${TOKEN_PATH}/token:/tmp/kubiscan/token:ro \
+  -v ${KUBISCAN_VOLUME}:/KubiScan \
+  --entrypoint=bash kubiscan
+```
+
+> Note that the directory represented by the `KUBISCAN_VOLUME` variable should
+> be writable because KubiScan, when running inside a Docker container, expects
+> a `/KubiScan/config_bak` file (see [source][running-in-docker]) and will
+> attempt to create /KubiScan/config_bak when missing.
 
 In the shell you will be able to to use kubiscan like that:   
 `kubiscan -ho <master_ip:master_port> -t /token <command>`  
