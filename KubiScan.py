@@ -420,10 +420,9 @@ def print_join_token():
     if not os.path.exists(ca_cert):
         ca_cert = '/etc/kubernetes/ca.crt'
 
-    if running_in_docker_container():
-        ca_cert = os.getenv('KUBISCAN_VOLUME_PATH', '/tmp') + ca_cert
+        
     if running_in_container():
-        ca_cert = '/tmp' + ca_cert
+        ca_cert = os.getenv('KUBISCAN_VOLUME_PATH', '/tmp') + ca_cert
 
     join_token_path = os.path.dirname(os.path.realpath(__file__)) + '/engine/join_token.sh'
     tokens = engine.utils.list_boostrap_tokens_decoded()
