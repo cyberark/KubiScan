@@ -378,10 +378,13 @@ def is_user_risky(risky_users, service_account, namespace):
 
 def get_jwt_and_decode(pod, risky_users, volume):
     from engine.jwt_token import decode_base64_jwt_token
-    secret = api_client.CoreV1Api.read_namespaced_secret(name=volume.secret.secret_name,
-                                                         namespace=pod.metadata.namespace)
+    try:
+    	secret = api_client.CoreV1Api.read_namespaced_secret(name=volume.secret.secret_name,
+        	                                                 namespace=pod.metadata.namespace)
+    except Exception:
+	secret = None
     if secret is not None and secret.data is not None:
-        if secret.data['token'] is not None:
+        if 'token' in secret.data:
             decoded_data = decode_base64_jwt_token(secret.data['token'])
             token_body = json.loads(decoded_data)
             if token_body:
