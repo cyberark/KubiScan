@@ -157,7 +157,7 @@ To remove the privileged service account, run the following commands:
 
 ### Directly with Python3
 #### Prerequisites:
--	__Python 3.5+__
+-	__Python 3.6+__
 -	__Pip3__
 -	[__Kubernetes Python Client__](https://github.com/kubernetes-client/python) 
 -	[__Prettytable__](https://pypi.org/project/PTable)
