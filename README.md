@@ -169,7 +169,7 @@ To remove the privileged service account, run the following commands:
 `pip3 install kubernetes`  
 `pip3 install PTable`  
 
-Run `alias kubiscan='python3 /<KubiScan_folder/KubiScan.py'` to use `kubiscan`.  
+Run `alias kubiscan='python3 /<KubiScan_folder>/KubiScan.py'` to use `kubiscan`.  
 
 After installing all of the above requirements you can run it in two different ways:  
 #### From the Master node:
