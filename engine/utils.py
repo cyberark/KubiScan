@@ -11,7 +11,8 @@ from engine.subject import Subject
 from misc.constants import *
 from kubernetes.client.rest import ApiException
 
-#region - Roles and ClusteRoles
+
+# region - Roles and ClusteRoles
 
 def is_risky_resource_name_exist(source_rolename, source_resourcenames):
     is_risky = False
@@ -27,6 +28,7 @@ def is_risky_resource_name_exist(source_rolename, source_resourcenames):
 
     return is_risky
 
+
 def is_rule_contains_risky_rule(source_role_name, source_rule, risky_rule):
     is_contains = True
     is_bind_verb_found = False
@@ -34,7 +36,7 @@ def is_rule_contains_risky_rule(source_role_name, source_rule, risky_rule):
 
     # Optional: uncomment and shift everything bellow till the 'return' to add any rules that have "*" in their verbs or resources.
     # currently it is being handled in risky_roles.yaml partially
-    #if (source_rule.verbs is not None and "*" not in source_rule.verbs) and (source_rule.resources is not None and "*" not in source_rule.resources):
+    # if (source_rule.verbs is not None and "*" not in source_rule.verbs) and (source_rule.resources is not None and "*" not in source_rule.resources):
     for verb in risky_rule.verbs:
         if verb not in source_rule.verbs:
             is_contains = False
@@ -53,14 +55,15 @@ def is_rule_contains_risky_rule(source_role_name, source_rule, risky_rule):
 
         if is_contains and risky_rule.resource_names is not None:
             is_contains = False
-            if is_bind_verb_found and  is_role_resource_found:
+            if is_bind_verb_found and is_role_resource_found:
                 is_risky = is_risky_resource_name_exist(source_role_name, source_rule.resource_names)
                 if is_risky:
-                    is_contains=True
+                    is_contains = True
     else:
-        is_contains=False
+        is_contains = False
 
     return is_contains
+
 
 def get_role_by_name_and_kind(name, kind, namespace=None):
     requested_role = None
@@ -70,6 +73,7 @@ def get_role_by_name_and_kind(name, kind, namespace=None):
             requested_role = role
             break
     return requested_role
+
 
 def are_rules_contain_other_rules(source_role_name, source_rules, target_rules):
     is_contains = False
@@ -86,6 +90,7 @@ def are_rules_contain_other_rules(source_role_name, source_rules, target_rules):
                         return is_contains
 
     return is_contains
+
 
 def is_risky_role(role):
     is_risky = False
@@ -104,18 +109,22 @@ def find_risky_roles(roles, kind):
     for role in roles:
         is_risky, priority = is_risky_role(role)
         if is_risky:
-            risky_roles.append(Role(role.metadata.name, priority, rules=role.rules, namespace=role.metadata.namespace, kind=kind, time=role.metadata.creation_timestamp))
+            risky_roles.append(
+                Role(role.metadata.name, priority, rules=role.rules, namespace=role.metadata.namespace, kind=kind,
+                     time=role.metadata.creation_timestamp))
 
     return risky_roles
+
 
 def get_roles_by_kind(kind):
     all_roles = []
     if kind == ROLE_KIND:
         all_roles = api_client.RbacAuthorizationV1Api.list_role_for_all_namespaces()
     else:
-        #all_roles = api_client.RbacAuthorizationV1Api.list_cluster_role()
+        # all_roles = api_client.RbacAuthorizationV1Api.list_cluster_role()
         all_roles = api_client.api_temp.list_cluster_role()
     return all_roles
+
 
 def get_risky_role_by_kind(kind):
     risky_roles = []
@@ -132,19 +141,22 @@ def get_risky_roles_and_clusterroles():
     risky_roles = get_risky_roles()
     risky_clusterroles = get_risky_clusterroles()
 
-    #return risky_roles, risky_clusterroles
+    # return risky_roles, risky_clusterroles
     all_risky_roles = risky_roles + risky_clusterroles
     return all_risky_roles
+
 
 def get_risky_roles():
     return get_risky_role_by_kind('Role')
 
+
 def get_risky_clusterroles():
     return get_risky_role_by_kind('ClusterRole')
 
-#endregion - Roles and ClusteRoles
 
-#region - RoleBindings and ClusterRoleBindings
+# endregion - Roles and ClusteRoles
+
+# region - RoleBindings and ClusterRoleBindings
 
 def is_risky_rolebinding(risky_roles, rolebinding):
     is_risky = False
@@ -159,6 +171,7 @@ def is_risky_rolebinding(risky_roles, rolebinding):
 
     return is_risky, priority
 
+
 def find_risky_rolebindings_or_clusterrolebindings(risky_roles, rolebindings, kind):
     risky_rolebindings = []
     for rolebinding in rolebindings:
@@ -167,21 +180,23 @@ def find_risky_rolebindings_or_clusterrolebindings(risky_roles, rolebindings, ki
             risky_rolebindings.append(RoleBinding(rolebinding.metadata.name,
                                                   priority,
                                                   namespace=rolebinding.metadata.namespace,
-                                                  kind=kind, subjects=rolebinding.subjects, time=rolebinding.metadata.creation_timestamp))
+                                                  kind=kind, subjects=rolebinding.subjects,
+                                                  time=rolebinding.metadata.creation_timestamp))
     return risky_rolebindings
+
 
 def get_rolebinding_by_kind_all_namespaces(kind):
     all_roles = []
     if kind == ROLE_BINDING_KIND:
         all_roles = api_client.RbacAuthorizationV1Api.list_role_binding_for_all_namespaces()
-    #else:
-        #TODO: check if it was fixed
-        #all_roles = api_client.RbacAuthorizationV1Api.list_cluster_role_binding()
+    # else:
+    # TODO: check if it was fixed
+    # all_roles = api_client.RbacAuthorizationV1Api.list_cluster_role_binding()
 
     return all_roles
 
-def get_all_risky_rolebinding():
 
+def get_all_risky_rolebinding():
     all_risky_roles = get_risky_roles_and_clusterroles()
 
     risky_rolebindings = get_risky_rolebindings(all_risky_roles)
@@ -190,28 +205,33 @@ def get_all_risky_rolebinding():
     risky_rolebindings_and_clusterrolebindings = risky_clusterrolebindings + risky_rolebindings
     return risky_rolebindings_and_clusterrolebindings
 
+
 def get_risky_rolebindings(all_risky_roles=None):
     if all_risky_roles is None:
         all_risky_roles = get_risky_roles_and_clusterroles()
     all_rolebindings = get_rolebinding_by_kind_all_namespaces(ROLE_BINDING_KIND)
-    risky_rolebindings = find_risky_rolebindings_or_clusterrolebindings(all_risky_roles, all_rolebindings.items, "RoleBinding")
+    risky_rolebindings = find_risky_rolebindings_or_clusterrolebindings(all_risky_roles, all_rolebindings.items,
+                                                                        "RoleBinding")
 
     return risky_rolebindings
+
 
 def get_risky_clusterrolebindings(all_risky_roles=None):
     if all_risky_roles is None:
         all_risky_roles = get_risky_roles_and_clusterroles()
     # Cluster doesn't work.
     # https://github.com/kubernetes-client/python/issues/577 - when it will be solve, can remove the comments
-    #all_clusterrolebindings = api_client.RbacAuthorizationV1Api.list_cluster_role_binding()
+    # all_clusterrolebindings = api_client.RbacAuthorizationV1Api.list_cluster_role_binding()
     all_clusterrolebindings = api_client.api_temp.list_cluster_role_binding()
-    #risky_clusterrolebindings = find_risky_rolebindings(all_risky_roles, all_clusterrolebindings.items, "ClusterRoleBinding")
-    risky_clusterrolebindings = find_risky_rolebindings_or_clusterrolebindings(all_risky_roles, all_clusterrolebindings, "ClusterRoleBinding")
+    # risky_clusterrolebindings = find_risky_rolebindings(all_risky_roles, all_clusterrolebindings.items, "ClusterRoleBinding")
+    risky_clusterrolebindings = find_risky_rolebindings_or_clusterrolebindings(all_risky_roles, all_clusterrolebindings,
+                                                                               "ClusterRoleBinding")
     return risky_clusterrolebindings
 
-#endregion - RoleBindings and ClusterRoleBindings
 
-#region- Risky Users
+# endregion - RoleBindings and ClusterRoleBindings
+
+# region- Risky Users
 
 def get_all_risky_subjects():
     all_risky_users = []
@@ -231,9 +251,9 @@ def get_all_risky_subjects():
     return all_risky_users
 
 
-#endregion - Risky Users
+# endregion - Risky Users
 
-#region- Risky Pods
+# region- Risky Pods
 
 '''
 Example of JWT token decoded:
@@ -246,6 +266,8 @@ Example of JWT token decoded:
 	 'kubernetes.io/serviceaccount/service-account.name': 'myservice'
  }
 '''
+
+
 def pod_exec_read_token(pod, container_name, path):
     cat_command = 'cat ' + path
     exec_command = ['/bin/sh',
@@ -263,8 +285,8 @@ def pod_exec_read_token(pod, container_name, path):
 
     return resp
 
-def pod_exec_read_token_two_paths(pod, container_name):
 
+def pod_exec_read_token_two_paths(pod, container_name):
     result = pod_exec_read_token(pod, container_name, '/run/secrets/kubernetes.io/serviceaccount/token')
     if result == '':
         result = pod_exec_read_token(pod, container_name, '/var/run/secrets/kubernetes.io/serviceaccount/token')
@@ -304,8 +326,6 @@ def get_risky_user_from_container(jwt_body, risky_users):
 def get_risky_containers(pod, risky_users, read_token_from_container=False):
     risky_containers = []
 
-
-
     fetched_containers = []
     if read_token_from_container:
         # Skipping terminated and evicted pods
@@ -330,7 +350,8 @@ def get_risky_containers(pod, risky_users, read_token_from_container=False):
                     risky_user = check_name_in_volume(volume_mount, pod, risky_users)
                     if risky_user is not None:
                         if risky_user not in fetched_service_accounts:
-                            if not container_exists_in_risky_containers(risky_containers, container.name, risky_user.user_info.name):
+                            if not container_exists_in_risky_containers(risky_containers, container.name,
+                                                                        risky_user.user_info.name):
                                 risky_containers.append(
                                     Container(container.name, risky_user.user_info.name, risky_user.user_info.namespace,
                                               risky_user.priority))
@@ -338,14 +359,13 @@ def get_risky_containers(pod, risky_users, read_token_from_container=False):
 
     return risky_containers
 
+
 def container_exists_in_risky_containers(risky_containers, container_name, user_name):
     for risky_container in risky_containers:
         if risky_container.name == container_name:
             risky_container.service_account_name.append(user_name)
             return True
     return False
-
-
 
 
 def check_name_in_volume(volume_mount, pod, risky_users):
@@ -357,7 +377,7 @@ def check_name_in_volume(volume_mount, pod, risky_users):
                     if source.service_account_token is not None:
                         risky_user = is_user_risky(risky_users, pod.spec.service_account, pod.metadata.namespace)
             elif volume.secret is not None:
-                #if volume_mount.mount_path == '/var/run/secrets/kubernetes.io/serviceaccount' or volume_mount.mount_path == '/run/secrets/kubernetes.io/serviceaccount':
+                # if volume_mount.mount_path == '/var/run/secrets/kubernetes.io/serviceaccount' or volume_mount.mount_path == '/run/secrets/kubernetes.io/serviceaccount':
                 risky_user = get_jwt_and_decode(pod, risky_users, volume)
     return risky_user
 
@@ -379,10 +399,10 @@ def is_user_risky(risky_users, service_account, namespace):
 def get_jwt_and_decode(pod, risky_users, volume):
     from engine.jwt_token import decode_base64_jwt_token
     try:
-    	secret = api_client.CoreV1Api.read_namespaced_secret(name=volume.secret.secret_name,
-        	                                                 namespace=pod.metadata.namespace)
+        secret = api_client.CoreV1Api.read_namespaced_secret(name=volume.secret.secret_name,
+                                                             namespace=pod.metadata.namespace)
     except Exception:
-	secret = None
+        secret = None
     if secret is not None and secret.data is not None:
         if 'token' in secret.data:
             decoded_data = decode_base64_jwt_token(secret.data['token'])
@@ -405,15 +425,17 @@ def get_risky_pods(namespace=None, deep_analysis=False):
 
     return risky_pods
 
-#endregion- Risky Pods
+
+# endregion- Risky Pods
 
 def get_rolebindings_all_namespaces_and_clusterrolebindings():
     namespaced_rolebindings = api_client.RbacAuthorizationV1Api.list_role_binding_for_all_namespaces()
 
     # TODO: check when this bug will be fixed
-    #cluster_rolebindings = api_client.RbacAuthorizationV1Api.list_cluster_role_binding()
+    # cluster_rolebindings = api_client.RbacAuthorizationV1Api.list_cluster_role_binding()
     cluster_rolebindings = api_client.api_temp.list_cluster_role_binding()
     return namespaced_rolebindings, cluster_rolebindings
+
 
 def get_rolebindings_and_clusterrolebindings_associated_to_subject(subject_name, kind, namespace):
     rolebindings_all_namespaces, cluster_rolebindings = get_rolebindings_all_namespaces_and_clusterrolebindings()
@@ -443,6 +465,7 @@ def get_rolebindings_and_clusterrolebindings_associated_to_subject(subject_name,
 
     return associated_rolebindings, associated_clusterrolebindings
 
+
 # Role can be only inside RoleBinding
 def get_rolebindings_associated_to_role(role_name, namespace):
     rolebindings_all_namespaces = api_client.RbacAuthorizationV1Api.list_role_binding_for_all_namespaces()
@@ -466,36 +489,51 @@ def get_rolebindings_and_clusterrolebindings_associated_to_clusterrole(role_name
 
     associated_clusterrolebindings = []
 
-    #for clusterrolebinding in cluster_rolebindings.items:
+    # for clusterrolebinding in cluster_rolebindings.items:
     for clusterrolebinding in cluster_rolebindings:
         if clusterrolebinding.role_ref.name.lower() == role_name.lower() and clusterrolebinding.role_ref.kind == CLUSTER_ROLE_KIND:
             associated_rolebindings.append(clusterrolebinding)
 
     return associated_rolebindings, associated_clusterrolebindings
 
+
 def dump_containers_tokens_by_pod(pod_name, namespace, read_token_from_container=False):
     containers_with_tokens = []
-    pod = api_client.CoreV1Api.read_namespaced_pod(name=pod_name, namespace=namespace)
+    try:
+        pod = api_client.CoreV1Api.read_namespaced_pod(name=pod_name, namespace=namespace)
+    except ApiException:
+        print(pod_name + " was not found in " + namespace + " namespace")
+        return None
     if read_token_from_container:
         if pod.status.container_statuses:
             for container in pod.status.container_statuses:
                 if container.ready:
                     jwt_body, raw_jwt_token = get_jwt_token_from_container(pod, container.name)
                     if jwt_body:
-                        containers_with_tokens.append(Container(container.name, token=jwt_body, raw_jwt_token=raw_jwt_token))
+                        containers_with_tokens.append(
+                            Container(container.name, token=jwt_body, raw_jwt_token=raw_jwt_token))
 
     else:
-        for container in pod.spec.containers:
-            pod_mounted_secrets = {}
-            for volume in pod.spec.volumes:
-                if volume.secret:
-                    pod_mounted_secrets[volume.secret.secret_name] = True
-
-            jwt_body = get_jwt_token_from_container_by_etcd(pod, container, pod_mounted_secrets)
-            if jwt_body:
-                containers_with_tokens.append(Container(container.name, token=jwt_body, raw_jwt_token=None))
-
+        fill_container_with_tokens_list(containers_with_tokens, pod)
     return containers_with_tokens
+
+
+def fill_container_with_tokens_list(containers_with_tokens, pod):
+    from engine.jwt_token import decode_base64_jwt_token
+    for container in pod.spec.containers:
+        for volume_mount in container.volume_mounts or []:
+            for volume in pod.spec.volumes or []:
+                if volume.name == volume_mount.name and volume.secret:
+                    try:
+                        secret = api_client.CoreV1Api.read_namespaced_secret(volume.secret.secret_name,
+                                                                             pod.metadata.namespace)
+                        if secret and secret.data and secret.data['token']:
+                            decoded_data = decode_base64_jwt_token(secret.data['token'])
+                            token_body = json.loads(decoded_data)
+                            containers_with_tokens.append(Container(container.name, token=token_body,
+                                                                    raw_jwt_token=None))
+                    except ApiException:
+                        print("No secret found.")
 
 
 def dump_all_pods_tokens_or_by_namespace(namespace=None, read_token_from_container=False):
@@ -503,9 +541,11 @@ def dump_all_pods_tokens_or_by_namespace(namespace=None, read_token_from_contain
     pods = list_pods_for_all_namespaces_or_one_namspace(namespace)
     for pod in pods.items:
         containers = dump_containers_tokens_by_pod(pod.metadata.name, pod.metadata.namespace, read_token_from_container)
-        pods_with_tokens.append(Pod(pod.metadata.name, pod.metadata.namespace, containers))
+        if containers is not None:
+            pods_with_tokens.append(Pod(pod.metadata.name, pod.metadata.namespace, containers))
 
     return pods_with_tokens
+
 
 def dump_pod_tokens(name, namespace, read_token_from_container=False):
     pod_with_tokens = []
@@ -514,12 +554,14 @@ def dump_pod_tokens(name, namespace, read_token_from_container=False):
 
     return pod_with_tokens
 
+
 def search_subject_in_subjects_by_kind(subjects, kind):
     subjects_found = []
     for subject in subjects:
         if subject.kind.lower() == kind.lower():
             subjects_found.append(subject)
     return subjects_found
+
 
 # It get subjects by kind for all rolebindings.
 def get_subjects_by_kind(kind):
@@ -536,6 +578,7 @@ def get_subjects_by_kind(kind):
 
     return remove_duplicated_subjects(subjects_found)
 
+
 def remove_duplicated_subjects(subjects):
     seen_subjects = set()
     new_subjects = []
@@ -543,21 +586,34 @@ def remove_duplicated_subjects(subjects):
         if s1.namespace == None:
             s1_unique_name = ''.join([s1.name, s1.kind])
         else:
-            s1_unique_name = ''.join([s1.name,s1.namespace,s1.kind])
+            s1_unique_name = ''.join([s1.name, s1.namespace, s1.kind])
         if s1_unique_name not in seen_subjects:
             new_subjects.append(s1)
             seen_subjects.add(s1_unique_name)
 
     return new_subjects
 
-def get_rolebinding_role(rolebinding_name, namespace):
-    rolebinding = api_client.RbacAuthorizationV1Api.read_namespaced_role_binding(rolebinding_name, namespace)
-    if rolebinding.role_ref.kind == ROLE_KIND:
-        role = api_client.RbacAuthorizationV1Api.read_namespaced_role(rolebinding.role_ref.name, rolebinding.metadata.namespace)
-    else:
-        role = api_client.RbacAuthorizationV1Api.read_cluster_role(rolebinding.role_ref.name)
 
-    return role
+def get_rolebinding_role(rolebinding_name, namespace):
+    rolebinding = None
+    role = None
+    try:
+        rolebinding = api_client.RbacAuthorizationV1Api.read_namespaced_role_binding(rolebinding_name, namespace)
+        if rolebinding.role_ref.kind == ROLE_KIND:
+            role = api_client.RbacAuthorizationV1Api.read_namespaced_role(rolebinding.role_ref.name,
+                                                                          rolebinding.metadata.namespace)
+        else:
+            role = api_client.RbacAuthorizationV1Api.read_cluster_role(rolebinding.role_ref.name)
+
+        return role
+    except ApiException:
+        if rolebinding is None:
+            print("Could not find " + rolebinding_name + " rolebinding in " + namespace + " namespace")
+        elif role is None:
+            print(
+                "Could not find " + rolebinding.role_ref.name + " role in " + rolebinding.role_ref.name + " rolebinding")
+        return None
+
 
 def get_clusterrolebinding_role(cluster_rolebinding_name):
     cluster_role = ''
@@ -570,8 +626,10 @@ def get_clusterrolebinding_role(cluster_rolebinding_name):
 
     return cluster_role
 
+
 def get_roles_associated_to_subject(subject_name, kind, namespace):
-    associated_rolebindings, associated_clusterrolebindings = get_rolebindings_and_clusterrolebindings_associated_to_subject(subject_name, kind, namespace)
+    associated_rolebindings, associated_clusterrolebindings = get_rolebindings_and_clusterrolebindings_associated_to_subject(
+        subject_name, kind, namespace)
 
     associated_roles = []
     for rolebind in associated_rolebindings:
@@ -588,20 +646,27 @@ def get_roles_associated_to_subject(subject_name, kind, namespace):
 
     return associated_roles
 
+
 def list_pods_for_all_namespaces_or_one_namspace(namespace=None):
-    if namespace is None:
-        pods = api_client.CoreV1Api.list_pod_for_all_namespaces(watch=False)
-    else:
-        pods = api_client.CoreV1Api.list_namespaced_pod(namespace)
-    return pods
+    try:
+        if namespace is None:
+            pods = api_client.CoreV1Api.list_pod_for_all_namespaces(watch=False)
+        else:
+            pods = api_client.CoreV1Api.list_namespaced_pod(namespace)
+        return pods
+    except ApiException:
+        return None
+
 
 # https://<master_ip>:<port>/api/v1/namespaces/kube-system/secrets?fieldSelector=type=bootstrap.kubernetes.io/token
 def list_boostrap_tokens_decoded():
     tokens = []
-    secrets = api_client.CoreV1Api.list_namespaced_secret(namespace='kube-system', field_selector='type=bootstrap.kubernetes.io/token')
+    secrets = api_client.CoreV1Api.list_namespaced_secret(namespace='kube-system',
+                                                          field_selector='type=bootstrap.kubernetes.io/token')
     import base64
 
     for secret in secrets.items:
-        tokens.append('.'.join((base64.b64decode(secret.data['token-id']).decode('utf-8'), base64.b64decode(secret.data['token-secret']).decode('utf-8'))))
+        tokens.append('.'.join((base64.b64decode(secret.data['token-id']).decode('utf-8'),
+                                base64.b64decode(secret.data['token-secret']).decode('utf-8'))))
 
     return tokens
