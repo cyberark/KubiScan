@@ -17,7 +17,7 @@ if ! test -f "$kube_config"; then
 fi
 
 # Running the container.
-docker run -t -d --rm --name kubiscan_container -e CONF_PATH=/config --network host natan2nik/kubiscan
+docker run -t -d --rm --name kubiscan_container -e CONF_PATH=/config --network host natan2nik/kubiscan:kubiscan
 # docker run -t -d --rm --name kubiscan_container -e CONF_PATH=/config --network host --detach kubiscan bash -c "sleep infinity"
 
 # The new container id.
