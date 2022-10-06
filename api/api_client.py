@@ -21,14 +21,14 @@ api_temp = None
 CoreV1Api = None
 RbacAuthorizationV1Api = None
 
+
 def running_in_container():
-    with open('/proc/1/comm') as file:
-        line = file.readline().strip()
-        while line:
-            if 'systemd' in line:
-                return False
-            line = file.readline().strip()
-    return True
+    running_in_a_container = os.getenv('RUNNING_IN_A_CONTAINER')
+    if running_in_a_container is not None and running_in_a_container == 'true':
+        return True
+    return False
+
+
 def replace(file_path, pattern, subst):
     #Create temp file
     fh, abs_path = mkstemp()

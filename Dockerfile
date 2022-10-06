@@ -53,5 +53,5 @@ RUN set -ex \
   && > /var/log/faillog \
   && > /var/log/lastlog
 
-# Default to /tmp/kubiscan/kubeconfig
-ENV CONF_PATH=/kubiscan/kubeconfig.yaml
+# Environment variable to know if running in a container
+ENV RUNNING_IN_A_CONTAINER=true
