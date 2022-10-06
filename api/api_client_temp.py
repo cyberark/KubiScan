@@ -78,7 +78,8 @@ class ApiClientTemp(object):
 
     def __del__(self):
         self.pool.close()
-        self.pool.join()
+        # 'self.pool.join()' causes a hang in some environments
+        # self.pool.join()
 
     @property
     def user_agent(self):
