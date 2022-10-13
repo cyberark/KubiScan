@@ -162,7 +162,8 @@ To remove the privileged service account, run the following commands:
 ```
 kubectl delete clusterroles kubiscan-clusterrole  
 kubectl delete clusterrolebindings kubiscan-clusterrolebinding   
-kubectl delete sa kubiscan-sa   
+kubectl delete sa kubiscan-sa  
+kubectl delete secrets kubiscan-sa-secret
 ```
 
 ### Directly with Python3
