@@ -24,58 +24,45 @@ KubiScan gathers information about risky roles\clusterroles, rolebindings\cluste
 
 ## Usage
 ### Container
-Build the Docker image using
 
+You can run it like that:  
+```
+./docker_run.sh <kube_config_file>
+# For example: ./docker_run.sh ~/.kube/config
+```
+
+It will copy all the files linked inside the config file into the container and spwan a shell into the container.
+
+To build the Docker image run:  
 ```
 docker build -t kubiscan .
 ```
 
-> For usage within Docker, it should be noted that KubiScan expects to be able
-> to write to `/KubiScan`. The examples below mount a directory indicated by
-> the KUBISCAN_VOLUME variable as a writable volume to the container's
-> `/KubiScan` path into which KubiScan will write a config_bak file.
+### Directly with Python3
+#### Prerequisites:
+-	__Python 3.6+__
+-	__Pip3__
+-	[__Kubernetes Python Client__](https://github.com/kubernetes-client/python) 
+-	[__Prettytable__](https://pypi.org/project/PTable)
+-	__openssl__ (built-in in ubuntu) - used only for join token
 
-The following variables are recognized by the application:
-- `KUBISCAN_CONFIG_PATH` path to the mounted kubeconfig, undefined by default
-  and setting this skips the previous behaviour (see
-  [source][running-in-docker]) and renders to `KUBISCAN_CONFIG_BACKUP_PATH` and
-  `KUBISCAN_VOLUME_PATH` obsolete as the branches utilizing these become
-  unreachable.
-- `KUBISCAN_CONFIG_BACKUP_PATH` path to the config_bak path, defaults to
-  `/KubiScan/config_bak`
-- `KUBISCAN_VOLUME_PATH` defaults to `/tmp`
-
-[running-in-docker]: https://github.com/cyberark/KubiScan/blob/2531bbdd268c9a7c729a2e6826590516c6aab201/api/api_client.py#L59
-
-#### With `~/.kube/config` file
-This should be executed within the **Master** node where the config file is located:
-
+#### Example for installation on Ubuntu:
 ```
-docker run -it --rm \
-  -v ~/.kube/config:/tmp/kubiscan/kubeconfig.yaml:ro \
-  -e KUBISCAN_CONFIG_PATH=/tmp/kubiscan/kubeconfig.yaml \
-  kubiscan <command>
+apt-get update  
+apt-get install -y python3 python3-pip 
+pip3 install kubernetes  
+pip3 install PTable
 ```
 
-Replace `<command>` with the actual arguments to the KubiScan application that you want to run.
+Run `alias kubiscan='python3 /<KubiScan_folder>/KubiScan.py'` to use `kubiscan`.  
 
-```
-# Example running `kubiscan --help`
-docker run -it --rm \
-  -v ~/.kube/config:/tmp/kubiscan/kubeconfig.yaml:ro \
-  -e KUBISCAN_CONFIG_PATH=/tmp/kubiscan/kubeconfig.yaml \
-  kubiscan --help
-```
+After installing all of the above requirements you can run it in two different ways:  
+#### With KubeConfig file:
+Make sure you have access to `~/.kube/config` file and all the relevant certificates, simply run:  
+`kubiscan <command>`  
+For example: `kubiscan -rs` will show all the risky subjects (users, service accounts and groups).  
 
-```
-# Example running `kubiscan --all`
-docker run -it --rm \
-  -v ~/.kube/config:/tmp/kubiscan/kubeconfig.yaml:ro \
-  -e KUBISCAN_CONFIG_PATH=/tmp/kubiscan/kubeconfig.yaml \
-  kubiscan --all
-```
-
-#### With service account token (good from remote)
+#### From a remote with ServiceAccount token
 Some functionality requires a **privileged** service account with the following permissions:  
 - **resources**: `["roles", "clusterroles", "rolebindings", "clusterrolebindings", "pods", "secrets"]`  
   **verbs**: `["get", "list"]`  
@@ -125,38 +112,28 @@ rules:
 EOF
 ```
 
-Save the service account's token to a file:  
+Note that from Kubernetes 1.24, the creation of service account doesn't create a secret. This means that we need to create the secret.  
+Before 1.24, you can remove the `Secret` object from the above commands and save the service account's token to a file:  
 `kubectl get secrets $(kubectl get sa kubiscan-sa -o=jsonpath='{.secrets[0].name}') -o=jsonpath='{.data.token}' | base64 -d > token`
 
-> Note that a valid kubeconfig can be configured to utilize the token by
-> updating the `users` object to contain the appropriate `name` and
-> `user.token` values.  Arguably, the usage of kubeconfig files is a more
-> idiomatic and user-friendly approach to connecting to Kubernetes clusters.
-
-Spawn a Bash shell into the container:
+From 1.24, you don't need to change anything and save the token like that:  
 ```
-docker run -it --rm \
-  -v ${TOKEN_PATH}/token:/tmp/kubiscan/token:ro \
-  -v ${KUBISCAN_VOLUME}:/KubiScan \
-  --entrypoint=bash kubiscan
+kubectl get secrets kubiscan-sa-secret -o=jsonpath='{.data.token}' | base64 -d > token  
 ```
 
-> Note that the directory represented by the `KUBISCAN_VOLUME` variable should
-> be writable because KubiScan, when running inside a Docker container, expects
-> a `/KubiScan/config_bak` file (see [source][running-in-docker]) and will
-> attempt to create /KubiScan/config_bak when missing.
-
-In the shell you will be able to to use kubiscan like that:   
-`kubiscan -ho <master_ip:master_port> -t /token <command>`  
+After saving the token into the file, you can use it like that:  
+`python3 ./KubiScan.py -ho <master_ip:master_port> -t /token <command>`  
 
 For example:   
-`kubiscan -ho 192.168.21.129:8443 -t /token -rs`  
+```
+alias kubiscan='python3 /<KubiScan_folder>/KubiScan.py
+kubiscan -ho 192.168.21.129:8443 -t /token -rs
+```
 
-Notice that you can also use the certificate authority (ca.crt) to verify the SSL connection:  
-`docker run -it --rm -v $PWD/token:/token -v <ca_path>/ca.crt:/ca.crt cyberark/kubiscan`  
-
-Inside the container:    
-`kubiscan -ho <master_ip:master_port> -t /token -c /ca.crt <command>`  
+Notice that you can also use the certificate authority (ca.crt) to verify the SSL connection:    
+```
+kubiscan -ho <master_ip:master_port> -t /token -c /ca.crt <command>
+```
 
 To remove the privileged service account, run the following commands: 
 ```
@@ -165,35 +142,6 @@ kubectl delete clusterrolebindings kubiscan-clusterrolebinding
 kubectl delete sa kubiscan-sa  
 kubectl delete secrets kubiscan-sa-secret
 ```
-
-### Directly with Python3
-#### Prerequisites:
--	__Python 3.6+__
--	__Pip3__
--	[__Kubernetes Python Client__](https://github.com/kubernetes-client/python) 
--	[__Prettytable__](https://pypi.org/project/PTable)
--	__openssl__ (built-in in ubuntu) - used only for join token
-
-#### Example for installation on Ubuntu:
-```
-apt-get update  
-apt-get install -y python3 python3-pip 
-pip3 install kubernetes  
-pip3 install PTable
-```
-
-Run `alias kubiscan='python3 /<KubiScan_folder>/KubiScan.py'` to use `kubiscan`.  
-
-After installing all of the above requirements you can run it in two different ways:  
-#### From the Master node:
-On the Master node where `~/.kube/config` exist and all the relevant certificates, simply run:  
-`kubiscan <command>`  
-For example: `kubiscan -rs` will show all the risky subjects (users, service accounts and groups).  
-
-#### From a remote host:
-To use this tool from a remote host, you will need a **privileged** service account like we explained in the container section.  
-After you have the token inside a file you can run:  
-`kubiscan -ho <master_ip:master_port> -t /token <command>`  
 
 ## Examples  
 To see all the examples, run `python3 KubiScan.py -e` or from within the container `kubiscan -e`.  
