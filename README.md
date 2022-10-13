@@ -158,10 +158,12 @@ Notice that you can also use the certificate authority (ca.crt) to verify the SS
 Inside the container:    
 `kubiscan -ho <master_ip:master_port> -t /token -c /ca.crt <command>`  
 
-To remove the privileged service account, run the following commands:  
-`kubectl delete clusterroles kubiscan-clusterrole`  
-`kubectl delete clusterrolebindings kubiscan-clusterrolebinding`  
-`kubectl delete sa kubiscan-sa`
+To remove the privileged service account, run the following commands: 
+```
+kubectl delete clusterroles kubiscan-clusterrole  
+kubectl delete clusterrolebindings kubiscan-clusterrolebinding   
+kubectl delete sa kubiscan-sa   
+```
 
 ### Directly with Python3
 #### Prerequisites:
