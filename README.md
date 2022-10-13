@@ -50,8 +50,7 @@ docker build -t kubiscan .
 ```
 apt-get update  
 apt-get install -y python3 python3-pip 
-pip3 install kubernetes  
-pip3 install PTable
+pip3 install -r requirements.txt  
 ```
 
 Run `alias kubiscan='python3 /<KubiScan_folder>/KubiScan.py'` to use `kubiscan`.  
