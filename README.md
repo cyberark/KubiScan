@@ -172,10 +172,12 @@ To remove the privileged service account, run the following commands:
 -	__openssl__ (built-in in ubuntu) - used only for join token
 
 #### Example for installation on Ubuntu:
-`apt-get update`  
-`apt-get install -y python3 python3-pip`  
-`pip3 install kubernetes`  
-`pip3 install PTable`  
+```
+apt-get update  
+apt-get install -y python3 python3-pip 
+pip3 install kubernetes  
+pip3 install PTable
+```
 
 Run `alias kubiscan='python3 /<KubiScan_folder>/KubiScan.py'` to use `kubiscan`.  
 
@@ -204,8 +206,10 @@ When each of these roles is checked against a role in the cluster, it checks if 
 We added all the roles we found to be risky, but because each one can define the term "risky" in a different way, you can modify the file by adding\removing roles you think are more\less risky.  
 
 ## ❤️ Showcase  
-* Presented at RSA ["Compromising Kubernetes Cluster by Exploiting RBAC Permissions"](https://www.youtube.com/watch?v=1LMo0CftVC4)
-
+* Presented at RSA 2020 ["Compromising Kubernetes Cluster by Exploiting RBAC Permissions"](https://www.youtube.com/watch?v=1LMo0CftVC4)
+* Presented at RSA 2022 ["Attacking and Defending Kubernetes Cluster: Kubesploit vs KubiScan"](https://www.youtube.com/watch?v=xRqYSDKi6a0)
+* Article by PortSwigger ["KubiScan: Open source Kubernetes security tool showcased at Black Hat 2020"](https://portswigger.net/daily-swig/kubiscan-open-source-kubernetes-security-tool-showcased-at-black-hat-2020)
+* 
 
 ## License
 Copyright (c) 2020 CyberArk Software Ltd. All rights reserved  
