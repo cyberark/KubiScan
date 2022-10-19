@@ -62,14 +62,14 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
         api_temp = ApiClientTemp(configuration=configuration)
 
     elif kube_config_file:
-        print("Using kube congif file.")
+        print("Using kube config file.")
         config.load_kube_config(os.path.abspath(kube_config_file))
         CoreV1Api = client.CoreV1Api()
         RbacAuthorizationV1Api = client.RbacAuthorizationV1Api()
         api_from_config = config.new_client_from_config(kube_config_file)
         api_temp = ApiClientTemp(configuration=api_from_config.configuration)
     else:
-        print("Using kube congif file.")
+        print("Using kube config file.")
         configuration = Configuration()
         api_client = ApiClient()
         kubeconfig_path = os.getenv('KUBISCAN_CONFIG_PATH')
