@@ -325,7 +325,6 @@ def get_risky_user_from_container(jwt_body, risky_users):
 
 def get_risky_containers(pod, risky_users, read_token_from_container=False):
     risky_containers = []
-    risky_users_list = []
     if read_token_from_container:
         # Skipping terminated and evicted pods
         # This will run only on the containers with the "ready" status
@@ -346,13 +345,13 @@ def get_risky_containers(pod, risky_users, read_token_from_container=False):
         for volume in pod.spec.volumes or []:
             volumes_dict[volume.name] = volume
         for container in pod.spec.containers:
-            risky_users_list = get_risky_users_from_container(container, risky_users, pod, volumes_dict)
+            risky_users_set = get_risky_users_from_container(container, risky_users, pod, volumes_dict)
             if not container_exists_in_risky_containers(risky_containers, container.name,
-                                                        risky_users_list):
-                if len(risky_users_list) > 0:
-                    priority = get_highest_priority(risky_users_list)
+                                                        risky_users_set):
+                if len(risky_users_set) > 0:
+                    priority = get_highest_priority(risky_users_set)
                     risky_containers.append(
-                        Container(container.name, None, pod.metadata.namespace, risky_users_list,
+                        Container(container.name, None, pod.metadata.namespace, risky_users_set,
                                   priority))
     return risky_containers
 
@@ -367,7 +366,7 @@ def get_highest_priority(risky_users_list):
 
 
 def get_risky_users_from_container(container, risky_users, pod, volumes_dict):
-    risky_users_list = []
+    risky_users_set = set()
     # '[]' for checking if 'container.volume_mounts' is None
     for volume_mount in container.volume_mounts or []:
         if volume_mount.name in volumes_dict:
@@ -376,12 +375,12 @@ def get_risky_users_from_container(container, risky_users, pod, volumes_dict):
                     if source.service_account_token is not None:
                         risky_user = is_user_risky(risky_users, pod.spec.service_account, pod.metadata.namespace)
                         if risky_user is not None:
-                            risky_users_list.append(risky_user)
+                            risky_users_set.add(risky_user)
             elif volumes_dict[volume_mount.name].secret is not None:
                 risky_user = get_jwt_and_decode(pod, risky_users, volumes_dict[volume_mount.name])
                 if risky_user is not None:
-                    risky_users_list.append(risky_user)
-    return risky_users_list
+                    risky_users_set.add(risky_user)
+    return risky_users_set
 
 
 def container_exists_in_risky_containers(risky_containers, container_name, risky_users_list):
