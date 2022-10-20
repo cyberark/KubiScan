@@ -149,7 +149,7 @@ def print_all_risky_containers(priority=None, namespace=None, read_token_from_co
             pod.containers = filter_objects_by_priority(priority, pod.containers)
         for container in pod.containers:
             all_service_account = ''
-            for service_account in container.service_accounts_name_list:
+            for service_account in container.service_accounts_name_set:
                 all_service_account += service_account.user_info.name + ", "
             all_service_account = all_service_account[:-2]
             t.add_row([get_color_by_priority(container.priority)+container.priority.name+WHITE, pod.name, pod.namespace, container.name, container.service_account_namespace, all_service_account])
