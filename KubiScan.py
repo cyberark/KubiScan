@@ -645,6 +645,8 @@ Requirements:
                     print('For ServiceAccount kind specify namespace (-ns, --namespace)')
             else:
                 print_rules_associated_to_subject(args.associated_any_roles_subject, args.kind)
+        else:
+            print("Please specify kind (-k, --kind).")
     elif args.dump_tokens:
         if args.name:
             if args.namespace:
