@@ -1,0 +1,241 @@
+*   [33m4b14c08[m[33m ([m[1;36mHEAD -> [m[1;32munit-test[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m Merge pull request #54 from 2niknatan/master
+[31m|[m[32m\[m  
+[31m|[m * [33m53c4854[m Supporting aws on docker
+* [32m|[m [33mb0790b1[m Update README.md
+* [32m|[m [33m46b74c6[m Merge pull request #53 from 2niknatan/master
+[33m|[m[32m\[m[32m|[m 
+[33m|[m * [33mc315afe[m Printing error message when no kind was entered to '-aars' flag
+[33m|[m[33m/[m  
+*   [33m7e67ead[m Merge pull request #52 from 2niknatan/master
+[35m|[m[36m\[m  
+[35m|[m * [33me519c50[m Fixing duplicates in '-rp' flag.
+[35m|[m[35m/[m  
+*   [33m5442b99[m Merge pull request #51 from AlonBenHorin/patch-4
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33mb919b8e[m Update api_client.py
+[1;31m|[m[1;31m/[m  
+*   [33m319d8d4[m Merge pull request #49 from 2niknatan/master
+[1;33m|[m[1;34m\[m  
+[1;33m|[m * [33mdd86504[m Fixing '-rp' flag.
+[1;33m|[m[1;33m/[m  
+* [33m171c5a3[m Update README.md
+* [33m1bb7d22[m Update README.md
+* [33m1827de2[m Update README.md
+* [33mc0d472f[m Update README.md
+* [33m30f9cf7[m Update README.md
+* [33m194fcaf[m Adding secret creation to support version +1.24
+*   [33m5e7395a[m Merge pull request #47 from 2niknatan/master
+[1;35m|[m[1;36m\[m  
+[1;35m|[m * [33m201efce[m Fixing hang in some environments.
+[1;35m|[m[1;35m/[m  
+*   [33m125f370[m Merge pull request #46 from 2niknatan/master
+[31m|[m[32m\[m  
+[31m|[m * [33mcf2070a[m Fixing the path to '/opt/kubiscan/config_bak' like in the Dockerfile
+[31m|[m[31m/[m  
+*   [33mf3f83a2[m Merge pull request #45 from 2niknatan/master
+[33m|[m[34m\[m  
+[33m|[m * [33mb04638b[m Adding an environment variable to docker file and changing 'running_in_container' function accordingly.  Handling exceptions so the program will not crush.  Adding a tag to the 'docker run' command in the 'docker_run.sh' script.
+[33m|[m[33m/[m  
+* [33mf71e710[m Update docker_run.sh
+*   [33md4f3cc5[m Merge pull request #43 from AlonBenHorin/patch-3
+[35m|[m[36m\[m  
+[35m|[m * [33m97fbfc0[m Update README.md
+[35m|[m[35m/[m  
+*   [33me607c9a[m Merge pull request #42 from AlonBenHorin/patch-2
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33m9527479[m Update README.md
+[1;31m|[m[1;31m/[m  
+*   [33maf84ea1[m Merge pull request #41 from AlonBenHorin/patch-1
+[1;33m|[m[1;34m\[m  
+[1;33m|[m * [33m22bba70[m Update utils.py
+[1;33m|[m[1;33m/[m  
+*   [33m3afcc49[m Merge pull request #40 from 2niknatan/master
+[1;35m|[m[1;36m\[m  
+[1;35m|[m * [33mdca7e31[m Fixing pull request #18 and adding bash script to run a container.
+* [1;36m|[m [33m41ce1a8[m Update KubiScan.py
+[1;36m|[m[1;36m/[m  
+* [33m70faf47[m Update KubiScan.py
+* [33m583422f[m Update api_client.py
+* [33mc97d268[m Update api_client.py
+*   [33m8de6e1c[m Merge branch 'simplify-dockerfile-parameterize-paths'
+[31m|[m[32m\[m  
+[31m|[m * [33m733b14e[m Update README for Dockerfile changes + conf vars
+[31m|[m * [33md8cc77b[m Add KUBISCAN_CONFIG_PATH to bypass Docker checks
+[31m|[m * [33m524f400[m Add .yaml extention to CONF_PATH default
+[31m|[m * [33mb198f6e[m Implement KUBISCAN_{VOLUME,CONFIG_BACKUP}_PATH var
+[31m|[m * [33m0933e75[m Refactor Dockerfile for security and simplicity
+[31m|[m * [33m116c640[m Pin Python packages + remove unused packages
+[31m|[m * [33m08db12a[m Reduce deps used in kubectl examples
+* [32m|[m   [33m796a33c[m Merge pull request #39 from 2niknatan/master
+[33m|[m[34m\[m [32m\[m  
+[33m|[m * [32m|[m [33m2068158[m Adding comments about the 'or []'
+[33m|[m[33m/[m [32m/[m  
+* [32m|[m   [33m0788e20[m Merge pull request #34 from snorwin/fix-subjects-none-error
+[35m|[m[36m\[m [32m\[m  
+[35m|[m * [32m|[m [33m1395fa7[m Fix iteration for rolebindings without subjects
+* [36m|[m [32m|[m   [33m8d3b9f9[m Merge pull request #37 from 2niknatan/master
+[1;31m|[m[1;32m\[m [36m\[m [32m\[m  
+[1;31m|[m * [36m|[m [32m|[m [33me45639e[m Added error check for secret data
+* [1;32m|[m [36m|[m [32m|[m [33m3b05e3c[m Merge pull request #36 from 2niknatan/master
+[1;33m|[m[1;32m\[m[1;32m|[m [36m|[m [32m|[m 
+[1;33m|[m * [36m|[m [32m|[m [33m54f21bf[m Fixing the risky pods switch
+* [1;34m|[m [36m|[m [32m|[m [33m0d54e34[m Merge pull request #35 from 2niknatan/master
+[1;35m|[m[1;34m\[m[1;34m|[m [36m|[m [32m|[m 
+[1;35m|[m * [36m|[m [32m|[m [33m64a5c5e[m Changing the function 'running_in_docker_container' to 'running_in_container'. Not the function checks if running in a general container, no necessarily docker container.
+[1;35m|[m * [36m|[m [32m|[m [33mc8b346e[m Changing the function 'running_in_docker_container' to 'running_in_container'. Not the function checks if running in a general container, no necessarily docker container.
+[1;35m|[m * [36m|[m [32m|[m [33m8587c84[m Adding namespace feature
+* [1;36m|[m [36m|[m [32m|[m   [33m655c0ca[m Merge pull request #31 from snorwin/fix-dockerfile
+[31m|[m[32m\[m [1;36m\[m [36m\[m [32m\[m  
+[31m|[m * [1;36m|[m [36m|[m [32m|[m [33mfd971e8[m Explicitly install pip3 for alpine based image
+[31m|[m [36m|[m [1;36m|[m[36m/[m [32m/[m  
+[31m|[m [36m|[m[36m/[m[1;36m|[m [32m|[m   
+* [36m|[m [1;36m|[m [32m|[m   [33ma5f95a3[m Merge pull request #33 from 2niknatan/master
+[36m|[m[1;36m\[m [36m\[m [1;36m\[m [32m\[m  
+[36m|[m [1;36m|[m[36m/[m [1;36m/[m [32m/[m  
+[36m|[m[36m/[m[1;36m|[m [1;36m/[m [32m/[m   
+[36m|[m [1;36m|[m[1;36m/[m [32m/[m    
+[36m|[m * [32m|[m [33mf1656a2[m Adding namespace feature
+[36m|[m * [32m|[m [33mb578d32[m Adding namespace feature
+* [34m|[m [32m|[m [33m7edfba8[m Merge pull request #30 from 2niknatan/master
+[35m|[m[34m\[m[34m|[m [32m|[m 
+[35m|[m * [32m|[m [33m3ef8d5a[m Fixed bug with missing configuration object when using token
+[35m|[m[35m/[m [32m/[m  
+* [32m|[m   [33mf9871cc[m Merge pull request #19 from jpts/tls-warning-fix
+[1;31m|[m[1;32m\[m [32m\[m  
+[1;31m|[m * [32m|[m [33m8311618[m Fix TLS warnings when using a token
+* [1;32m|[m [32m|[m [33m8a559e7[m Update version of API
+* [1;32m|[m [32m|[m [33m439b3c9[m Update NOTICES.txt
+* [1;32m|[m [32m|[m [33ma5d30ff[m Added "nodes/proxy" permission as risky (#29)
+* [1;32m|[m [32m|[m [33mcb2afeb[m Update README.md
+* [1;32m|[m [32m|[m   [33mbfb9306[m Merge pull request #25 from g3rzi/master
+[1;33m|[m[1;34m\[m [1;32m\[m [32m\[m  
+[1;33m|[m * [1;32m|[m [32m|[m [33m8c9f698[m Update api_client.py
+[1;33m|[m * [1;32m|[m [32m|[m [33m9ae0622[m Support in kube config file
+[1;33m|[m * [1;32m|[m [32m|[m [33mb041b6a[m Update KubiScan.py
+[1;33m|[m * [1;32m|[m [32m|[m [33maf8c086[m Added support for kube config file
+[1;33m|[m * [1;32m|[m [32m|[m [33mdcbb87e[m Added support in config file
+[1;33m|[m[1;33m/[m [1;32m/[m [32m/[m  
+* [1;32m|[m [32m|[m [33m1719ddd[m Fix error with 'get_default_copy()'
+* [1;32m|[m [32m|[m   [33m02204b7[m Merge pull request #24 from k-popov/master
+[1;35m|[m[1;36m\[m [1;32m\[m [32m\[m  
+[1;35m|[m * [1;32m\[m [32m\[m   [33me39b171[m Merge branch 'master' into master
+[1;35m|[m [31m|[m[1;35m\[m [1;32m\[m [32m\[m  
+[1;35m|[m [31m|[m[1;35m/[m [1;32m/[m [32m/[m  
+[1;35m|[m[1;35m/[m[31m|[m [1;32m|[m [32m|[m   
+* [31m|[m [1;32m|[m [32m|[m   [33mc596031[m Merge pull request #23 from gparvin/run-in-container-ocp
+[33m|[m[34m\[m [31m\[m [1;32m\[m [32m\[m  
+[33m|[m * [31m|[m [1;32m|[m [32m|[m [33m3ab4cf6[m fix problem running kubiscan in container on openshift cluster
+[33m|[m * [31m|[m [1;32m|[m [32m|[m [33m156af12[m fix 'NoneType' object is not iterable when running on OpenShift
+[33m|[m[33m/[m [31m/[m [1;32m/[m [32m/[m  
+[33m|[m * [1;32m|[m [32m|[m [33m1b1ea9a[m Fix api client always connecting to localhost regardless of options
+[33m|[m * [1;32m|[m [32m|[m [33m217e2f7[m Check for source_rules and target_rules before iterating over them
+[33m|[m[33m/[m [1;32m/[m [32m/[m  
+* [1;32m|[m [32m|[m [33mc364ee0[m Update README.md
+* [1;32m|[m [32m|[m [33m205484e[m Update license
+* [1;32m|[m [32m|[m [33ma4be273[m Update LICENSE
+* [1;32m|[m [32m|[m [33m283917e[m Update README.md
+* [1;32m|[m [32m|[m [33mf029123[m Update README.md
+* [1;32m|[m [32m|[m [33m5293cd7[m Update README.md
+* [1;32m|[m [32m|[m   [33m1b8648c[m Merge pull request #20 from cyberark/v.1.5.1
+[1;32m|[m[36m\[m [1;32m\[m [32m\[m  
+[1;32m|[m [36m|[m[1;32m/[m [32m/[m  
+[1;32m|[m[1;32m/[m[36m|[m [32m|[m   
+[1;32m|[m * [32m|[m [33ma93402f[m Handle pod.spec.volumes with None
+[1;32m|[m * [32m|[m [33m59a1d03[m Handle pod.spec.volumes with None
+[1;32m|[m[1;32m/[m [32m/[m  
+* [32m|[m [33mc20370a[m Fix SyntaxWarning for 'is not' with literals
+* [32m|[m [33m81834c6[m Fix TabError
+* [32m|[m [33mdccec30[m Fix missing namespace for service account #10
+[32m|[m[32m/[m  
+*   [33m2531bbd[m Merge pull request #17 from disconnect3d/patch-3
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33m3ba74af[m Fix --pods-secrets-env example
+[1;31m|[m[1;31m/[m  
+* [33mbed6dc0[m Minor variable name change (#11)
+*   [33m9eda197[m Merge pull request #14 from disconnect3d/patch-1
+[1;33m|[m[1;34m\[m  
+[1;33m|[m * [33m8dfb38b[m Support Py version where async is keyword: fix #11
+* [1;34m|[m [33md4471d1[m Added check to see if '/proc/self/cgroup' exist (#15)
+* [1;34m|[m   [33m83b82fd[m Merge pull request #16 from disconnect3d/patch-2
+[1;35m|[m[1;36m\[m [1;34m\[m  
+[1;35m|[m * [1;34m|[m [33m233de70[m Use yaml.safe_load instead of yaml.load
+[1;35m|[m [1;34m|[m[1;34m/[m  
+* [1;34m/[m [33mbe53501[m Update new version 1.5
+[1;34m|[m[1;34m/[m  
+* [33m35d6c04[m Update KubiScan.py
+* [33m5f757b9[m Added the mounted path inside the container (#9)
+* [33m322322a[m Added support to printing volumes with hostPaths mounted to container (#9)
+* [33mc67dc08[m Added support on hostPaths in containers (#9)
+* [33m2233c9d[m Fix in indents in risk YAML file (#10)
+* [33m6bcecb3[m Removed debug printing for pod name
+* [33m1a1b1a4[m Added printing of hostPorts and hostNetwork information (#9)
+* [33me0efb04[m Added support on hostNetwork and hostPorts (#9)
+* [33md17fbe8[m Added parsing for pod's spec for hostPID and hostIPC (#9)
+* [33mca3ede5[m Added check for hostPID and hostIPC (case #9)
+* [33mbe60afc[m Added release and license images
+* [33mad55e1c[m Fix checking if inside a docker container
+* [33me282871[m Suggestion to use VolumeMount
+* [33m9e9b646[m Fix bug to get RoleBindings of "User" subjects
+* [33m68822bf[m Increase version
+* [33m5aff6b8[m Added catch for 404 in function get_roles_associated_to_subject
+* [33mf543474[m Added support on privileged containers #9
+* [33mcce2bae[m Support on privileged containers #9
+* [33mf950f31[m Added pod namespace to risky containers info
+* [33md0876ea[m Added missing verb in kubiscan token permissions
+* [33m1048a2a[m Update new version: 1.1
+* [33m40f1df2[m Removed unnecessary prints
+* [33m718e864[m Added option to read token from the containers or ETCD (#7)
+* [33m9cb20d8[m Added function to decode base64 jwt token (#7)
+* [33m438713f[m Added option to read token from the containers or ETCD (#7)
+* [33m486b711[m Added missing verb (#7)
+* [33maea492e[m Fixed wrong resource name (#7)
+* [33mda0aa8c[m Fixing SyntaxError: EOL while scanning string literal
+* [33mfcb2b64[m Adding support to filter risky pods by namespace (#7)
+* [33m9a54790[m Adding support to filter risky pods by namespace (#7)
+* [33me86f58f[m Update `-dt` switch documentation (#7)
+* [33m607f904[m Added switch for priority (#7)
+* [33maeade54[m Added comment on other possible way to get JWT tokens
+* [33m0ecf659[m Adding support to different contexts (#8)
+* [33m9f82fd5[m Adding support to different contexts (#8)
+* [33mba9a28d[m Dockerfile support for lightweight alpine image #4
+* [33m1f0332a[m Dockerfile support for lightweight alpine image #4
+* [33m191edf4[m Remove Loader=yaml.FullLoader temporarily
+* [33me0acb2d[m Fixing PyYAML yaml.load(input) Deprecation
+*   [33m7be3a0d[m Merge pull request #6 from mindfulmonk/patch-1
+[31m|[m[32m\[m  
+[31m|[m * [33md9490de[m Strip newlines from files
+[31m|[m[31m/[m  
+* [33m11de797[m Fix bug with decoding token with 0x82 byte (issue #3)
+* [33m5349e97[m Fix for ClusterRoleBinding without a 'subjects' field
+* [33mba5b59c[m Added resources that can also create a pod
+* [33m2c71a9d[m Update requirements.txt
+* [33med5e13f[m Adding requirements.txt (issue #2)
+* [33m7f9de69[m Fix indentation level
+* [33m7b01dd3[m Added support to ClusterRoles with 'None' rules
+* [33m45475d7[m Support to list_cluster_role with 'None' rules
+* [33m00a6059[m ClusterRoleBinding doesn't have timestamp
+* [33mf3e649f[m Update README.md
+* [33m9b2b139[m Update README.md
+* [33m015c469[m Update README.md
+* [33m6d51599[m Update README.md
+* [33m1e02a34[m Update README.md
+* [33me7f0ebd[m Update examples.txt
+* [33m8562df4[m Update README.md
+* [33m547c364[m Update README.md
+* [33m68ea0d0[m Update README.md
+* [33m64e1f16[m Update README.md
+* [33mfb2bacf[m Update README.md
+* [33m8ee3a66[m Update README.md
+* [33m3fcd033[m Update NOTICES.txt
+* [33maee9734[m Update NOTICES.txt
+* [33mc4a95aa[m Create NOTICES.txt
+* [33mbead83a[m Update api_client_temp.py
+* [33m0ab203e[m Update api_client_temp.py
+* [33me8016ed[m Update README.md
+* [33m7c741bc[m Update README.md
+* [33m399cb72[m Update README.md
+* [33m79ef2e4[m Update README.md
+* [33m36aa839[m Update README.md
+* [33mfbf09e8[m Update README.md
+* [33md761a97[m Initial commit
+* [33m1529d0b[m Initial commit
