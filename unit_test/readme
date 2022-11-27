@@ -1,0 +1,14 @@
+
+[1] Commit and push your changes to your repository.
+[2] Make sure minikube is down on the host.
+[3] Make sure docker is installed on the host.
+[4] Type the following command:
+    "docker run --network host -v /var/run/docker.sock:/var/run/docker.sock -ti natan2nik/kubiscan-unittest:latest"
+-Make sure you are in the container as root
+[5] Type the following commands:
+    "cd /tmp"
+    "git clone <your repo>"
+    "cd KubiScan/for_unit_test/"
+    "./kubectl_apply.sh"
+[6] For the unit-test run the following command:
+    python3 -m pytest -v unit_test.py
