@@ -415,7 +415,11 @@ def get_jwt_and_decode(pod, risky_users, volume):
         secret = None
     if secret is not None and secret.data is not None:
         if 'token' in secret.data:
-            decoded_data = decode_base64_jwt_token(secret.data['token'])
+            try:
+                decoded_data = decode_base64_jwt_token(secret.data['token'])
+            except:
+                print(f'[!] Can\'t decode token in secret {secret.metadata.name} in {secret.metadata.namespace if hasattr(secret.metadata, "namespace") else "at cluster scope"} (may be its not a jwt token)')
+                return None
             token_body = json.loads(decoded_data)
             if token_body:
                 risky_user = get_risky_user_from_container(token_body, risky_users)
