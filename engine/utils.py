@@ -14,6 +14,7 @@ from kubernetes.client.rest import ApiException
 
 # region - Roles and ClusteRoles
 
+list_of_service_accounts = []
 def is_risky_resource_name_exist(source_rolename, source_resourcenames):
     is_risky = False
     for resource_name in source_resourcenames:
@@ -413,16 +414,30 @@ def get_jwt_and_decode(pod, risky_users, volume):
                                                              namespace=pod.metadata.namespace)
     except Exception:
         secret = None
-    if secret is not None and secret.data is not None:
-        if 'token' in secret.data:
-            decoded_data = decode_base64_jwt_token(secret.data['token'])
-            token_body = json.loads(decoded_data)
-            if token_body:
-                risky_user = get_risky_user_from_container(token_body, risky_users)
-                return risky_user
+    try:
+        if secret is not None and secret.data is not None:
+            if 'token' in secret.data:
+                decoded_data = decode_base64_jwt_token(secret.data['token'])
+                token_body = json.loads(decoded_data)
+                if token_body:
+                    risky_user = get_risky_user_from_container(token_body, risky_users)
+                    return risky_user
+        raise Exception()
+    except Exception:
+        if secret is not None:
+            return get_risky_user_from_container_secret(secret, risky_users)
 
-    return None
-
+def get_risky_user_from_container_secret(secret, risky_users):
+    if secret is not None:
+        global list_of_service_accounts
+        if not list_of_service_accounts:
+            list_of_service_accounts = api_client.CoreV1Api.list_service_account_for_all_namespaces()
+        for sa in list_of_service_accounts.items:
+            for service_account_secret in sa.secrets or []:
+                if secret.metadata.name == service_account_secret.name:
+                    for risky_user in risky_users:
+                        if risky_user.user_info.name == sa.metadata.name:
+                            return risky_user
 
 def get_risky_pods(namespace=None, deep_analysis=False):
     risky_pods = []
