@@ -1,4 +1,7 @@
+import json
 import logging
+import re
+import sys
 from argparse import ArgumentParser
 import engine.utils
 import engine.privleged_containers
@@ -9,7 +12,9 @@ from misc import constants
 import datetime
 from api.api_client import api_init, running_in_container
 
-
+json_filename = ""
+output_file = ""
+no_color = False
 def get_color_by_priority(priority):
     color = WHITE
     if priority == Priority.CRITICAL:
@@ -153,6 +158,7 @@ def print_all_risky_containers(priority=None, namespace=None, read_token_from_co
                 all_service_account += service_account.user_info.name + ", "
             all_service_account = all_service_account[:-2]
             t.add_row([get_color_by_priority(container.priority)+container.priority.name+WHITE, pod.name, pod.namespace, container.name, container.service_account_namespace, all_service_account])
+
     print_table_aligned_left(t)
 
 def print_all_risky_subjects(priority=None, namespace=None):
@@ -236,10 +242,6 @@ def dump_tokens_from_pods(pod_name=None, namespace=None, read_token_from_contain
 
     print_table_aligned_left(t)
 
-def print_table_aligned_left(table):
-    table.align = 'l'
-    print(table)
-    print('\n')
 
 def print_subjects_by_kind(kind):
     subjects = engine.utils.get_subjects_by_kind(kind)
@@ -545,7 +547,10 @@ Requirements:
                                       '  verbs: [\"get\", \"list\"]\n'
                                       '- resources: [\"pods/exec\"]\n'
                                       '  verbs: [\"create\"]')
-
+    helper_switches.add_argument('-o', '--output-file', metavar='OUTPUT_FILENAME', help='Path to output file')
+    helper_switches.add_argument('-q', '--quiet', action='store_true', help='Hide the banner')
+    helper_switches.add_argument('-j', '--json', metavar='JSON_FILENAME', help='Export to json')
+    helper_switches.add_argument('-nc', '--no-color', action='store_true', help='Print without color')
     associated_rb_crb_to_role = opt.add_argument_group('Associated RoleBindings\ClusterRoleBindings to Role', description='Use the switch: namespace (-ns\--namespace).')
     associated_rb_crb_to_role.add_argument('-aarbr', '--associated-any-rolebindings-role', action='store', metavar='ROLE_NAME',
                                            help='Get associated RoleBindings\ClusterRoleBindings to a specific role\n'
@@ -579,12 +584,23 @@ Requirements:
     list_rules.add_argument('-rru', '--rolebinding-rules', action='store', metavar='ROLEBINDING_NAME', help='Get rules of RoleBinding', required=False)
     list_rules.add_argument('-crru', '--clusterrolebinding-rules', action='store', metavar='CLUSTERROLEBINDING_NAME',  help='Get rules of ClusterRoleBinding',required=False)
 
-    print_logo()
     args = opt.parse_args()
+    if args.no_color:
+        global no_color
+        no_color = True
+    if args.json:
+        global json_filename
+        json_filename = args.json
+    if args.output_file:
+        f = open(args.output_file, 'w')
+        sys.stdout = f
+    if not args.quiet:
+        print_logo()
 
     if args.examples:
         print_examples()
         exit()
+
 
     api_init(kube_config_file=args.kube_config, host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename, context=args.context)
 
@@ -670,6 +686,44 @@ Requirements:
             print("Namespace was not specified")
     elif args.clusterrolebinding_rules:
         print_clusterrolebinding_rules(args.clusterrolebinding_rules)
+
+def print_table_aligned_left(table):
+    global json_filename
+    if json_filename != "":
+        export_to_json(table, json_filename)
+    global output_file
+    if no_color:
+        ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+        for row in table._rows:
+            row[0] = ansi_escape.sub('', row[0])
+
+    table.align = 'l'
+    print(table)
+    print('\n')
+
+
+def export_to_json(table, json_filename):
+    # Remove the color from the string
+    ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+    headers = table.field_names
+    data = {}
+    i = 0
+    res = "["
+    for row in table._rows:
+        for entity in row:
+            entity_without_color = entity
+            # Remove the color from the string
+            if headers[i] == 'Priority':
+                entity_without_color = ansi_escape.sub('', entity)
+            data.update({headers[i]: entity_without_color})
+            i += 1
+        res += json.dumps(data, indent=4) + ','
+        i = 0
+    res = res[:-1] + ']'
+    json_file = open(json_filename, 'w')
+    json_file.write(res)
+    json_file.close()
+
 
 if __name__ == '__main__':
     main()
