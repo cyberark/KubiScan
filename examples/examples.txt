@@ -112,3 +112,10 @@ python3 KubiScan.py -psv -ns "kube-system"
 python3 KubiScan.py --pods-secrets-env
 python3 KubiScan.py -pse
 python3 KubiScan.py -pse -ns "kube-system"
+
+# Get all risky Subjects and export to json
+python3 KubiScan.py -rs -j risky_subjects.json
+
+# Get all risky Subjects, printing it to a file with no logo and no color
+python3 KubiScan.py -rs -o risky_subjects_table -nc
+
