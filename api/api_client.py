@@ -20,7 +20,7 @@ from api.api_client_temp import ApiClientTemp
 api_temp = None
 CoreV1Api = None
 RbacAuthorizationV1Api = None
-
+configuration = None
 
 def running_in_container():
     running_in_a_container = os.getenv('RUNNING_IN_A_CONTAINER')
@@ -48,6 +48,7 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
     global CoreV1Api
     global RbacAuthorizationV1Api
     global api_temp
+    global configuration
 
     if host and token_filename:
         print("Using token from " + token_filename + " on ip address " + host)
