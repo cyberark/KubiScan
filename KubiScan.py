@@ -5,7 +5,7 @@ import sys
 from argparse import ArgumentParser
 import engine.utils
 import engine.privleged_containers
-from prettytable import PrettyTable
+from prettytable import PrettyTable, ALL
 from engine.priority import Priority
 from misc.colours import *
 from misc import constants
@@ -57,6 +57,7 @@ def print_all_risky_roles(show_rules=False, days=None, priority=None, namespace=
         risky_any_roles = filter_objects_by_priority(priority, risky_any_roles)
     generic_print('|Risky Roles and ClusterRoles|', risky_any_roles, show_rules)
 
+
 def print_risky_roles(show_rules=False, days=None, priority=None, namespace=None):
     risky_roles = engine.utils.get_risky_roles()
 
@@ -73,6 +74,114 @@ def print_risky_roles(show_rules=False, days=None, priority=None, namespace=None
             if risky_role.namespace == namespace:
                 filtered_risky_roles.append(risky_role)
         generic_print('|Risky Roles |', filtered_risky_roles, show_rules)
+
+
+def print_cve():
+    current_k8s_version = engine.utils.get_current_version().replace('v', "")
+    cve_table = get_all_affecting_cves_table_by_version(current_k8s_version)
+    print_table_aligned_left(cve_table)
+
+
+def get_all_affecting_cves_table_by_version(current_k8s_version):
+    cve_table = PrettyTable(['Severity', 'CVE Grade', 'CVE', 'Description', 'FixedVersions'])
+    cve_table.hrules = ALL
+    with open('CVE.json', 'r') as f:
+        data = json.load(f)
+    cves = data['CVES']
+    for cve in cves:
+        if curr_version_is_affected(cve, current_k8s_version):
+            cve_description = split_cve_description(cve['Description'])
+            fixed_version_list = get_fixed_versions_of_cve(cve["FixedVersions"])
+            cve_color = get_cve_color(cve['Severity'])
+            cve_table.add_row([cve_color + cve['Severity'] + WHITE, cve['Grade'], cve['CVENumber'], cve_description,
+                       fixed_version_list])
+    cve_table.sortby = "CVE Grade"
+    cve_table.reversesort = True
+    return cve_table
+
+def get_cve_color(cve_severity):
+    match cve_severity:
+        case "Low":
+            return WHITE
+        case "Medium":
+            return LIGHTYELLOW
+        case "High":
+            return RED
+        case "Critical":
+            return RED
+
+
+def get_fixed_versions_of_cve(cve_fixed_versions):
+    fixed_version_list = ""
+    for fixed_version in cve_fixed_versions:
+        fixed_version_list += fixed_version["Raw"] + "\n"
+    return fixed_version_list[:-1]
+
+
+def split_cve_description(cve_description):
+    words = cve_description.split()
+    res_description = ""
+    words_in_row = 10
+    for i, word in enumerate(words):
+        if i % words_in_row == 0 and i != 0:
+            res_description += "\n"
+        res_description += word + " "
+    return res_description[:-1]
+
+
+def curr_version_is_affected(cve, current_k8s_version):
+    max_fixed_version = find_max_fixed_version(cve)
+    min_fixed_version = find_min_fixed_version(cve)
+    # current_k8s_version < min_fixed_version
+    if compare_versions(current_k8s_version, min_fixed_version) == -1:
+        return True
+    # current_k8s_version >= max_fixed_version
+    if compare_versions(current_k8s_version, max_fixed_version) >= 0:
+        return False
+    for fixed_version in cve['FixedVersions']:
+        if is_vulnerable_in_middle(current_k8s_version, fixed_version['Raw']):
+            return True
+    return False
+
+
+def is_vulnerable_in_middle(current_k8s_version, cve_fixed_version):
+    # Example: 1.15.2 -> [1, 15, 2]
+    current_k8s_version_nums = [int(num) for num in current_k8s_version.split('.')]
+    fixed_version_nums = [int(num) for num in cve_fixed_version.split('.')]
+    if fixed_version_nums[0] == current_k8s_version_nums[0] and fixed_version_nums[1] == current_k8s_version_nums[1]:
+        if fixed_version_nums[2] > current_k8s_version_nums[2]:
+            return True
+    return False
+
+
+# version1 > version2 return 1
+# version1 < version2 return -1
+# version1 = version2 return 0
+def compare_versions(version1, version2):
+    version1_nums = [int(num) for num in version1.split('.')]
+    version2_nums = [int(num) for num in version2.split('.')]
+    for i in range(len(version2_nums)):
+        if version2_nums[i] > version1_nums[i]:
+            return -1
+        elif version2_nums[i] < version1_nums[i]:
+            return 1
+    else:
+        return 0
+
+
+def find_max_fixed_version(cve):
+    versions = []
+    for fixed_version in cve['FixedVersions']:
+        versions.append(fixed_version['Raw'])
+    max_version = max(versions, key=lambda x: [int(num) for num in x.split('.')])
+    return max_version
+
+def find_min_fixed_version(cve):
+    versions = []
+    for fixed_version in cve['FixedVersions']:
+        versions.append(fixed_version['Raw'])
+    min_version = min(versions, key=lambda x: [int(num) for num in x.split('.')])
+    return min_version
 
 def print_risky_clusterroles(show_rules=False, days=None, priority=None, namespace=None):
     if namespace is not None:
@@ -506,7 +615,7 @@ Requirements:
                                                                'Without it, it will read the pod mounted service account secret from the ETCD, it less reliable but much faster.', required=False)
     opt.add_argument('-pp', '--privleged-pods', action='store_true', help='Get all privileged Pods\Containers.',  required=False)
     opt.add_argument('-a', '--all', action='store_true',help='Get all risky Roles\ClusterRoles, RoleBindings\ClusterRoleBindings, users and pods\containers', required=False)
-
+    opt.add_argument('-cve', '--cve', action='store_true', help=f"Scan of CVE's", required=False)
     opt.add_argument('-jt', '--join-token', action='store_true', help='Get join token for the cluster. OpenSsl must be installed + kubeadm', required=False)
     opt.add_argument('-psv', '--pods-secrets-volume', action='store_true', help='Show all pods with access to secret data throught a Volume', required=False)
     opt.add_argument('-pse', '--pods-secrets-env', action='store_true', help='Show all pods with access to secret data throught a environment variables', required=False)
@@ -604,6 +713,8 @@ Requirements:
 
     api_init(kube_config_file=args.kube_config, host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename, context=args.context)
 
+    if args.cve:
+        print_cve()
     if args.risky_roles:
         print_risky_roles(show_rules=args.rules, days=args.less_than, priority=args.priority, namespace=args.namespace)
     if args.risky_clusterroles:

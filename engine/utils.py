@@ -1,3 +1,5 @@
+import requests
+
 from engine.role import Role
 from engine.priority import Priority
 from static_risky_roles import STATIC_RISKY_ROLES
@@ -65,6 +67,13 @@ def is_rule_contains_risky_rule(source_role_name, source_rule, risky_rule):
 
     return is_contains
 
+
+def get_current_version():
+    import warnings
+    warnings.filterwarnings("ignore", message="Unverified HTTPS request")
+    host = api_client.configuration.host
+    response = requests.get(host + "/version", verify=False)
+    return response.json()["gitVersion"]
 
 def get_role_by_name_and_kind(name, kind, namespace=None):
     requested_role = None
