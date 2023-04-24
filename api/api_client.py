@@ -21,6 +21,7 @@ api_temp = None
 CoreV1Api = None
 RbacAuthorizationV1Api = None
 configuration = None
+api_version = None
 
 def running_in_container():
     running_in_a_container = os.getenv('RUNNING_IN_A_CONTAINER')
@@ -49,7 +50,7 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
     global RbacAuthorizationV1Api
     global api_temp
     global configuration
-
+    global api_version
     if host and token_filename:
         print("Using token from " + token_filename + " on ip address " + host)
         # remotely
@@ -72,7 +73,7 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
     else:
         print("Using kube config file.")
         configuration = Configuration()
-        api_client = ApiClient()
+
         kubeconfig_path = os.getenv('KUBISCAN_CONFIG_PATH')
         if running_in_container() and kubeconfig_path is None:
             # TODO: Consider using config.load_incluster_config() from container created by Kubernetes. Required service account with privileged permissions.
@@ -88,6 +89,7 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
             config.load_kube_config(config_file=kubeconfig_path, context=context, client_configuration=configuration)
 
         api_client = ApiClient(configuration=configuration)
+        api_version = client.VersionApi(api_client=api_client)
         CoreV1Api = client.CoreV1Api(api_client=api_client)
         RbacAuthorizationV1Api = client.RbacAuthorizationV1Api(api_client=api_client)
         api_temp = ApiClientTemp(configuration=configuration)

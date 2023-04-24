@@ -12,6 +12,8 @@ from api import api_client
 from engine.subject import Subject
 from misc.constants import *
 from kubernetes.client.rest import ApiException
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 # region - Roles and ClusteRoles
@@ -68,12 +70,40 @@ def is_rule_contains_risky_rule(source_role_name, source_rule, risky_rule):
     return is_contains
 
 
-def get_current_version():
-    import warnings
-    warnings.filterwarnings("ignore", message="Unverified HTTPS request")
-    host = api_client.configuration.host
-    response = requests.get(host + "/version", verify=False)
-    return response.json()["gitVersion"]
+def get_current_version(certificate_authority_file=None, client_certificate_file=None, client_key_file=None, host=None):
+    if host is None:
+        version = api_client.api_version.get_code().git_version
+        return version.replace('v', "")
+    else:
+        if certificate_authority_file is None and client_certificate_file is None and client_key_file is None:
+            response = requests.get(host + '/version', verify=False)
+            if response.status_code != 200:
+                print(response.text)
+                return None
+            else:
+                return response.json()["gitVersion"].replace('v', "")
+        if certificate_authority_file is not None and client_certificate_file is not None and client_key_file is not None:
+            response = requests.get(host + '/version', cert=(client_certificate_file, client_key_file),
+                                    verify=certificate_authority_file)
+            if response.status_code != 200:
+                print(response.text)
+                return None
+            else:
+                return response.json()["gitVersion"].replace('v', "")
+        if certificate_authority_file is None or client_certificate_file is None or client_key_file is None or host is None:
+            print("Please provide certificate authority file path, client certificate file path,"
+                  " client key file path and host address")
+            return None
+        response = requests.get(host + '/version', cert=(client_certificate_file, client_key_file),
+                                verify=certificate_authority_file)
+        if response.status_code != 200:
+            print(response.text)
+            return None
+        else:
+            return response.json()["gitVersion"].replace('v', "")
+
+
+
 
 def get_role_by_name_and_kind(name, kind, namespace=None):
     requested_role = None

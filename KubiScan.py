@@ -76,8 +76,10 @@ def print_risky_roles(show_rules=False, days=None, priority=None, namespace=None
         generic_print('|Risky Roles |', filtered_risky_roles, show_rules)
 
 
-def print_cve():
-    current_k8s_version = engine.utils.get_current_version().replace('v', "")
+def print_cve(certificate_authority_file=None, client_certificate_file=None, client_key_file=None, host=None):
+    current_k8s_version = engine.utils.get_current_version(certificate_authority_file, client_certificate_file, client_key_file, host)
+    if current_k8s_version is None:
+        return
     cve_table = get_all_affecting_cves_table_by_version(current_k8s_version)
     print_table_aligned_left(cve_table)
 
@@ -643,6 +645,10 @@ Requirements:
     helper_switches.add_argument('-c', '--cert-filename', action='store', metavar='CA_FILENAME', help='Certificate authority path (\'/../ca.crt\'). If not specified it will try without SSL verification.\n'
                                                                             'Inside Pods the default location is \'/var/run/secrets/kubernetes.io/serviceaccount/ca.crt\''
                                                                             'Or \'/run/secrets/kubernetes.io/serviceaccount/ca.crt\'.', required=False)
+    helper_switches.add_argument('-cc', '--client-certificate', action='store', metavar='CA_FILENAME',
+                                 help='Path to client key file', required=False)
+    helper_switches.add_argument('-ck', '--client-key', action='store', metavar='CA_FILENAME',
+                                 help='Path to client certificate file', required=False)
 
     helper_switches.add_argument('-co', '--kube-config', action='store', metavar='KUBE_CONFIG_FILENAME',
                                  help='The kube config file.\n'
@@ -714,7 +720,7 @@ Requirements:
     api_init(kube_config_file=args.kube_config, host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename, context=args.context)
 
     if args.cve:
-        print_cve()
+        print_cve(args.cert_filename, args.client_certificate, args.client_key, args.host)
     if args.risky_roles:
         print_risky_roles(show_rules=args.rules, days=args.less_than, priority=args.priority, namespace=args.namespace)
     if args.risky_clusterroles:
