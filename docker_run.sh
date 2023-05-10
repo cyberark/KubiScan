@@ -106,6 +106,6 @@ then
   docker cp "$certificate_auth" "$kubiscan_container_id":/tmp/"$certificate_auth"
 fi
 # Giving permissions to /tmp and opt/KubiScan
-docker exec -it "$kubiscan_container_id" bash -c "chmod -R 777 /tmp /opt/kubiscan /home/kubiscan"
+docker exec -it "$kubiscan_container_id" bash -c "chmod -fR 777 /tmp /opt/kubiscan /home/kubiscan"
 docker exec -it --user kubiscan "$kubiscan_container_id" bash
 
