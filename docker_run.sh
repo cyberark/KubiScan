@@ -22,6 +22,8 @@ docker run -t -d --rm --name kubiscan_container -e CONF_PATH=/config --network h
 
 # The new container id.
 kubiscan_container_id=$( docker ps -a -f "name=kubiscan_container" -q)
+
+# If the argument is empty, enter.
 if [ -n "$aws_dir" ];
 then
 	echo "Copying aws folder"
@@ -70,8 +72,6 @@ then
 fi
 
 
-
-
 if [ -n "$cert_array" ];
 then
   # Copy all the certificates to the container
@@ -106,6 +106,7 @@ then
   docker cp "$certificate_auth" "$kubiscan_container_id":/tmp/"$certificate_auth"
 fi
 # Giving permissions to /tmp and opt/KubiScan
+# The "-f" in chmod will suppress the errors
 docker exec -it "$kubiscan_container_id" bash -c "chmod -fR 777 /tmp /opt/kubiscan /home/kubiscan"
 docker exec -it --user kubiscan "$kubiscan_container_id" bash
 
