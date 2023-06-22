@@ -102,16 +102,12 @@ def get_all_affecting_cves_table_by_version(current_k8s_version):
     return cve_table
 
 def get_cve_color(cve_severity):
-    match cve_severity:
-        case "Low":
-            return WHITE
-        case "Medium":
-            return LIGHTYELLOW
-        case "High":
-            return RED
-        case "Critical":
-            return RED
-
+    if cve_severity == "Low":
+        return WHITE
+    elif cve_severity == "Medium":
+        return LIGHTYELLOW
+    elif cve_severity == "High" or cve_severity == "Critical":
+        return RED
 
 def get_fixed_versions_of_cve(cve_fixed_versions):
     fixed_version_list = ""
