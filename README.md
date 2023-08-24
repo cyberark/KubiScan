@@ -20,7 +20,9 @@ KubiScan gathers information about risky roles\clusterroles, rolebindings\cluste
 -	List Subjects with specific kind ('User', 'Group' or 'ServiceAccount')
 -	List rules of RoleBinding or ClusterRoleBinding
 -	Show Pods that have access to secret data through a volume or environment variables
--   Get bootstrap tokens for the cluster
+- Get bootstrap tokens for the cluster
+- CVE scan
+- EKS\AKS\GKE support
 
 ## Usage
 ### Container
