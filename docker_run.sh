@@ -18,7 +18,7 @@ fi
 
 
 # Running the container.
-docker run -t -d --rm --name kubiscan_container -e CONF_PATH=/config --network host natan2nik/kubiscan
+docker run -t -d --rm --name kubiscan_container -e CONF_PATH=/config --network host g3rzi/kubiscan
 
 # The new container id.
 kubiscan_container_id=$( docker ps -a -f "name=kubiscan_container" -q)
