@@ -3,7 +3,6 @@ import logging
 import os
 import re
 import sys
-import time
 from argparse import ArgumentParser
 import engine.utils
 import engine.privleged_containers
@@ -850,10 +849,6 @@ def export_to_json(table, json_filename):
     json_file.write(json.dumps(res, indent=2))
     json_file.flush()
     json_file.close()
-
-
-def is_file_empty(file_path):
-    return os.path.getsize(file_path) == 0
 
 
 if __name__ == '__main__':
