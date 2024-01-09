@@ -1,7 +1,9 @@
 import json
 import logging
+import os
 import re
 import sys
+import time
 from argparse import ArgumentParser
 import engine.utils
 import engine.privleged_containers
@@ -15,6 +17,7 @@ from api.api_client import api_init, running_in_container
 json_filename = ""
 output_file = ""
 no_color = False
+curr_header = ""
 def get_color_by_priority(priority):
     color = WHITE
     if priority == Priority.CRITICAL:
@@ -230,6 +233,8 @@ def print_risky_clusterrolebindings(days=None, priority=None, namespace=None):
 
 def generic_print(header, objects, show_rules=False):
     roof = '+' + ('-' * (len(header)-2)) + '+'
+    global curr_header
+    curr_header = header
     print(roof)
     print(header)
     if show_rules:
@@ -246,12 +251,12 @@ def generic_print(header, objects, show_rules=False):
                 t.add_row([get_color_by_priority(o.priority) + o.priority.name + WHITE, o.kind, o.namespace, o.name, 'No creation time'])
             else:
                 t.add_row([get_color_by_priority(o.priority) + o.priority.name + WHITE, o.kind, o.namespace, o.name, o.time.ctime() + " (" + str(get_delta_days_from_now(o.time)) + " days)"])
-
     print_table_aligned_left(t)
 
 def print_all_risky_containers(priority=None, namespace=None, read_token_from_container=False):
     pods = engine.utils.get_risky_pods(namespace, read_token_from_container)
-
+    global curr_header
+    curr_header = "|Risky Containers|"
 
     print("+----------------+")
     print("|Risky Containers|")
@@ -272,6 +277,8 @@ def print_all_risky_subjects(priority=None, namespace=None):
     subjects = engine.utils.get_all_risky_subjects()
     if priority:
         subjects = filter_objects_by_priority(priority, subjects)
+    global curr_header
+    curr_header = "|Risky Users|"
     print("+-----------+")
     print("|Risky Users|")
     t = PrettyTable(['Priority', 'Kind', 'Namespace', 'Name'])
@@ -508,6 +515,8 @@ def parse_pod_spec(pod_spec, container):
     return spec
 
 def print_privileged_containers(namespace=None):
+    global curr_header
+    curr_header = "|Privileged Containers|"
     print("+---------------------+")
     print("|Privileged Containers|")
     t = PrettyTable(['Pod', 'Namespace', 'Pod Spec', 'Container', 'Container info'])
@@ -816,26 +825,35 @@ def print_table_aligned_left(table):
 
 
 def export_to_json(table, json_filename):
-    # Remove the color from the string
+    global curr_header
     ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
     headers = table.field_names
-    data = {}
-    i = 0
-    res = "["
-    for row in table._rows:
-        for entity in row:
-            entity_without_color = entity
-            # Remove the color from the string
-            if headers[i] == 'Priority':
-                entity_without_color = ansi_escape.sub('', entity)
-            data.update({headers[i]: entity_without_color})
-            i += 1
-        res += json.dumps(data, indent=4) + ','
-        i = 0
-    res = res[:-1] + ']'
-    json_file = open(json_filename, 'w')
-    json_file.write(res)
+    curr_header = curr_header.replace("|", "")
+    data = {curr_header: []}
+    try:
+        with open(json_filename, "r") as json_file:
+            json_file_content = json_file.read()
+    except:
+        json_file_content = ""
+
+    res = [] if json_file_content == "" else json.loads(json_file_content)
+    json_file = open(json_filename, "w+")
+    for row_index, row in enumerate(table._rows):
+        curr_item = {}
+        for i, entity in enumerate(row):
+            entity_without_color = ansi_escape.sub('', entity) if headers[i] == 'Priority' else entity
+            # curr_item.update({headers[i]: entity_without_color})
+            curr_item[headers[i]] = entity_without_color
+
+        data[curr_header].append(curr_item)
+    res.append(data)
+    json_file.write(json.dumps(res, indent=2))
+    json_file.flush()
     json_file.close()
+
+
+def is_file_empty(file_path):
+    return os.path.getsize(file_path) == 0
 
 
 if __name__ == '__main__':
