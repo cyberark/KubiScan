@@ -89,7 +89,9 @@ def print_cve(certificate_authority_file=None, client_certificate_file=None, cli
 def get_all_affecting_cves_table_by_version(current_k8s_version):
     cve_table = PrettyTable(['Severity', 'CVE Grade', 'CVE', 'Description', 'FixedVersions'])
     cve_table.hrules = ALL
-    with open('CVE.json', 'r') as f:
+    script_dir = os.path.dirname(__file__)
+    cve_file = os.path.join(script_dir, 'CVE.json')
+    with open(cve_file, 'r') as f:
         data = json.load(f)
     cves = data['CVES']
     for cve in cves:
