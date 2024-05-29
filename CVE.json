@@ -4,7 +4,7 @@
       "CVENumber": "CVE-2019-1002100",
       "Description": "Kubernetes API DoS Vulnerability.",
       "Severity": "Medium",
-	  "Grade": "6.5",
+      "Grade": "6.5",
       "FixedVersions": [
         {
           "Major": 1,
@@ -30,7 +30,7 @@
       "CVENumber": "CVE-2018-1002105",
       "Description": "Allow an unauthenticated user to perform privilege escalation and gain full admin privileges on a cluster.",
       "Severity": "Critical",
-	  "Grade": "9.8",
+      "Grade": "9.8",
       "FixedVersions": [
         {
           "Major": 1,
@@ -56,7 +56,7 @@
       "CVENumber": "CVE-2019-11247",
       "Description": "Allowing users to read, modify, or delete cluster-wide custom resources even if they have RBAC permissions that extend only to namespace resources.",
       "Severity": "Medium",
-	  "Grade": "5.0",
+      "Grade": "5.0",
       "FixedVersions": [
         {
           "Major": 1,
@@ -118,7 +118,7 @@
       "CVENumber": "CVE-2019-11253",
       "Description": "Kubernetes billion laughs attack vulnerability that allows an attacker to perform a Denial-of-Service (DoS) attack on the Kubernetes API server by uploading a maliciously crafted YAML file.",
       "Severity": "High",
-	  "Grade": "7.5",
+      "Grade": "7.5",
       "FixedVersions": [
         {
           "Major": 1,
@@ -150,7 +150,7 @@
       "CVENumber": "CVE-2019-11254",
       "Description": "The Kubernetes API Server component in versions 1.1-1.14, and versions prior to 1.15.10, 1.16.7 and 1.17.3 allows an authorized user who sends malicious YAML payloads to cause the kube-apiserver to consume excessive CPU cycles while parsing YAML.",
       "Severity": "Medium",
-	  "Grade": "6.5",
+      "Grade": "6.5",
       "FixedVersions": [
         {
           "Major": 1,
@@ -176,7 +176,7 @@
       "CVENumber": "CVE-2020-8558",
       "Description": "The kubelet and kube-proxy were found to contain security issue which allows adjacent hosts to reach TCP and UDP services bound to 127.0.0.1 running on the node or in the node's network namespace. Such a service is generally thought to be reachable only by other processes on the same host, but due to this defeect, could be reachable by other hosts on the same LAN as the node, or by containers running on the same node as the service.",
       "Severity": "Medium",
-	  "Grade": "5.4",
+      "Grade": "5.4",
       "FixedVersions": [
         {
           "Major": 1,
@@ -208,7 +208,7 @@
       "CVENumber": "CVE-2020-8559",
       "Description": "The Kubernetes kube-apiserver is vulnerable to an unvalidated redirect on proxied upgrade requests that could allow an attacker to escalate privileges from a node compromise to a full cluster compromise.",
       "Severity": "Medium",
-	  "Grade": "6.4",
+      "Grade": "6.4",
       "FixedVersions": [
         {
           "Major": 1,
@@ -234,7 +234,7 @@
       "CVENumber": "CVE-2021-25741",
       "Description": "A security issue was discovered in Kubernetes where a user may be able to create a container with subpath volume mounts to access files & directories outside of the volume, including on the host filesystem.",
       "Severity": "High",
-	  "Grade": "8.8",
+      "Grade": "8.8",
       "FixedVersions": [
         {
           "Major": 1,
@@ -266,7 +266,7 @@
       "CVENumber": "CVE-2021-25749",
       "Description": "A security issue was discovered in Kubernetes that could allow Windows workloads to run as ContainerAdministrator even when those workloads set the runAsNonRoot option to true.",
       "Severity": "Low",
-	  "Grade": "3.8",
+      "Grade": "3.8",
       "FixedVersions": [
         {
           "Major": 1,
@@ -282,9 +282,9 @@
         },
         {
           "Major": 1,
-          "Minor": 24,
+          "Minor": 23,
           "Patch": 5,
-          "Raw": "1.24.5"
+          "Raw": "1.23.5"
         },
         {
           "Major": 1,
@@ -298,7 +298,7 @@
       "CVENumber": "CVE-2022-3172",
       "Description": "A security issue was discovered in kube-apiserver that allows an aggregated API server to redirect client traffic to any URL. This could lead to the client performing unexpected actions as well as forwarding the client's API server credentials to third parties.",
       "Severity": "Medium",
-	  "Grade": "5.1",
+      "Grade": "5.1",
       "FixedVersions": [
         {
           "Major": 1,
@@ -330,7 +330,7 @@
       "CVENumber": "CVE-2021-25737",
       "Description": "A security issue was discovered in Kubernetes where a user may be able to redirect pod traffic to private networks on a Node.",
       "Severity": "Low",
-	  "Grade": "2.7",
+      "Grade": "2.7",
       "FixedVersions": [
         {
           "Major": 1,
@@ -362,7 +362,7 @@
       "CVENumber": "CVE-2021-25735",
       "Description": "A security issue was discovered in kube-apiserver that could allow node updates to bypass a Validating Admission Webhook",
       "Severity": "Medium",
-	  "Grade": "6.5",
+      "Grade": "6.5",
       "FixedVersions": [
         {
           "Major": 1,
@@ -394,7 +394,7 @@
       "CVENumber": "CVE-2020-8566",
       "Description": "In Kubernetes clusters using Ceph RBD as a storage provisioner, with logging level of at least 4, Ceph RBD admin secrets can be written to logs. This occurs in kube-controller-manager's logs during provisioning of Ceph RBD persistent claims.",
       "Severity": "Medium",
-	  "Grade": "4.7",
+      "Grade": "4.7",
       "FixedVersions": [
         {
           "Major": 1,
@@ -420,7 +420,7 @@
       "CVENumber": "CVE-2020-8565",
       "Description": "In Kubernetes, if the logging level is to at least 9, authorization and bearer tokens will be written to log files. This can occur both in API server logs and client tool output like kubectl.",
       "Severity": "Medium",
-	  "Grade": "4.7",
+      "Grade": "4.7",
       "FixedVersions": [
         {
           "Major": 1,
@@ -452,7 +452,7 @@
       "CVENumber": "CVE-2020-8564",
       "Description": "In Kubernetes clusters using a logging level of at least 4, processing a malformed docker config file will result in the contents of the docker config file being leaked, which can include pull secrets or other registry credentials.",
       "Severity": "Medium",
-	  "Grade": "4.7",
+      "Grade": "4.7",
       "FixedVersions": [
         {
           "Major": 1,
@@ -478,7 +478,7 @@
       "CVENumber": "CVE-2020-8563",
       "Description": "In Kubernetes clusters using VSphere as a cloud provider, with a logging level set to 4 or above, VSphere cloud credentials will be leaked in the cloud controller manager's log.",
       "Severity": "Medium",
-	  "Grade": "4.7",
+      "Grade": "4.7",
       "FixedVersions": [
         {
           "Major": 1,
@@ -492,7 +492,7 @@
       "CVENumber": "CVE-2020-8557",
       "Description": "The /etc/hosts file mounted in a pod by kubelet is not included by the kubelet eviction manager when calculating ephemeral storage usage by a pod. If a pod writes a large amount of data to the /etc/hosts file, it could fill the storage space of the node and cause the node to fail.",
       "Severity": "Medium",
-	  "Grade": "5.5",
+      "Grade": "5.5",
       "FixedVersions": [
         {
           "Major": 1,
@@ -518,7 +518,7 @@
       "CVENumber": "CVE-2020-8555",
       "Description": "There exists a Server Side Request Forgery (SSRF) vulnerability in kube-controller-manager that allows certain authorized users to leak up to 500 bytes of arbitrary information from unprotected endpoints within the master's host network (such as link-local or loopback services).",
       "Severity": "Medium",
-	  "Grade": "6.3",
+      "Grade": "6.3",
       "FixedVersions": [
         {
           "Major": 1,
@@ -550,7 +550,7 @@
       "CVENumber": "CVE-2020-10749",
       "Description": "IPv4 only clusters susceptible to MitM attacks via IPv6 rogue router advertisements",
       "Severity": "Medium",
-	  "Grade": "6.0",
+      "Grade": "6.0",
       "FixedVersions": [
         {
           "Major": 1,
@@ -582,7 +582,7 @@
       "CVENumber": "CVE-2020-8552",
       "Description": "The Kubernetes API server has been found to be vulnerable to a denial of service attack via authorized API requests.",
       "Severity": "Medium",
-	  "Grade": "5.3",
+      "Grade": "5.3",
       "FixedVersions": [
         {
           "Major": 1,
@@ -608,7 +608,7 @@
       "CVENumber": "CVE-2020-8551",
       "Description": "The Kubelet has been found to be vulnerable to a denial of service attack via the kubelet API, including the unauthenticated HTTP read-only API typically served on port 10255, and the authenticated HTTPS API typically served on port 10250.",
       "Severity": "Medium",
-	  "Grade": "4.3",
+      "Grade": "4.3",
       "FixedVersions": [
         {
           "Major": 1,
@@ -634,7 +634,7 @@
       "CVENumber": "CVE-2019-11251",
       "Description": "A security issue was discovered in kubectl versions v1.13.10, v1.14.6, and v1.15.3. The issue is of a medium severity and upgrading of kubectl is encouraged to fix the vulnerability.",
       "Severity": "Medium",
-	  "Grade": "4.8",
+      "Grade": "4.8",
       "FixedVersions": [
         {
           "Major": 1,
@@ -648,7 +648,7 @@
       "CVENumber": "CVE-2019-11248",
       "Description": "The debugging endpoint /debug/pprof is exposed over the unauthenticated Kubelet healthz port. Versions prior to 1.15.0, 1.14.4, 1.13.8, and 1.12.10 are affected.",
       "Severity": "Medium",
-	  "Grade": "6.5",
+      "Grade": "6.5",
       "FixedVersions": [
         {
           "Major": 1,
@@ -680,7 +680,7 @@
       "CVENumber": "CVE-2019-11249",
       "Description": "A third issue was discovered with the Kubernetes kubectl cp command that could enable a directory traversal such that a malicious container could replace or create files on a user’s workstation.",
       "Severity": "Medium",
-	  "Grade": "4.8",
+      "Grade": "4.8",
       "FixedVersions": [
         {
           "Major": 1,
@@ -706,7 +706,7 @@
       "CVENumber": "CVE-2019-11245",
       "Description": " container uid changes to root after first restart or if image is already pulled to the node",
       "Severity": "Medium",
-	  "Grade": "4.9",
+      "Grade": "4.9",
       "FixedVersions": [
         {
           "Major": 1,
@@ -726,7 +726,7 @@
       "CVENumber": "CVE-2019-11243",
       "Description": " rest.AnonymousClientConfig() does not remove the serviceaccount credentials from config created by rest.InClusterConfig()",
       "Severity": "Low",
-	  "Grade": "3.1",
+      "Grade": "3.1",
       "FixedVersions": [
         {
           "Major": 1,
@@ -752,7 +752,7 @@
       "CVENumber": "CVE-2019-1002100",
       "Description": "json-patch requests can exhaust apiserver resources",
       "Severity": "Medium",
-	  "Grade": "6.5",
+      "Grade": "6.5",
       "FixedVersions": [
         {
           "Major": 1,
@@ -773,6 +773,394 @@
           "Raw": "1.13.4"
         }
       ]
-    }
+    },
+    {
+      "CVENumber": "CVE-2020-8554",
+      "Description": "Kubernetes API server in all versions allows an attacker who is able to create a ClusterIP service and set the spec.externalIPs field, to intercept traffic to that IP address. Additionally, an attacker who is able to patch the status (which is considered a privileged operation and should not typically be granted to users) of a LoadBalancer service can set the status.loadBalancer.ingress.ip to similar effect.",
+      "Severity": "Medium",
+      "Grade": "6.3",
+      "FixedVersions": [
+      ]
+    },{
+      "CVENumber": "CVE-2020-8561",
+      "Description": "A security issue was discovered in Kubernetes where actors that control the responses of MutatingWebhookConfiguration or ValidatingWebhookConfiguration requests are able to redirect kube-apiserver requests to private networks of the apiserver. If that user can view kube-apiserver logs when the log level is set to 10, they can view the redirected responses and headers in the logs.",
+      "Severity": "Medium",
+      "Grade": "4.1",
+      "FixedVersions": [
+      ]
+    },
+    {
+      "CVENumber": "CVE-2020-8562",
+      "Description": "As mitigations to a report from 2019 and CVE-2020-8555, Kubernetes attempts to prevent proxied connections from accessing link-local or localhost networks when making user-driven connections to Services, Pods, Nodes, or StorageClass service providers. As part of this mitigation Kubernetes does a DNS name resolution check and validates that response IPs are not in the link-local (169.254.0.0/16) or localhost (127.0.0.0/8) range. Kubernetes then performs a second DNS resolution without validation for the actual connection. If a non-standard DNS server returns different non-cached responses, a user may be able to bypass the proxy IP restriction and access private networks on the control plane.",
+      "Severity": "Low",
+      "Grade": "3.5",
+      "FixedVersions": [
+      ]
+    },
+    {
+      "CVENumber": "CVE-2021-25735",
+      "Description": "A security issue was discovered in kube-apiserver that could allow node updates to bypass a Validating Admission Webhook.",
+      "Severity": "Medium",
+      "Grade": "6.5",
+      "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 21,
+          "Patch": 0,
+          "Raw": "1.21.0"
+        },
+        {
+          "Major": 1,
+          "Minor": 20,
+          "Patch": 6,
+          "Raw": "1.20.6"
+        },
+        {
+          "Major": 1,
+          "Minor": 19,
+          "Patch": 10,
+          "Raw": "1.19.10"
+        },
+        {
+          "Major": 1,
+          "Minor": 18,
+          "Patch": 18,
+          "Raw": "1.18.18"
+        }
+      ]
+    },
+    {
+      "CVENumber": "CVE-2021-25740",
+      "Description": "A security issue was discovered with Kubernetes that could enable users to send network traffic to locations they would otherwise not have access to via a confused deputy attack.",
+      "Severity": "Low",
+      "Grade": "3.5",
+      "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 21,
+          "Patch": 4,
+          "Raw": "1.21.4"
+        },
+        {
+          "Major": 1,
+          "Minor": 20,
+          "Patch": 10,
+          "Raw": "1.20.10"
+        },
+        {
+          "Major": 1,
+          "Minor": 19,
+          "Patch": 14,
+          "Raw": "1.19.14"
+        }
+      ]
+    },
+    {
+      "CVENumber": "CVE-2021-25743",
+      "Description": "kubectl does not neutralize escape, meta, or control sequences contained in the raw data it outputs to a terminal. This includes but is not limited to the unstructured string fields in objects such as Events.",
+      "Severity": "Low",
+      "Grade": "3.0",
+      "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 22,
+          "Patch": 7,
+          "Raw": "1.22.7"
+        },
+        {
+          "Major": 1,
+          "Minor": 21,
+          "Patch": 10,
+          "Raw": "1.21.10"
+        },
+        {
+          "Major": 1,
+          "Minor": 20,
+          "Patch": 15,
+          "Raw": "1.20.15"
+        },
+        {
+          "Major": 1,
+          "Minor": 19,
+          "Patch": 16,
+          "Raw": "1.19.16"
+        }
+      ]
+    },
+    {
+      "CVENumber": "CVE-2022-3162",
+      "Description": "Users authorized to list or watch one type of namespaced custom resource cluster-wide can read custom resources of a different type in the same API group without authorization. Clusters are impacted by this vulnerability if all of the following are true: 1. There are 2+ CustomResourceDefinitions sharing the same API group 2. Users have cluster-wide list or watch authorization on one of those custom resources. 3. The same users are not authorized to read another custom resource in the same API group.",
+      "Severity": "Medium",
+      "Grade": "6.5",
+      "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 25,
+          "Patch": 4,
+          "Raw": "1.25.4"
+        },
+        {
+          "Major": 1,
+          "Minor": 24,
+          "Patch": 8,
+          "Raw": "1.24.8"
+        },
+        {
+          "Major": 1,
+          "Minor": 23,
+          "Patch": 14,
+          "Raw": "1.23.14"
+        },
+        {
+          "Major": 1,
+          "Minor": 22,
+          "Patch": 16,
+          "Raw": "1.22.16"
+        }
+      ]
+    },
+    {
+      "CVENumber": "CVE-2022-3294",
+      "Description": "Users may have access to secure endpoints in the control plane network. Kubernetes clusters are only affected if an untrusted user can modify Node objects and send proxy requests to them. Kubernetes supports node proxying, which allows clients of kube-apiserver to access endpoints of a Kubelet to establish connections to Pods, retrieve container logs, and more. While Kubernetes already validates the proxying address for Nodes, a bug in kube-apiserver made it possible to bypass this validation. Bypassing this validation could allow authenticated requests destined for Nodes to access the API server's private network.",
+      "Severity": "High",
+      "Grade": "8.8",
+      "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 25,
+          "Patch": 4,
+          "Raw": "1.25.4"
+        },
+        {
+          "Major": 1,
+          "Minor": 24,
+          "Patch": 8,
+          "Raw": "1.24.8"
+        },
+        {
+          "Major": 1,
+          "Minor": 23,
+          "Patch": 14,
+          "Raw": "1.23.14"
+        },
+        {
+          "Major": 1,
+          "Minor": 22,
+          "Patch": 16,
+          "Raw": "1.22.16"
+        }
+      ]
+    },
+    {
+      "CVENumber": "CVE-2023-2431",
+      "Description": "A security issue was discovered in Kubelet that allows pods to bypass the seccomp profile enforcement. Pods that use localhost type for seccomp profile but specify an empty profile field, are affected by this issue. In this scenario, this vulnerability allows the pod to run in unconfined (seccomp disabled) mode. This bug affects Kubelet.",
+      "Severity": "Medium",
+      "Grade": "5.5",
+      "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 27,
+          "Patch": 2,
+          "Raw": "1.27.2"
+        },
+        {
+          "Major": 1,
+          "Minor": 26,
+          "Patch": 5,
+          "Raw": "1.26.5"
+        },
+        {
+          "Major": 1,
+          "Minor": 25,
+          "Patch": 10,
+          "Raw": "1.25.10"
+        },
+        {
+          "Major": 1,
+          "Minor": 24,
+          "Patch": 14,
+          "Raw": "1.24.14"
+        }
+      ]
+    },
+    {
+      "CVENumber": "CVE-2023-2727",
+      "Description": "Users may be able to launch containers using images that are restricted by ImagePolicyWebhook when using ephemeral containers. Kubernetes clusters are only affected if the ImagePolicyWebhook admission plugin is used together with ephemeral containers.",
+      "Severity": "Medium",
+      "Grade": "6.5",
+      "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 27,
+          "Patch": 3,
+          "Raw": "1.27.3"
+        },
+        {
+          "Major": 1,
+          "Minor": 26,
+          "Patch": 6,
+          "Raw": "1.26.6"
+        },
+        {
+          "Major": 1,
+          "Minor": 25,
+          "Patch": 11,
+          "Raw": "1.25.11"
+        },
+        {
+          "Major": 1,
+          "Minor": 24,
+          "Patch": 15,
+          "Raw": "1.24.15"
+        }
+      ]
+    },
+    {
+      "CVENumber": "CVE-2023-2728",
+      "Description": "Users may be able to launch containers that bypass the mountable secrets policy enforced by the ServiceAccount admission plugin when using ephemeral containers. The policy ensures pods running with a service account may only reference secrets specified in the service account’s secrets field. Kubernetes clusters are only affected if the ServiceAccount admission plugin and the `kubernetes.io/enforce-mountable-secrets` annotation are used together with ephemeral containers.",
+      "Severity": "Medium",
+      "Grade": "6.5",
+      "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 27,
+          "Patch": 8,
+          "Raw": "1.27.8"
+        },
+        {
+          "Major": 1,
+          "Minor": 26,
+          "Patch": 11,
+          "Raw": "1.26.11"
+        },
+        {
+          "Major": 1,
+          "Minor": 25,
+          "Patch": 16,
+          "Raw": "1.25.16"
+        }
+      ]
+    },
+    {
+      "CVENumber": "CVE-2023-3676",
+      "Description": "A security issue was discovered in Kubernetes where a user that can create pods on Windows nodes may be able to escalate to admin privileges on those nodes. Kubernetes clusters are only affected if they include Windows nodes.",
+      "Severity": "High",
+      "Grade": "8.8",
+      "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 28,
+          "Patch": 1,
+          "Raw": "1.28.1"
+        },
+        {
+          "Major": 1,
+          "Minor": 27,
+          "Patch": 5,
+          "Raw": "1.27.5"
+        },
+        {
+          "Major": 1,
+          "Minor": 26,
+          "Patch": 8,
+          "Raw": "1.26.8"
+        },
+        {
+          "Major": 1,
+          "Minor": 25,
+          "Patch": 13,
+          "Raw": "1.25.13"
+        },
+        {
+          "Major": 1,
+          "Minor": 24,
+          "Patch": 17,
+          "Raw": "1.24.17"
+        }
+      ]
+    },
+    {
+      "CVENumber": "CVE-2023-3955",
+      "Description": "A security issue was discovered in Kubernetes where a user that can create pods on Windows nodes may be able to escalate to admin privileges on those nodes. Kubernetes clusters are only affected if they include Windows nodes.",
+      "Severity": "High",
+      "Grade": "8.8",
+      "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 27,
+          "Patch": 5,
+          "Raw": "1.27.5"
+        },
+        {
+          "Major": 1,
+          "Minor": 25,
+          "Patch": 13,
+          "Raw": "1.25.13"
+        },
+        {
+          "Major": 1,
+          "Minor": 26,
+          "Patch": 8,
+          "Raw": "1.26.8"
+        },
+        {
+          "Major": 1,
+          "Minor": 28,
+          "Patch": 1,
+          "Raw": "1.28.1"
+        },
+        {
+          "Major": 1,
+          "Minor": 24,
+          "Patch": 17,
+          "Raw": "1.24.17"
+        }
+      ]
+    },
+    {
+      "CVENumber": "CVE-2023-5528",
+      "Description": "Insufficient input sanitization in in-tree storage plugin leads to privilege escalation on Windows nodes.",
+      "Severity": "High",
+      "Grade": "8.8",
+      "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 28,
+          "Patch": 4,
+          "Raw": "1.28.4"
+        },
+        {
+          "Major": 1,
+          "Minor": 27,
+          "Patch": 8,
+          "Raw": "1.27.8"
+        },
+        {
+          "Major": 1,
+          "Minor": 26,
+          "Patch": 11,
+          "Raw": "1.26.11"
+        },
+        {
+          "Major": 1,
+          "Minor": 25,
+          "Patch": 16,
+          "Raw": "1.25.16"
+        }
+      ]
+    },
+    {
+      "CVENumber": "CVE-2024-3177",
+      "Description": "Bypassing mountable secrets policy imposed by the ServiceAccount admission plugin.",
+      "Severity": "Medium",
+      "Grade": "6.4",
+      "FixedVersions": [ {
+          "Major": 1,
+          "Minor": 27,
+          "Patch": 13,
+          "Raw": "1.27.13"
+        }
+      ]
+      }
   ]
 }
