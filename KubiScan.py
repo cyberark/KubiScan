@@ -450,7 +450,7 @@ def print_pods_with_access_secret_via_environment(namespace=None):
             if container.env is not None:
                 for env in container.env:
                     if env.value_from is not None and env.value_from.secret_key_ref is not None:
-                        mount_info += '{2}. Environemnt variable name: {0}\n   Secret name: {1}\n'.format(env.name, env.value_from.secret_key_ref.name, secrets_num)
+                        mount_info += '{2}. Environment variable name: {0}\n   Secret name: {1}\n'.format(env.name, env.value_from.secret_key_ref.name, secrets_num)
                         secrets_num += 1
                 if mount_info != '':
                     t.add_row([pod.metadata.name, pod.metadata.namespace, container.name, mount_info])
