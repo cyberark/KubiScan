@@ -5,11 +5,11 @@ from tempfile import mkstemp
 from shutil import move
 from kubernetes.client.configuration import Configuration
 from kubernetes.client.api_client import ApiClient
-from base_client_api import BaseApiClient
+from .base_client_api import BaseApiClient
 
 # TODO: Should be removed after the bug will be solved:
 # https://github.com/kubernetes-client/python/issues/577
-from api_client_temp import ApiClientTemp
+from .api_client_temp import ApiClientTemp
 
 # The following variables have been commented as it resulted a bug when running `kubiscan -h`
 # Exception ignored in: <bound method ApiClient.__del__ of <kubernetes.client.api_client.ApiClient object ...

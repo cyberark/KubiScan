@@ -1,7 +1,7 @@
 import json
 import yaml
 import os
-from base_client_api import BaseApiClient
+from .base_client_api import BaseApiClient
 
 class StaticApiClient(BaseApiClient):
     def __init__(self, input_file):
