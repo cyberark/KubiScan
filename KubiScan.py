@@ -274,7 +274,16 @@ def print_all_risky_containers(priority=None, namespace=None, read_token_from_co
 
     print_table_aligned_left(t)
 
-def print_all_risky_subjects(priority=None, namespace=None):
+
+def get_rules_by_namespace(namespace=None):
+    namespace_risky_roles = []
+    risky_roles = engine.utils.get_risky_roles()
+    for role in risky_roles:
+        if role.namespace == namespace:
+            return role
+    return None
+
+def print_all_risky_subjects(show_rules=False, priority=None, namespace=None):
     subjects = engine.utils.get_all_risky_subjects()
     if priority:
         subjects = filter_objects_by_priority(priority, subjects)
@@ -282,10 +291,18 @@ def print_all_risky_subjects(priority=None, namespace=None):
     curr_header = "|Risky Users|"
     print("+-----------+")
     print("|Risky Users|")
-    t = PrettyTable(['Priority', 'Kind', 'Namespace', 'Name'])
-    for subject in subjects:
-        if subject.user_info.namespace == namespace or namespace is None:
-           t.add_row([get_color_by_priority(subject.priority)+subject.priority.name+WHITE, subject.user_info.kind, subject.user_info.namespace, subject.user_info.name])
+    if show_rules:
+        t = PrettyTable(['Priority', 'Kind', 'Namespace', 'Name', 'Rules'])
+        for subject in subjects:
+            if subject.user_info.namespace == namespace or namespace is None:
+                subject_role = get_rules_by_namespace(subject.user_info.namespace)
+                rules = subject_role.rules if subject_role else None
+                t.add_row([get_color_by_priority(subject.priority)+subject.priority.name+WHITE, subject.user_info.kind, subject.user_info.namespace, subject.user_info.name,get_pretty_rules(rules)])
+    else:
+        t = PrettyTable(['Priority', 'Kind', 'Namespace', 'Name'])
+        for subject in subjects:
+            if subject.user_info.namespace == namespace or namespace is None:
+                t.add_row([get_color_by_priority(subject.priority)+subject.priority.name+WHITE, subject.user_info.kind, subject.user_info.namespace, subject.user_info.name])
 
     print_table_aligned_left(t)
 
@@ -740,7 +757,7 @@ Requirements:
     if args.risky_any_rolebindings:
         print_all_risky_rolebindings(days=args.less_than, priority=args.priority, namespace=args.namespace)
     if args.risky_subjects:
-        print_all_risky_subjects(priority=args.priority, namespace=args.namespace)
+        print_all_risky_subjects(show_rules=args.rules,priority=args.priority, namespace=args.namespace)
     if args.risky_pods:
         print_all_risky_containers(priority=args.priority, namespace=args.namespace, read_token_from_container=args.deep)
     if args.all:
