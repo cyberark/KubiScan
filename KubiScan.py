@@ -12,6 +12,8 @@ from misc.colours import *
 from misc import constants
 import datetime
 from api.api_client import api_init, running_in_container
+from api.client_factory import ApiClientFactory
+from api.config import set_api_client
 
 json_filename = ""
 output_file = ""
@@ -624,6 +626,8 @@ Requirements:
     - Prettytable
         pip3 install PTable
     """)
+    opt.add_argument('-s', '--static', action='store_true', help='Use static API client with predefined data', required=False)
+    opt.add_argument('-f', '--file', type=str, help='File path for static API client', required='--static' in sys.argv)
 
     opt.add_argument('-rr', '--risky-roles', action='store_true', help='Get all risky Roles (can be used with -r to view rules)', required=False)
     opt.add_argument('-rcr', '--risky-clusterroles', action='store_true', help='Get all risky ClusterRoles (can be used with -r to view rules)',required=False)
@@ -740,7 +744,16 @@ Requirements:
         exit()
 
 
-    api_init(kube_config_file=args.kube_config, host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename, context=args.context)
+    if args.static:
+        if not args.file:
+            print("Error: File path must be provided with --file when using --static")
+            exit(1)
+        api_client = ApiClientFactory.get_client(use_static=True, input_file=args.file)
+    else:
+        api_client = ApiClientFactory.get_client(use_static=False)
+        api_init(kube_config_file=args.kube_config, host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename, context=args.context)
+    set_api_client(api_client)
+
 
     if args.cve:
         print_cve(args.cert_filename, args.client_certificate, args.client_key, args.host)

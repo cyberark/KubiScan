@@ -1,5 +1,5 @@
-from static_api_client import StaticApiClient
-from api_client import RegularApiClient
+from .static_api_client import StaticApiClient
+from .api_client import RegularApiClient
 
 class ApiClientFactory:
     @staticmethod
@@ -11,5 +11,5 @@ class ApiClientFactory:
 
 
 #api_client = ApiClientFactory.get_client(use_static=True, input_file="/home/noamr/Documents/KubiScan/combined.json")
-api_client = ApiClientFactory.get_client()
-print(api_client.list_roles_for_all_namespaces())
+#api_client = ApiClientFactory.get_client()
+#print(api_client.list_roles_for_all_namespaces())
