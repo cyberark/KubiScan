@@ -12,6 +12,8 @@ from misc.colours import *
 from misc import constants
 import datetime
 from api.api_client import api_init, running_in_container
+from api.client_factory import ApiClientFactory
+from api.config import set_api_client
 
 json_filename = ""
 output_file = ""
@@ -274,7 +276,16 @@ def print_all_risky_containers(priority=None, namespace=None, read_token_from_co
 
     print_table_aligned_left(t)
 
-def print_all_risky_subjects(priority=None, namespace=None):
+
+def get_rules_by_namespace(namespace=None):
+    namespace_risky_roles = []
+    risky_roles = engine.utils.get_risky_roles()
+    for role in risky_roles:
+        if role.namespace == namespace:
+            return role
+    return None
+
+def print_all_risky_subjects(show_rules=False, priority=None, namespace=None):
     subjects = engine.utils.get_all_risky_subjects()
     if priority:
         subjects = filter_objects_by_priority(priority, subjects)
@@ -282,10 +293,18 @@ def print_all_risky_subjects(priority=None, namespace=None):
     curr_header = "|Risky Users|"
     print("+-----------+")
     print("|Risky Users|")
-    t = PrettyTable(['Priority', 'Kind', 'Namespace', 'Name'])
-    for subject in subjects:
-        if subject.user_info.namespace == namespace or namespace is None:
-           t.add_row([get_color_by_priority(subject.priority)+subject.priority.name+WHITE, subject.user_info.kind, subject.user_info.namespace, subject.user_info.name])
+    if show_rules:
+        t = PrettyTable(['Priority', 'Kind', 'Namespace', 'Name', 'Rules'])
+        for subject in subjects:
+            if subject.user_info.namespace == namespace or namespace is None:
+                subject_role = get_rules_by_namespace(subject.user_info.namespace)
+                rules = subject_role.rules if subject_role else None
+                t.add_row([get_color_by_priority(subject.priority)+subject.priority.name+WHITE, subject.user_info.kind, subject.user_info.namespace, subject.user_info.name,get_pretty_rules(rules)])
+    else:
+        t = PrettyTable(['Priority', 'Kind', 'Namespace', 'Name'])
+        for subject in subjects:
+            if subject.user_info.namespace == namespace or namespace is None:
+                t.add_row([get_color_by_priority(subject.priority)+subject.priority.name+WHITE, subject.user_info.kind, subject.user_info.namespace, subject.user_info.name])
 
     print_table_aligned_left(t)
 
@@ -607,6 +626,8 @@ Requirements:
     - Prettytable
         pip3 install PTable
     """)
+    opt.add_argument('-s', '--static', action='store_true', help='Use static API client with predefined data', required=False)
+    opt.add_argument('-f', '--file', type=str, help='File path for static API client', required='--static' in sys.argv)
 
     opt.add_argument('-rr', '--risky-roles', action='store_true', help='Get all risky Roles (can be used with -r to view rules)', required=False)
     opt.add_argument('-rcr', '--risky-clusterroles', action='store_true', help='Get all risky ClusterRoles (can be used with -r to view rules)',required=False)
@@ -723,7 +744,16 @@ Requirements:
         exit()
 
 
-    api_init(kube_config_file=args.kube_config, host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename, context=args.context)
+    if args.static:
+        if not args.file:
+            print("Error: File path must be provided with --file when using --static")
+            exit(1)
+        api_client = ApiClientFactory.get_client(use_static=True, input_file=args.file)
+    else:
+        api_client = ApiClientFactory.get_client(use_static=False)
+        api_init(kube_config_file=args.kube_config, host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename, context=args.context)
+    set_api_client(api_client)
+
 
     if args.cve:
         print_cve(args.cert_filename, args.client_certificate, args.client_key, args.host)
@@ -740,7 +770,7 @@ Requirements:
     if args.risky_any_rolebindings:
         print_all_risky_rolebindings(days=args.less_than, priority=args.priority, namespace=args.namespace)
     if args.risky_subjects:
-        print_all_risky_subjects(priority=args.priority, namespace=args.namespace)
+        print_all_risky_subjects(show_rules=args.rules,priority=args.priority, namespace=args.namespace)
     if args.risky_pods:
         print_all_risky_containers(priority=args.priority, namespace=args.namespace, read_token_from_container=args.deep)
     if args.all:

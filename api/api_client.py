@@ -5,10 +5,11 @@ from tempfile import mkstemp
 from shutil import move
 from kubernetes.client.configuration import Configuration
 from kubernetes.client.api_client import ApiClient
+from .base_client_api import BaseApiClient
 
 # TODO: Should be removed after the bug will be solved:
 # https://github.com/kubernetes-client/python/issues/577
-from api.api_client_temp import ApiClientTemp
+from .api_client_temp import ApiClientTemp
 
 # The following variables have been commented as it resulted a bug when running `kubiscan -h`
 # Exception ignored in: <bound method ApiClient.__del__ of <kubernetes.client.api_client.ApiClient object ...
@@ -142,3 +143,12 @@ class BearerTokenLoader(object):
         configuration.api_key['authorization'] = "bearer " + self.token
         client.Configuration.set_default(configuration)
         return configuration
+
+
+class RegularApiClient(BaseApiClient):
+    def __init__(self):
+        config.load_kube_config()
+        self.client = client.RbacAuthorizationV1Api()
+
+    def list_roles_for_all_namespaces(self):
+        return self.client.list_role_for_all_namespaces()

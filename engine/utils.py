@@ -14,7 +14,7 @@ from misc.constants import *
 from kubernetes.client.rest import ApiException
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
+from api.config import get_api_client
 
 # region - Roles and ClusteRoles
 
@@ -158,8 +158,10 @@ def find_risky_roles(roles, kind):
 
 def get_roles_by_kind(kind):
     all_roles = []
+    test_api_client = get_api_client()
     if kind == ROLE_KIND:
-        all_roles = api_client.RbacAuthorizationV1Api.list_role_for_all_namespaces()
+        #all_roles = api_client.RbacAuthorizationV1Api.list_role_for_all_namespaces()
+        all_roles = test_api_client.list_roles_for_all_namespaces()
     else:
         # all_roles = api_client.RbacAuthorizationV1Api.list_cluster_role()
         all_roles = api_client.api_temp.list_cluster_role()
