@@ -2,19 +2,19 @@ import json
 import yaml
 import os
 from .base_client_api import BaseApiClient
+from kubernetes.client import V1RoleList, V1Role, V1ObjectMeta, V1PolicyRule
 
 class StaticApiClient(BaseApiClient):
     def __init__(self, input_file):
-        self.combined_data = self._load_combined_file(input_file)
-        self.all_roles =self.get_resources('Role')
-        self.all_cluster_roles = self.get_resources('ClusterRole')
-        self.ll_role_bindings = self.get_resources('RoleBinding')
-        self.all_cluster_role_bindings = self.get_resources('ClusterRoleBinding')
-        self.all_secrets =self.get_resources('Secret')
-        self.all_pods = self.get_resources('Pod')
+        self.combined_data = self.load_combined_file(input_file)
+        self.all_roles = self.construct_v1_role_list("Role", self.get_resources('Role'))
+        self.all_cluster_roles = self.construct_v1_role_list("ClusterRole", self.get_resources('ClusterRole'))
+        self.all_role_bindings = self.construct_v1_role_list("RoleBinding", self.get_resources('RoleBinding'))
+        self.all_cluster_role_bindings = self.construct_v1_role_list("ClusterRoleBinding", self.get_resources('ClusterRoleBinding'))
+        self.all_secrets = self.construct_v1_role_list("Secret", self.get_resources('Secret'))
+        self.all_pods = self.construct_v1_role_list("Pod", self.get_resources('Pod'))
 
-    def _load_combined_file(self, input_file):
-        # Determine the file format based on the file extension
+    def load_combined_file(self, input_file):
         _, file_extension = os.path.splitext(input_file)
         file_format = 'json' if file_extension.lower() == '.json' else 'yaml' if file_extension.lower() == '.yaml' else None
         
@@ -36,26 +36,40 @@ class StaticApiClient(BaseApiClient):
             return None
 
     def get_resources(self, kind):
-        try:
-            # Initialize an empty list to collect the resources of the specified kind.
-            resources = []
-
-            # Since combined_data is a list of dictionaries, each containing an 'items' key.
+        resources = []
+        if self.combined_data:
             for entry in self.combined_data:
-                # Check if 'items' key exists and it contains a list of dictionaries.
                 if 'items' in entry and isinstance(entry['items'], list):
-                    # Extend the list of resources with those that match the specified 'kind'.
                     resources.extend(item for item in entry['items'] if item.get('kind') == kind)
-            return resources
+        return resources
 
-        except TypeError:  # Catch type errors if data structures are not as expected
-            print("Error processing data. Check the structure of the JSON file.")
-            return []
+    def construct_v1_role_list(self, kind, items):
+        v1_roles = []
+        for item in items:
+            v1_role = V1Role(
+                api_version=item['apiVersion'],
+                kind=item['kind'],
+                metadata=V1ObjectMeta(
+                    name=item['metadata']['name'],
+                    namespace=item['metadata'].get('namespace')
+                ),
+               rules=[
+                    V1PolicyRule(
+                        api_groups=rule.get('apiGroups', []),  # Provide a default empty list if 'apiGroups' is missing
+                        resources=rule.get('resources', []),  # Provide a default empty list if 'resources' is missing
+                        verbs=rule.get('verbs', []),  # Provide a default empty list if 'verbs' is missing
+                        resource_names=rule.get('resourceNames', [])  # Provide a default empty list if 'resourceNames' is missing
+                    ) for rule in item.get('rules', [])  # Provide a default empty list if 'rules' is missing
+                ]
+            )
+            v1_roles.append(v1_role)
         
+        return V1RoleList(
+            api_version="rbac.authorization.k8s.io/v1",
+            kind=f"{kind}List",
+            items=v1_roles,
+            metadata={'resourceVersion': '1'}
+        )
+
     def list_roles_for_all_namespaces(self):
         return self.all_roles
-
-
-# Example usage
-#static_api_client = StaticApiClient(input_file="C:\\Users\\noamr\\Documents\\GitHub\\KubiScan\\combined.json")
-#print(len(static_api_client.all_secrets))

@@ -74,7 +74,6 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
     else:
         print("Using kube config file.")
         configuration = Configuration()
-
         kubeconfig_path = os.getenv('KUBISCAN_CONFIG_PATH')
         if running_in_container() and kubeconfig_path is None:
             # TODO: Consider using config.load_incluster_config() from container created by Kubernetes. Required service account with privileged permissions.
@@ -148,7 +147,8 @@ class BearerTokenLoader(object):
 class RegularApiClient(BaseApiClient):
     def __init__(self):
         config.load_kube_config()
-        self.client = client.RbacAuthorizationV1Api()
 
     def list_roles_for_all_namespaces(self):
-        return self.client.list_role_for_all_namespaces()
+        return RbacAuthorizationV1Api.list_role_for_all_namespaces()
+    
+    
