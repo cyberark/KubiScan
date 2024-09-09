@@ -151,4 +151,11 @@ class RegularApiClient(BaseApiClient):
     def list_roles_for_all_namespaces(self):
         return RbacAuthorizationV1Api.list_role_for_all_namespaces()
     
+    def list_cluster_role(self):
+        return api_temp.list_cluster_role()
     
+    def list_role_binding_for_all_namespaces(self):
+        return RbacAuthorizationV1Api.list_role_binding_for_all_namespaces()
+    
+    def list_cluster_role_binding(self):
+        return  api_temp.list_cluster_role_binding()

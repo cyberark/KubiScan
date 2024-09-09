@@ -164,7 +164,8 @@ def get_roles_by_kind(kind):
         all_roles = api_client.list_roles_for_all_namespaces()
     else:
         #all_roles = api_client.RbacAuthorizationV1Api.list_cluster_role()
-        all_roles = api_client.api_temp.list_cluster_role()
+        #all_roles = api_client.api_temp.list_cluster_role() 
+        all_roles = api_client.list_cluster_role()
     return all_roles
 
 
@@ -229,8 +230,9 @@ def find_risky_rolebindings_or_clusterrolebindings(risky_roles, rolebindings, ki
 
 def get_rolebinding_by_kind_all_namespaces(kind):
     all_roles = []
+    api_client = get_api_client()
     if kind == ROLE_BINDING_KIND:
-        all_roles = api_client.RbacAuthorizationV1Api.list_role_binding_for_all_namespaces()
+        all_roles = api_client.list_role_binding_for_all_namespaces()
     # else:
     # TODO: check if it was fixed
     # all_roles = api_client.RbacAuthorizationV1Api.list_cluster_role_binding()
@@ -264,7 +266,8 @@ def get_risky_clusterrolebindings(all_risky_roles=None):
     # Cluster doesn't work.
     # https://github.com/kubernetes-client/python/issues/577 - when it will be solve, can remove the comments
     # all_clusterrolebindings = api_client.RbacAuthorizationV1Api.list_cluster_role_binding()
-    all_clusterrolebindings = api_client.api_temp.list_cluster_role_binding()
+    api_client = get_api_client()
+    all_clusterrolebindings = api_client.list_cluster_role_binding()
     # risky_clusterrolebindings = find_risky_rolebindings(all_risky_roles, all_clusterrolebindings.items, "ClusterRoleBinding")
     risky_clusterrolebindings = find_risky_rolebindings_or_clusterrolebindings(all_risky_roles, all_clusterrolebindings,
                                                                                "ClusterRoleBinding")

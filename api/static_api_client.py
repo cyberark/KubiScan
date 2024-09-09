@@ -2,15 +2,15 @@ import json
 import yaml
 import os
 from .base_client_api import BaseApiClient
-from kubernetes.client import V1RoleList, V1Role, V1ObjectMeta, V1PolicyRule
+from kubernetes.client import V1RoleList, V1Role, V1ObjectMeta, V1PolicyRule, V1RoleBinding, V1RoleRef, V1Subject, V1RoleBindingList
 
 class StaticApiClient(BaseApiClient):
     def __init__(self, input_file):
         self.combined_data = self.load_combined_file(input_file)
         self.all_roles = self.construct_v1_role_list("Role", self.get_resources('Role'))
         self.all_cluster_roles = self.construct_v1_role_list("ClusterRole", self.get_resources('ClusterRole'))
-        self.all_role_bindings = self.construct_v1_role_list("RoleBinding", self.get_resources('RoleBinding'))
-        self.all_cluster_role_bindings = self.construct_v1_role_list("ClusterRoleBinding", self.get_resources('ClusterRoleBinding'))
+        self.all_role_bindings = self.construct_v1_role_binding_list("RoleBinding", self.get_resources('RoleBinding'))
+        self.all_cluster_role_bindings = self.construct_v1_role_binding_list("ClusterRoleBinding", self.get_resources('ClusterRoleBinding'))
         self.all_secrets = self.construct_v1_role_list("Secret", self.get_resources('Secret'))
         self.all_pods = self.construct_v1_role_list("Pod", self.get_resources('Pod'))
 
@@ -70,6 +70,47 @@ class StaticApiClient(BaseApiClient):
             items=v1_roles,
             metadata={'resourceVersion': '1'}
         )
+    
+    def construct_v1_role_binding_list(self, kind, items):
+        v1_role_bindings = []
+        for item in items:
+            v1_role_binding = V1RoleBinding(
+                api_version=item['apiVersion'],
+                kind=item['kind'],
+                metadata=V1ObjectMeta(
+                    name=item['metadata']['name'],
+                    namespace=item['metadata'].get('namespace')
+                ),
+                subjects=[
+                    V1Subject(
+                        kind=subject.get('kind'),
+                        name=subject.get('name'),
+                        namespace=subject.get('namespace')
+                    ) for subject in item.get('subjects', [])
+                ],
+                role_ref=V1RoleRef(
+                    api_group=item['roleRef'].get('apiGroup'),
+                    kind=item['roleRef'].get('kind'),
+                    name=item['roleRef'].get('name')
+                )
+            )
+            v1_role_bindings.append(v1_role_binding)
 
+        return V1RoleBindingList(
+            api_version="rbac.authorization.k8s.io/v1",
+            kind=f"{kind}List",
+            items=v1_role_bindings,
+            metadata={'resourceVersion': '1'}
+        )
+    
     def list_roles_for_all_namespaces(self):
         return self.all_roles
+    
+    def list_cluster_role(self):
+        return self.all_cluster_roles
+    
+    def list_role_binding_for_all_namespaces(self):
+        return self.all_role_bindings
+   
+    def list_cluster_role_binding(self):
+        return self.all_cluster_role_bindings.items
