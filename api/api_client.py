@@ -159,3 +159,18 @@ class RegularApiClient(BaseApiClient):
     
     def list_cluster_role_binding(self):
         return  api_temp.list_cluster_role_binding()
+    
+    def read_namespaced_role_binding(self, rolebinding_name, namespace):
+        return RbacAuthorizationV1Api.read_namespaced_role_binding(rolebinding_name, namespace)
+    
+    def read_namespaced_role(self, role_name, namespace):
+        return RbacAuthorizationV1Api.read_namespaced_role(role_name,namespace)
+    
+    def read_cluster_role(self, role_name):
+        return RbacAuthorizationV1Api.read_cluster_role(role_name)
+    
+    def list_pod_for_all_namespaces(self,watch):
+        return CoreV1Api.list_pod_for_all_namespaces(watch=watch)
+    
+    def list_namespaced_pod(self, namespace):
+        return CoreV1Api.list_namespaced_pod(namespace)

@@ -498,11 +498,12 @@ def get_risky_pods(namespace=None, deep_analysis=False):
 # endregion- Risky Pods
 
 def get_rolebindings_all_namespaces_and_clusterrolebindings():
-    namespaced_rolebindings = api_client.RbacAuthorizationV1Api.list_role_binding_for_all_namespaces()
+    api_client = get_api_client()
+    namespaced_rolebindings = api_client.list_role_binding_for_all_namespaces()
 
     # TODO: check when this bug will be fixed
     # cluster_rolebindings = api_client.RbacAuthorizationV1Api.list_cluster_role_binding()
-    cluster_rolebindings = api_client.api_temp.list_cluster_role_binding()
+    cluster_rolebindings = api_client.list_cluster_role_binding()
     return namespaced_rolebindings, cluster_rolebindings
 
 
@@ -537,7 +538,8 @@ def get_rolebindings_and_clusterrolebindings_associated_to_subject(subject_name,
 
 # Role can be only inside RoleBinding
 def get_rolebindings_associated_to_role(role_name, namespace):
-    rolebindings_all_namespaces = api_client.RbacAuthorizationV1Api.list_role_binding_for_all_namespaces()
+    api_client = get_api_client()
+    rolebindings_all_namespaces = api_client.list_role_binding_for_all_namespaces()
     associated_rolebindings = []
 
     for rolebinding in rolebindings_all_namespaces.items:
@@ -635,8 +637,9 @@ def search_subject_in_subjects_by_kind(subjects, kind):
 # It get subjects by kind for all rolebindings.
 def get_subjects_by_kind(kind):
     subjects_found = []
-    rolebindings = api_client.RbacAuthorizationV1Api.list_role_binding_for_all_namespaces()
-    clusterrolebindings = api_client.api_temp.list_cluster_role_binding()
+    api_client = get_api_client()
+    rolebindings = api_client.list_role_binding_for_all_namespaces()
+    clusterrolebindings = api_client.list_cluster_role_binding()
     for rolebinding in rolebindings.items:
         if rolebinding.subjects is not None:
             subjects_found += search_subject_in_subjects_by_kind(rolebinding.subjects, kind)
@@ -666,13 +669,14 @@ def remove_duplicated_subjects(subjects):
 def get_rolebinding_role(rolebinding_name, namespace):
     rolebinding = None
     role = None
+    api_client = get_api_client()
     try:
-        rolebinding = api_client.RbacAuthorizationV1Api.read_namespaced_role_binding(rolebinding_name, namespace)
+        rolebinding = api_client.read_namespaced_role_binding(rolebinding_name, namespace)
         if rolebinding.role_ref.kind == ROLE_KIND:
-            role = api_client.RbacAuthorizationV1Api.read_namespaced_role(rolebinding.role_ref.name,
+            role = api_client.read_namespaced_role(rolebinding.role_ref.name,
                                                                           rolebinding.metadata.namespace)
         else:
-            role = api_client.RbacAuthorizationV1Api.read_cluster_role(rolebinding.role_ref.name)
+            role = api_client.read_cluster_role(rolebinding.role_ref.name)
 
         return role
     except ApiException:
@@ -717,11 +721,12 @@ def get_roles_associated_to_subject(subject_name, kind, namespace):
 
 
 def list_pods_for_all_namespaces_or_one_namspace(namespace=None):
+    api_client = get_api_client()
     try:
         if namespace is None:
-            pods = api_client.CoreV1Api.list_pod_for_all_namespaces(watch=False)
+            pods = api_client.list_pod_for_all_namespaces(watch=False)
         else:
-            pods = api_client.CoreV1Api.list_namespaced_pod(namespace)
+            pods = api_client.list_namespaced_pod(namespace)
         return pods
     except ApiException:
         return None

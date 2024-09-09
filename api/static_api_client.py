@@ -2,7 +2,12 @@ import json
 import yaml
 import os
 from .base_client_api import BaseApiClient
-from kubernetes.client import V1RoleList, V1Role, V1ObjectMeta, V1PolicyRule, V1RoleBinding, V1RoleRef, V1Subject, V1RoleBindingList
+from kubernetes.client import (
+    V1ContainerStatus, V1PodCondition, V1EmptyDirVolumeSource, V1PersistentVolumeClaimVolumeSource, 
+    V1RoleList, V1Role, V1ObjectMeta, V1PolicyRule, V1RoleBinding, V1RoleRef, V1Subject, 
+    V1RoleBindingList, V1PodList, V1Pod, V1PodSpec, V1Container, V1Volume, V1PodStatus, 
+    V1SecurityContext, V1HostPathVolumeSource, V1ResourceRequirements
+)
 
 class StaticApiClient(BaseApiClient):
     def __init__(self, input_file):
@@ -12,7 +17,7 @@ class StaticApiClient(BaseApiClient):
         self.all_role_bindings = self.construct_v1_role_binding_list("RoleBinding", self.get_resources('RoleBinding'))
         self.all_cluster_role_bindings = self.construct_v1_role_binding_list("ClusterRoleBinding", self.get_resources('ClusterRoleBinding'))
         self.all_secrets = self.construct_v1_role_list("Secret", self.get_resources('Secret'))
-        self.all_pods = self.construct_v1_role_list("Pod", self.get_resources('Pod'))
+        self.all_pods = self.construct_v1_pod_list("Pod", self.get_resources('Pod'))
 
     def load_combined_file(self, input_file):
         _, file_extension = os.path.splitext(input_file)
@@ -103,6 +108,66 @@ class StaticApiClient(BaseApiClient):
             metadata={'resourceVersion': '1'}
         )
     
+    def construct_v1_pod_list(self, kind, items):
+        v1_pods = []
+        for item in items:
+            metadata = item.get('metadata', {})
+            spec = item.get('spec', {})
+            status = item.get('status', {})  # Default to empty dict if missing
+
+            v1_pod = V1Pod(
+                api_version=item.get('apiVersion', 'v1'),
+                kind=item.get('kind', 'Pod'),
+                metadata=V1ObjectMeta(
+                    name=metadata.get('name'),
+                    namespace=metadata.get('namespace'),
+                    labels=metadata.get('labels', {}),
+                    annotations=metadata.get('annotations', {}),
+                    creation_timestamp=metadata.get('creationTimestamp', None),
+                    uid=metadata.get('uid', None),
+                    resource_version=metadata.get('resourceVersion', None)
+                ),
+                spec=V1PodSpec(
+                    containers=[
+                        V1Container(
+                            name=container['name'],
+                            image=container.get('image'),
+                            image_pull_policy=container.get('imagePullPolicy'),
+                            resources=container.get('resources', {}),
+                            security_context=V1SecurityContext(
+                                run_as_user=container.get('securityContext', {}).get('runAsUser', None),
+                                privileged=container.get('securityContext', {}).get('privileged', False)
+                            )
+                        ) for container in spec.get('containers', [])
+                    ],
+                    volumes=[
+                        V1Volume(
+                            name=volume.get('name'),
+                            empty_dir=volume.get('emptyDir', {}),
+                            persistent_volume_claim=volume.get('persistentVolumeClaim', {})
+                        ) for volume in spec.get('volumes', [])
+                    ],
+                    node_name=spec.get('nodeName', None),
+                    host_network=spec.get('hostNetwork', False),
+                    restart_policy=spec.get('restartPolicy', 'Always')
+                ),
+                status=V1PodStatus(
+                    phase=status.get('phase', 'Unknown'),  # Default phase to 'Unknown'
+                    conditions=status.get('conditions', []),
+                    container_statuses=status.get('containerStatuses', [])
+                )
+            )
+            v1_pods.append(v1_pod)
+
+        return V1PodList(
+            api_version="v1",
+            kind=f"{kind}List",
+            items=v1_pods,
+            metadata={'resourceVersion': '1'}
+        )
+
+
+
     def list_roles_for_all_namespaces(self):
         return self.all_roles
     
@@ -114,3 +179,40 @@ class StaticApiClient(BaseApiClient):
    
     def list_cluster_role_binding(self):
         return self.all_cluster_role_bindings.items
+    
+    def read_namespaced_role_binding(self, rolebinding_name, namespace):
+        for rolebinding in self.all_role_bindings.items:
+            if rolebinding.metadata.name == rolebinding_name and rolebinding.metadata.namespace == namespace:
+                return rolebinding
+        print(f"RoleBinding {rolebinding_name} not found in namespace {namespace}") #TODO REMOVE
+        return None
+    
+    def read_namespaced_role(self, role_name, namespace):
+        for role in self.all_roles.items:
+            if role.metadata.name == role_name and role.metadata.namespace == namespace:
+                return role
+        print(f"Role {role_name} not found in namespace {namespace}") #TODO REMOVE
+        return None
+    
+    def read_cluster_role(self, role_name):
+        for role in self.all_cluster_roles.items:
+            if role.metadata.name == role_name:
+                return role
+        print(f"ClusterRole {role_name} not found") #TODO REMOVE
+        return None
+    
+    def list_pod_for_all_namespaces(self, watch):
+        print(self.all_pods)
+        return self.all_pods
+
+    def list_namespaced_pod(self, namespace):
+        # Filter the pods based on the namespace
+        filtered_pods = [pod for pod in self.all_pods.items if pod.metadata.namespace == namespace]
+
+        # Return the filtered pods as a V1PodList
+        return V1PodList(
+            api_version="v1",
+            kind="PodList",
+            items=filtered_pods,
+            metadata={'resourceVersion': '1'}
+    )

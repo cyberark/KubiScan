@@ -1,11 +1,13 @@
 import engine.capabilities.capabilities as caps
 from api import api_client
+from api.config import get_api_client
 
 def list_pods_for_all_namespaces_or_one_namspace(namespace=None):
+    api_client=get_api_client()
     if namespace is None:
-        pods = api_client.CoreV1Api.list_pod_for_all_namespaces(watch=False)
+        pods = api_client.list_pod_for_all_namespaces(watch=False)
     else:
-        pods = api_client.CoreV1Api.list_namespaced_pod(namespace)
+        pods = api_client.list_namespaced_pod(namespace)
     return pods
 
 def list_pods(namespace=None):
