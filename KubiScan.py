@@ -626,8 +626,7 @@ Requirements:
     - Prettytable
         pip3 install PTable
     """)
-    opt.add_argument('-s', '--static', action='store_true', help='Use static API client with predefined data', required=False)
-    opt.add_argument('-f', '--file', type=str, help='File path for static API client', required='--static' in sys.argv)
+    opt.add_argument('-f', '--file', type=str, help='File path for static API client. Providing this will automatically use a static scan.')
 
     opt.add_argument('-rr', '--risky-roles', action='store_true', help='Get all risky Roles (can be used with -r to view rules)', required=False)
     opt.add_argument('-rcr', '--risky-clusterroles', action='store_true', help='Get all risky ClusterRoles (can be used with -r to view rules)',required=False)
@@ -733,6 +732,7 @@ Requirements:
     if args.json:
         global json_filename
         json_filename = args.json
+        
     if args.output_file:
         f = open(args.output_file, 'w')
         sys.stdout = f
@@ -744,14 +744,12 @@ Requirements:
         exit()
 
 
-    if args.static:
-        if not args.file:
-            print("Error: File path must be provided with --file when using --static")
-            exit(1)
+    if args.file:
         api_client = ApiClientFactory.get_client(use_static=True, input_file=args.file)
     else:
         api_client = ApiClientFactory.get_client(use_static=False)
         api_init(kube_config_file=args.kube_config, host=args.host, token_filename=args.token_filename, cert_filename=args.cert_filename, context=args.context)
+    
     set_api_client(api_client)
 
 

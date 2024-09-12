@@ -1,14 +1,22 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
         {
-            "name": "Python: KubiScan",
-            "type": "debugpy",
+            "name": "Python: Debug KubiScan",
+            "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/KubiScan.py",
-            "args": ["-rs","-r"],
-            "console": "integratedTerminal",
-            "pythonPath": "python3"
+            "program": "${workspaceFolder}/KubiScan.py",  // Path to your main Python script
+            "console": "integratedTerminal",  // Use the integrated terminal in VS Code
+            "args": [
+                "-f",
+                "/home/noamr/Documents/KubiScan/combined.json",
+                "-rp"
+            ],
+            "justMyCode": false,  // Set to false to debug external libraries as well
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"  // If you need to include additional paths
+            }
         }
     ]
 }

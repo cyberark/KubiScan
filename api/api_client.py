@@ -74,7 +74,6 @@ def api_init(kube_config_file=None, host=None, token_filename=None, cert_filenam
     else:
         print("Using kube config file.")
         configuration = Configuration()
-
         kubeconfig_path = os.getenv('KUBISCAN_CONFIG_PATH')
         if running_in_container() and kubeconfig_path is None:
             # TODO: Consider using config.load_incluster_config() from container created by Kubernetes. Required service account with privileged permissions.
@@ -148,7 +147,30 @@ class BearerTokenLoader(object):
 class RegularApiClient(BaseApiClient):
     def __init__(self):
         config.load_kube_config()
-        self.client = client.RbacAuthorizationV1Api()
 
     def list_roles_for_all_namespaces(self):
-        return self.client.list_role_for_all_namespaces()
+        return RbacAuthorizationV1Api.list_role_for_all_namespaces()
+    
+    def list_cluster_role(self):
+        return api_temp.list_cluster_role()
+    
+    def list_role_binding_for_all_namespaces(self):
+        return RbacAuthorizationV1Api.list_role_binding_for_all_namespaces()
+    
+    def list_cluster_role_binding(self):
+        return  api_temp.list_cluster_role_binding()
+    
+    def read_namespaced_role_binding(self, rolebinding_name, namespace):
+        return RbacAuthorizationV1Api.read_namespaced_role_binding(rolebinding_name, namespace)
+    
+    def read_namespaced_role(self, role_name, namespace):
+        return RbacAuthorizationV1Api.read_namespaced_role(role_name,namespace)
+    
+    def read_cluster_role(self, role_name):
+        return RbacAuthorizationV1Api.read_cluster_role(role_name)
+    
+    def list_pod_for_all_namespaces(self,watch):
+        return CoreV1Api.list_pod_for_all_namespaces(watch=watch)
+    
+    def list_namespaced_pod(self, namespace):
+        return CoreV1Api.list_namespaced_pod(namespace)
