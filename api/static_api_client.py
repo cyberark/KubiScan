@@ -1,6 +1,7 @@
 import json
 import yaml
 import os
+from datetime import datetime
 from .base_client_api import BaseApiClient
 from kubernetes.client import (
     V1VolumeProjection, V1ServiceAccountTokenProjection, V1SecretProjection, V1DownwardAPIProjection, 
@@ -31,7 +32,8 @@ class StaticApiClient(BaseApiClient):
         try:
             with open(input_file, 'r') as file:
                 if file_format == "yaml":
-                    return yaml.safe_load(file)
+                    documents = list(yaml.safe_load_all(file))
+                    return documents
                 elif file_format == "json":
                     return json.load(file)
         except FileNotFoundError:
@@ -52,20 +54,28 @@ class StaticApiClient(BaseApiClient):
     def construct_v1_role_list(self, kind, items):
         v1_roles = []
         for item in items:
+
+            metadata = item['metadata']
+            creation_timestamp_str = metadata.get('creationTimestamp') 
+            creation_timestamp = None
+            if creation_timestamp_str:
+                creation_timestamp = datetime.strptime(creation_timestamp_str, "%Y-%m-%dT%H:%M:%SZ")
+
             v1_role = V1Role(
                 api_version=item['apiVersion'],
                 kind=item['kind'],
                 metadata=V1ObjectMeta(
                     name=item['metadata']['name'],
-                    namespace=item['metadata'].get('namespace')
+                    namespace=item['metadata'].get('namespace'),
+                    creation_timestamp=creation_timestamp
                 ),
                rules=[
                     V1PolicyRule(
-                        api_groups=rule.get('apiGroups', []),  # Provide a default empty list if 'apiGroups' is missing
-                        resources=rule.get('resources', []),  # Provide a default empty list if 'resources' is missing
-                        verbs=rule.get('verbs', []),  # Provide a default empty list if 'verbs' is missing
-                        resource_names=rule.get('resourceNames', [])  # Provide a default empty list if 'resourceNames' is missing
-                    ) for rule in item.get('rules', [])  # Provide a default empty list if 'rules' is missing
+                        api_groups=rule.get('apiGroups', []), 
+                        resources=rule.get('resources', []), 
+                        verbs=rule.get('verbs', []), 
+                        resource_names=rule.get('resourceNames', [])  
+                    ) for rule in item.get('rules', [])
                 ]
             )
             v1_roles.append(v1_role)
@@ -80,12 +90,20 @@ class StaticApiClient(BaseApiClient):
     def construct_v1_role_binding_list(self, kind, items):
         v1_role_bindings = []
         for item in items:
+
+            metadata = item['metadata']
+            creation_timestamp_str = metadata.get('creationTimestamp') 
+            creation_timestamp = None
+            if creation_timestamp_str:
+                creation_timestamp = datetime.strptime(creation_timestamp_str, "%Y-%m-%dT%H:%M:%SZ")
+
             v1_role_binding = V1RoleBinding(
                 api_version=item['apiVersion'],
                 kind=item['kind'],
                 metadata=V1ObjectMeta(
                     name=item['metadata']['name'],
-                    namespace=item['metadata'].get('namespace')
+                    namespace=item['metadata'].get('namespace'),
+                    creation_timestamp=creation_timestamp
                 ),
                 subjects=[
                     V1Subject(
