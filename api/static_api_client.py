@@ -3,10 +3,11 @@ import yaml
 import os
 from .base_client_api import BaseApiClient
 from kubernetes.client import (
-    V1ContainerStatus, V1PodCondition, V1EmptyDirVolumeSource, V1PersistentVolumeClaimVolumeSource, 
+    V1VolumeProjection, V1ServiceAccountTokenProjection, V1SecretProjection, V1DownwardAPIProjection, 
     V1RoleList, V1Role, V1ObjectMeta, V1PolicyRule, V1RoleBinding, V1RoleRef, V1Subject, 
     V1RoleBindingList, V1PodList, V1Pod, V1PodSpec, V1Container, V1Volume, V1PodStatus, 
-    V1SecurityContext, V1HostPathVolumeSource, V1ResourceRequirements
+    V1SecurityContext, V1HostPathVolumeSource, V1ProjectedVolumeSource,V1VolumeMount,V1ConfigMapProjection,
+    V1DownwardAPIVolumeFile,V1ObjectFieldSelector
 )
 
 class StaticApiClient(BaseApiClient):
@@ -115,12 +116,13 @@ class StaticApiClient(BaseApiClient):
             spec = item.get('spec', {})
             status = item.get('status', {})  # Default to empty dict if missing
 
+            # Create a V1Pod object without trying to set 'is_risky'
             v1_pod = V1Pod(
                 api_version=item.get('apiVersion', 'v1'),
                 kind=item.get('kind', 'Pod'),
                 metadata=V1ObjectMeta(
                     name=metadata.get('name'),
-                    namespace=metadata.get('namespace'),
+                    namespace=metadata.get('namespace', None),
                     labels=metadata.get('labels', {}),
                     annotations=metadata.get('annotations', {}),
                     creation_timestamp=metadata.get('creationTimestamp', None),
@@ -128,10 +130,19 @@ class StaticApiClient(BaseApiClient):
                     resource_version=metadata.get('resourceVersion', None)
                 ),
                 spec=V1PodSpec(
+                    service_account=spec.get('serviceAccount', None), 
+                    service_account_name=spec.get('serviceAccountName', None),
                     containers=[
                         V1Container(
                             name=container['name'],
                             image=container.get('image'),
+                            volume_mounts=[  # Ensure volume mounts are included when constructing the container
+                                V1VolumeMount(
+                                    mount_path=volume_mount.get('mountPath'),
+                                    name=volume_mount.get('name'),
+                                    read_only=volume_mount.get('readOnly', False)
+                                ) for volume_mount in container.get('volumeMounts', [])
+                            ],
                             image_pull_policy=container.get('imagePullPolicy'),
                             resources=container.get('resources', {}),
                             security_context=V1SecurityContext(
@@ -144,7 +155,38 @@ class StaticApiClient(BaseApiClient):
                         V1Volume(
                             name=volume.get('name'),
                             empty_dir=volume.get('emptyDir', {}),
-                            persistent_volume_claim=volume.get('persistentVolumeClaim', {})
+                            persistent_volume_claim=volume.get('persistentVolumeClaim', {}),
+                            host_path=V1HostPathVolumeSource(
+                                path=volume.get('hostPath', {}).get('path', ''),
+                                type=volume.get('hostPath', {}).get('type', '')
+                            ),
+                            projected=V1ProjectedVolumeSource(
+                                sources=[
+                                    V1VolumeProjection(
+                                        service_account_token=V1ServiceAccountTokenProjection(
+                                            path=source.get('serviceAccountToken', {}).get('path', ''),
+                                            expiration_seconds=source.get('serviceAccountToken', {}).get('expirationSeconds', None)
+                                        ),
+                                        secret=V1SecretProjection(
+                                            name=source.get('secret', {}).get('name', None)
+                                        ),
+                                        config_map=V1ConfigMapProjection(
+                                            name=source.get('configMap', {}).get('name', None)
+                                        ),
+                                        downward_api=V1DownwardAPIProjection(
+                                            items=[
+                                                V1DownwardAPIVolumeFile(
+                                                    path=item.get('path'),
+                                                    field_ref=V1ObjectFieldSelector(
+                                                        api_version=item.get('fieldRef', {}).get('apiVersion', 'v1'),
+                                                        field_path=item.get('fieldRef', {}).get('fieldPath', '')
+                                                    )
+                                                ) for item in source.get('downwardAPI', {}).get('items', [])
+                                            ]
+                                        )
+                                    ) for source in volume.get('projected', {}).get('sources', [])
+                                ]
+                            )
                         ) for volume in spec.get('volumes', [])
                     ],
                     node_name=spec.get('nodeName', None),
@@ -165,8 +207,6 @@ class StaticApiClient(BaseApiClient):
             items=v1_pods,
             metadata={'resourceVersion': '1'}
         )
-
-
 
     def list_roles_for_all_namespaces(self):
         return self.all_roles
@@ -202,7 +242,6 @@ class StaticApiClient(BaseApiClient):
         return None
     
     def list_pod_for_all_namespaces(self, watch):
-        print(self.all_pods)
         return self.all_pods
 
     def list_namespaced_pod(self, namespace):

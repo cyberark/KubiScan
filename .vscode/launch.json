@@ -9,10 +9,9 @@
             "program": "${workspaceFolder}/KubiScan.py",  // Path to your main Python script
             "console": "integratedTerminal",  // Use the integrated terminal in VS Code
             "args": [
-                "-s",
                 "-f",
                 "/home/noamr/Documents/KubiScan/combined.json",
-                "-rr"
+                "-rp"
             ],
             "justMyCode": false,  // Set to false to debug external libraries as well
             "env": {

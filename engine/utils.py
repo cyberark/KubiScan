@@ -412,20 +412,21 @@ def get_highest_priority(risky_users_list):
 
 def get_risky_users_from_container(container, risky_users, pod, volumes_dict):
     risky_users_set = set()
-    # '[]' for checking if 'container.volume_mounts' is None
     for volume_mount in container.volume_mounts or []:
         if volume_mount.name in volumes_dict:
-            if volumes_dict[volume_mount.name].projected is not None:
-                for source in volumes_dict[volume_mount.name].projected.sources or []:
+            volume = volumes_dict[volume_mount.name]
+            if volume.projected is not None:
+                for source in volume.projected.sources or []:
                     if source.service_account_token is not None:
                         risky_user = is_user_risky(risky_users, pod.spec.service_account, pod.metadata.namespace)
                         if risky_user is not None:
                             risky_users_set.add(risky_user)
-            elif volumes_dict[volume_mount.name].secret is not None:
-                risky_user = get_jwt_and_decode(pod, risky_users, volumes_dict[volume_mount.name])
+            elif volume.secret is not None:
+                risky_user = get_jwt_and_decode(pod, risky_users, volume)
                 if risky_user is not None:
                     risky_users_set.add(risky_user)
     return risky_users_set
+
 
 
 def container_exists_in_risky_containers(risky_containers, container_name, risky_users_list):
