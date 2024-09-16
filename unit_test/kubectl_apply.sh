@@ -23,7 +23,7 @@ wait_for_secret() {
   local secret_name=""
   
   # Retry up to 10 times, waiting for 1 second between each retry
-  for i in {1..10}; do
+  for i in {1..30}; do
     secret_name=$(kubectl get sa $sa_name -o=jsonpath='{.secrets[0].name}')
     if [ -n "$secret_name" ]; then
       break
