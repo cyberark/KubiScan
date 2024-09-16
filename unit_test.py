@@ -4,6 +4,10 @@ from engine.privleged_containers import get_privileged_containers
 from api import api_client
 from .KubiScan import get_all_affecting_cves_table_by_version
 import json
+from api.config import set_api_client
+from api.api_client import api_init, running_in_container
+from api.client_factory import ApiClientFactory
+from api.config import set_api_client
 
 list_of_risky_containers = ["test1-yes", "test3-yes", "test5ac2-yes", "test6a-yes", "test6b-yes",
                             "test7c2-yes", "test8c-yes"]
@@ -60,7 +64,9 @@ def get_all_cve_from_json():
 
 
 class TestKubiScan(unittest.TestCase):
+    api_client = ApiClientFactory.get_client(use_static=False)
     api_client.api_init()
+    set_api_client(api_client)
 
     def test_get_risky_pods(self):
         risky_containers_by_name = get_containers_by_names()
