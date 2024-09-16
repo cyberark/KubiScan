@@ -357,6 +357,7 @@ def is_same_user(a_username, a_namespace, b_username, b_namespace):
 
 def get_risky_user_from_container(jwt_body, risky_users):
     risky_user_in_container = None
+    
     for risky_user in risky_users:
         if risky_user.user_info.kind == 'ServiceAccount':
             if is_same_user(jwt_body['kubernetes.io/serviceaccount/service-account.name'],
@@ -412,17 +413,17 @@ def get_highest_priority(risky_users_list):
 
 def get_risky_users_from_container(container, risky_users, pod, volumes_dict):
     risky_users_set = set()
+    # '[]' for checking if 'container.volume_mounts' is None
     for volume_mount in container.volume_mounts or []:
         if volume_mount.name in volumes_dict:
-            volume = volumes_dict[volume_mount.name]
-            if volume.projected is not None:
-                for source in volume.projected.sources or []:
+            if volumes_dict[volume_mount.name].projected is not None:
+                for source in volumes_dict[volume_mount.name].projected.sources or []:
                     if source.service_account_token is not None:
                         risky_user = is_user_risky(risky_users, pod.spec.service_account, pod.metadata.namespace)
                         if risky_user is not None:
                             risky_users_set.add(risky_user)
-            elif volume.secret is not None:
-                risky_user = get_jwt_and_decode(pod, risky_users, volume)
+            elif volumes_dict[volume_mount.name].secret is not None:
+                risky_user = get_jwt_and_decode(pod, risky_users, volumes_dict[volume_mount.name])
                 if risky_user is not None:
                     risky_users_set.add(risky_user)
     return risky_users_set
