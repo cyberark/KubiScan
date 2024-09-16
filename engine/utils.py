@@ -357,6 +357,7 @@ def is_same_user(a_username, a_namespace, b_username, b_namespace):
 
 def get_risky_user_from_container(jwt_body, risky_users):
     risky_user_in_container = None
+    
     for risky_user in risky_users:
         if risky_user.user_info.kind == 'ServiceAccount':
             if is_same_user(jwt_body['kubernetes.io/serviceaccount/service-account.name'],

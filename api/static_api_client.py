@@ -8,7 +8,7 @@ from kubernetes.client import (
     V1RoleList, V1Role, V1ObjectMeta, V1PolicyRule, V1RoleBinding, V1RoleRef, V1Subject, 
     V1RoleBindingList, V1PodList, V1Pod, V1PodSpec, V1Container, V1Volume, V1PodStatus, 
     V1SecurityContext, V1HostPathVolumeSource, V1ProjectedVolumeSource,V1VolumeMount,V1ConfigMapProjection,
-    V1DownwardAPIVolumeFile,V1ObjectFieldSelector
+    V1DownwardAPIVolumeFile,V1ObjectFieldSelector,V1ContainerStatus
 )
 
 class StaticApiClient(BaseApiClient):
@@ -132,7 +132,18 @@ class StaticApiClient(BaseApiClient):
         for item in items:
             metadata = item.get('metadata', {})
             spec = item.get('spec', {})
-            status = item.get('status', {})  # Default to empty dict if missing
+            status = item.get('status', {})
+
+            container_statuses = [
+                V1ContainerStatus(
+                    name=container_status.get('name'),
+                    ready=container_status.get('ready', False),
+                    restart_count=container_status.get('restartCount', 0),
+                    image=container_status.get('image'),
+                    image_id=container_status.get('imageID'),
+                    container_id=container_status.get('containerID')
+                ) for container_status in status.get('containerStatuses', [])
+            ]
 
             # Create a V1Pod object without trying to set 'is_risky'
             v1_pod = V1Pod(
@@ -154,7 +165,7 @@ class StaticApiClient(BaseApiClient):
                         V1Container(
                             name=container['name'],
                             image=container.get('image'),
-                            volume_mounts=[  # Ensure volume mounts are included when constructing the container
+                            volume_mounts=[  
                                 V1VolumeMount(
                                     mount_path=volume_mount.get('mountPath'),
                                     name=volume_mount.get('name'),
@@ -214,8 +225,8 @@ class StaticApiClient(BaseApiClient):
                 status=V1PodStatus(
                     phase=status.get('phase', 'Unknown'),  # Default phase to 'Unknown'
                     conditions=status.get('conditions', []),
-                    container_statuses=status.get('containerStatuses', [])
-                )
+                    container_statuses=container_statuses                
+                    )
             )
             v1_pods.append(v1_pod)
 
