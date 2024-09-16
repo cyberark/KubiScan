@@ -29,7 +29,7 @@ wait_for_secret() {
       break
     fi
     echo "Waiting for secret for service account $sa_name..."
-    sleep 1
+    sleep 2
   done
   
   if [ -z "$secret_name" ]; then
