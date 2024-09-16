@@ -10,6 +10,9 @@ if [ "$1" = "-h" ]; then
   exit 0
 fi
 
+# Create a secret manually if not already created
+kubectl create secret generic my-kubiscan-secret --from-literal=key1=value1 || echo "Secret already exists."
+
 DEFAULT_SECRET=$(kubectl get sa default -o=jsonpath='{.secrets[0].name}')
 echo -e "${GREEN}Creating kubiscan-sa...${NO_COLOR}"
 kubectl apply -f kubiscan-sa
@@ -21,22 +24,22 @@ kubectl apply -f kubiscan-sa2
 wait_for_secret() {
   local sa_name=$1
   local secret_name=""
-  
+
   # Retry up to 10 times, waiting for 1 second between each retry
-  for i in {1..30}; do
+  for i in {1..10}; do
     secret_name=$(kubectl get sa $sa_name -o=jsonpath='{.secrets[0].name}')
     if [ -n "$secret_name" ]; then
       break
     fi
     echo "Waiting for secret for service account $sa_name..."
-    sleep 2
+    sleep 1
   done
-  
+
   if [ -z "$secret_name" ]; then
     echo "Error: Secret for service account $sa_name not found after waiting."
     exit 1
   fi
-  
+
   echo "$secret_name"
 }
 
@@ -59,6 +62,7 @@ spec:
     image: nginx
 EOF
 
+# Corrected test5-yes pod
 echo -e "${GREEN}Creating test5-yes pod...${NO_COLOR}"
 kubectl apply -f - << EOF
 apiVersion: v1
@@ -80,7 +84,7 @@ spec:
   volumes:
   - name: secret-volume
     secret:
-      secretName: "$DEFAULT_SECRET"
+      secretName: "my-kubiscan-secret"   # <- Using the manually created secret
 EOF
 
 echo -e "${GREEN}Creating test8-yes pod...${NO_COLOR}"
