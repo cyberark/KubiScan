@@ -105,6 +105,7 @@ class TestKubiScan(unittest.TestCase):
 
 
 if __name__ == '__main__':
+    print("Change1")
     unittest.main()
 
 
