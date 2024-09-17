@@ -84,7 +84,7 @@ spec:
   volumes:
   - name: secret-volume
     secret:
-      secretName: "my-kubiscan-secret"   # <- Using the manually created secret
+      secretName: "my-kubiscan-secret"
 EOF
 
 echo -e "${GREEN}Creating test8-yes pod...${NO_COLOR}"
@@ -108,7 +108,7 @@ spec:
   volumes:
   - name: secret-volume
     secret:
-      secretName: "$KUBISCAN_SA_SECRET"
+      secretName: "my-kubiscan-secret"
   - name: secret-volume2
     secret:
       secretName: "$KUBISCAN_SA2_SECRET"
@@ -138,7 +138,7 @@ spec:
   volumes:
   - name: secret-volume
     secret:
-      secretName: "$KUBISCAN_SA2_SECRET"
+      secretName: "my-kubiscan-secret"
   containers:
   - name: test2b-no
     image: nginx
@@ -182,7 +182,7 @@ spec:
     - 
       name: secret-volume
       secret: 
-        secretName: "$KUBISCAN_SA_SECRET"
+        secretName: "my-kubiscan-secret"
 EOF
 
 echo -e "${GREEN}Creating test6-yes pod...${NO_COLOR}"

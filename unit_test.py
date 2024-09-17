@@ -9,9 +9,9 @@ from api.api_client import api_init
 from api.client_factory import ApiClientFactory
 from api.config import set_api_client
 
-list_of_risky_containers = ["test1-yes", "test3-yes", "test5a-yes", "test6-yes",
-                            "test7-yes", "test8-yes"]
-list_of_not_risky_containers = ["test1-no", "test2b-no"]
+list_of_risky_containers = ["test1-yes", "test3-yes", "test5ac2-yes", "test6a-yes", "test6b-yes",
+                            "test7c2-yes", "test8c-yes"]
+list_of_not_risky_containers = ["test5ac1-no", "test1-no", "test2b-no", "test7c1-no"]
 
 list_of_risky_users = ["kubiscan-sa"]
 list_of_not_risky_users = ["kubiscan-sa2", "default"]
@@ -105,7 +105,6 @@ class TestKubiScan(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print("Change1")
     unittest.main()
 
 
