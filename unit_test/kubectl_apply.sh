@@ -4,50 +4,22 @@ BCYAN='\033[1;96m'
 UCYAN='\033[4;96m'
 NO_COLOR='\033[0m'
 
-if [ "$1" = "-h" ]; then
+
+if [ "$1" = "-h" ];
+then
   echo -e "${UCYAN}How to run unit-test:${NO_COLOR}"
   echo -e "${BCYAN}$(cat readme)${NO_COLOR}"
   exit 0
 fi
 
-# Create a secret manually if not already created
-kubectl create secret generic my-kubiscan-secret --from-literal=key1=value1 || echo "Secret already exists."
-
 DEFAULT_SECRET=$(kubectl get sa default -o=jsonpath='{.secrets[0].name}')
 echo -e "${GREEN}Creating kubiscan-sa...${NO_COLOR}"
 kubectl apply -f kubiscan-sa
-
 echo -e "${GREEN}Creating kubiscan-sa2...${NO_COLOR}"
 kubectl apply -f kubiscan-sa2
-
-# Function to wait for the secret to be created
-wait_for_secret() {
-  local sa_name=$1
-  local secret_name=""
-
-  # Retry up to 10 times, waiting for 1 second between each retry
-  for i in {1..10}; do
-    secret_name=$(kubectl get sa $sa_name -o=jsonpath='{.secrets[0].name}')
-    if [ -n "$secret_name" ]; then
-      break
-    fi
-    echo "Waiting for secret for service account $sa_name..."
-    sleep 1
-  done
-
-  if [ -z "$secret_name" ]; then
-    echo "Error: Secret for service account $sa_name not found after waiting."
-    exit 1
-  fi
-
-  echo "$secret_name"
-}
-
-# Wait for the secrets to be available
-KUBISCAN_SA_SECRET=$(wait_for_secret kubiscan-sa)
-KUBISCAN_SA2_SECRET=$(wait_for_secret kubiscan-sa2)
-
-echo -e "${BCYAN}kubiscan-sa secret: $KUBISCAN_SA_SECRET, kubiscan-sa2 secret: $KUBISCAN_SA2_SECRET ${NO_COLOR}"
+KUBISCAN_SA_SECRET=$(kubectl get sa kubiscan-sa -o=jsonpath='{.secrets[0].name}')
+KUBISCAN_SA2_SECRET=$(kubectl get sa kubiscan-sa2 -o=jsonpath='{.secrets[0].name}')
+echo -e "${BCYAN}kubiscan-sa secret: "$KUBISCAN_SA_SECRET", kubiscan-sa2 secret: "$KUBISCAN_SA2_SECRET ${NO_COLOR}""
 
 echo -e "${GREEN}Creating test1-yes pod...${NO_COLOR}"
 kubectl apply -f - << EOF
@@ -62,7 +34,6 @@ spec:
     image: nginx
 EOF
 
-# Corrected test5-yes pod
 echo -e "${GREEN}Creating test5-yes pod...${NO_COLOR}"
 kubectl apply -f - << EOF
 apiVersion: v1
@@ -84,7 +55,7 @@ spec:
   volumes:
   - name: secret-volume
     secret:
-      secretName: "my-kubiscan-secret"
+      secretName: "$DEFAULT_SECRET"
 EOF
 
 echo -e "${GREEN}Creating test8-yes pod...${NO_COLOR}"
@@ -108,7 +79,7 @@ spec:
   volumes:
   - name: secret-volume
     secret:
-      secretName: "my-kubiscan-secret"
+      secretName: "$KUBISCAN_SA_SECRET"
   - name: secret-volume2
     secret:
       secretName: "$KUBISCAN_SA2_SECRET"
@@ -138,7 +109,7 @@ spec:
   volumes:
   - name: secret-volume
     secret:
-      secretName: "my-kubiscan-secret"
+      secretName: "$KUBISCAN_SA2_SECRET"
   containers:
   - name: test2b-no
     image: nginx
@@ -182,7 +153,7 @@ spec:
     - 
       name: secret-volume
       secret: 
-        secretName: "my-kubiscan-secret"
+        secretName: "$KUBISCAN_SA_SECRET"
 EOF
 
 echo -e "${GREEN}Creating test6-yes pod...${NO_COLOR}"
