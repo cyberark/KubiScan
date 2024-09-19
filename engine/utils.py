@@ -335,7 +335,6 @@ def pod_exec_read_token_two_paths(pod, container_name):
     result = pod_exec_read_token(pod, container_name, '/run/secrets/kubernetes.io/serviceaccount/token')
     if result == '':
         result = pod_exec_read_token(pod, container_name, '/var/run/secrets/kubernetes.io/serviceaccount/token')
-
     return result
 
 
@@ -346,8 +345,12 @@ def get_jwt_token_from_container(pod, container_name):
     if resp != '' and not resp.startswith('OCI'):
         from engine.jwt_token import decode_jwt_token_data
         decoded_data = decode_jwt_token_data(resp)
-        token_body = json.loads(decoded_data)
-
+        if decoded_data is not None and decoded_data != '':
+            try:
+                token_body = json.loads(decoded_data)
+            except json.JSONDecodeError as e:
+                print(f"Error decoding JWT token for container {container_name} in pod {pod.metadata.name}: {e}")
+    
     return token_body, resp
 
 
@@ -358,15 +361,29 @@ def is_same_user(a_username, a_namespace, b_username, b_namespace):
 def get_risky_user_from_container(jwt_body, risky_users):
     risky_user_in_container = None
     
-    for risky_user in risky_users:
-        if risky_user.user_info.kind == 'ServiceAccount':
-            if is_same_user(jwt_body['kubernetes.io/serviceaccount/service-account.name'],
-                            jwt_body['kubernetes.io/serviceaccount/namespace'],
-                            risky_user.user_info.name, risky_user.user_info.namespace):
-                risky_user_in_container = risky_user
-                break
+    # Correctly access service account name and namespace from the decoded JWT
+    service_account_info = jwt_body.get('kubernetes.io', {}).get('serviceaccount', {})
+    service_account_name = service_account_info.get('name')
+    service_account_namespace = jwt_body.get('kubernetes.io', {}).get('namespace')
+     # Check if the service account information is present in the first structure
+
+    if not service_account_name or not service_account_namespace:
+        # Fallback to the alternative structure (kubernetes.io/serviceaccount/...)
+        service_account_name = jwt_body.get('kubernetes.io/serviceaccount/service-account.name')
+        service_account_namespace = jwt_body.get('kubernetes.io/serviceaccount/namespace')
+
+    if service_account_name and service_account_namespace:
+        for risky_user in risky_users:
+            if risky_user.user_info.kind == 'ServiceAccount':
+                if is_same_user(service_account_name,
+                                service_account_namespace,
+                                risky_user.user_info.name, 
+                                risky_user.user_info.namespace):
+                    risky_user_in_container = risky_user
+                    break
 
     return risky_user_in_container
+
 
 
 def get_risky_containers(pod, risky_users, read_token_from_container=False):
@@ -376,14 +393,20 @@ def get_risky_containers(pod, risky_users, read_token_from_container=False):
         # This will run only on the containers with the "ready" status
         if pod.status.container_statuses:
             for container in pod.status.container_statuses:
-                if container.ready:
+                if container.ready and container.state.running:
                     jwt_body, _ = get_jwt_token_from_container(pod, container.name)
                     if jwt_body:
                         risky_user = get_risky_user_from_container(jwt_body, risky_users)
                         if risky_user:
-                            risky_containers.append(
-                                Container(container.name, risky_user.user_info.name, risky_user.user_info.namespace,
-                                          risky_user.priority))
+                           risky_containers.append(
+                                Container(
+                                    container.name, 
+                                    risky_user.user_info.name,
+                                    risky_user.user_info.namespace,  
+                                    set() if risky_user is None else {risky_user}, 
+                                    risky_user.priority
+                                )
+                            )
 
     else:
         # A dictionary for the volume
