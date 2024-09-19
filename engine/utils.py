@@ -360,7 +360,6 @@ def is_same_user(a_username, a_namespace, b_username, b_namespace):
 
 def get_risky_user_from_container(jwt_body, risky_users):
     risky_user_in_container = None
-    
     # Correctly access service account name and namespace from the decoded JWT
     service_account_info = jwt_body.get('kubernetes.io', {}).get('serviceaccount', {})
     service_account_name = service_account_info.get('name')
