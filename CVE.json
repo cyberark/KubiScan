@@ -780,6 +780,12 @@
       "Severity": "Medium",
       "Grade": "6.3",
       "FixedVersions": [
+        {
+          "Major": 0,
+          "Minor": 0,
+          "Patch": 0,
+          "Raw": "0.00.0"
+        }
       ]
     },{
       "CVENumber": "CVE-2020-8561",
@@ -787,6 +793,12 @@
       "Severity": "Medium",
       "Grade": "4.1",
       "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 22,
+          "Patch": 2,
+          "Raw": "1.22.2"
+        }
       ]
     },
     {
@@ -795,6 +807,12 @@
       "Severity": "Low",
       "Grade": "3.5",
       "FixedVersions": [
+        {
+          "Major": 1,
+          "Minor": 20,
+          "Patch": 6,
+          "Raw": "1.20.6"
+        }
       ]
     },
     {
