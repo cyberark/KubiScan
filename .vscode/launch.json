@@ -2,15 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Debug KubiScan",
+            "name": "Python: Debug CVE Command",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/KubiScan.py",  // Path to your main Python script
             "console": "integratedTerminal",  // Use the integrated terminal in VS Code
             "args": [
-                "-f", "/home/noamr/Documents/KubiScan/combined.json",  // Full path to the combined.json file
-                "-rp",  // Add the -rp flag
-                "-d"    // Add the -d flag for debug mode
+                "--cve"  // Add the --cve flag to run the CVE command
             ],
             "justMyCode": false,  // Set to false to debug external libraries as well
             "env": {

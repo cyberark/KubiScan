@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
   - name: risky-container
-    image: riskyapp:latest
+    image: nginx
     securityContext:
       privileged: true
     volumeMounts:
@@ -16,4 +16,3 @@ spec:
   - name: sensitive-volume
     hostPath:
       path: /var/run/secrets/kubernetes.io/serviceaccount
-      type: Directory
