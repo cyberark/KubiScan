@@ -4,11 +4,11 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: kubeadm:bootstrap-signer-clusterinfo
     namespace: kube-public
-    resourceVersion: "268"
-    uid: e8ad445d-aa37-4b74-a7b5-511a97928219
+    resourceVersion: "255"
+    uid: 3614aa73-eed7-45ae-9088-2dcc5ff1ee1e
   rules:
   - apiGroups:
     - ""
@@ -23,13 +23,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:bootstrap-signer
     namespace: kube-public
-    resourceVersion: "228"
-    uid: 66e61cd5-37b0-4825-bde5-011228ba822c
+    resourceVersion: "226"
+    uid: 55b866c1-4113-4604-bbbf-ffd68e99a249
   rules:
   - apiGroups:
     - ""
@@ -61,13 +61,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: extension-apiserver-authentication-reader
     namespace: kube-system
-    resourceVersion: "222"
-    uid: a29aa016-e3e4-49cc-8527-570ef1b8fb66
+    resourceVersion: "220"
+    uid: 3f950198-e2f7-4737-82c7-6692f6e2e69d
   rules:
   - apiGroups:
     - ""
@@ -82,11 +82,11 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
-    creationTimestamp: "2024-06-30T09:07:58Z"
+    creationTimestamp: "2024-09-19T14:29:37Z"
     name: kube-proxy
     namespace: kube-system
     resourceVersion: "292"
-    uid: e760fc8c-6893-44d4-bdc2-5be0a2df8f4d
+    uid: 85a33907-6f7f-4e32-8227-5b4454efd833
   rules:
   - apiGroups:
     - ""
@@ -99,11 +99,11 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: kubeadm:kubelet-config
     namespace: kube-system
-    resourceVersion: "255"
-    uid: 1f7e5e24-536a-4c89-b510-ad8666d1ccf2
+    resourceVersion: "244"
+    uid: 33c5d0aa-dba4-470f-a633-8080574d707c
   rules:
   - apiGroups:
     - ""
@@ -116,11 +116,11 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: kubeadm:nodes-kubeadm-config
     namespace: kube-system
-    resourceVersion: "252"
-    uid: f4f8ec5a-0d56-4709-89ca-7f12f3fbc00b
+    resourceVersion: "241"
+    uid: 06b3cb49-b227-4677-a15d-ec53acc3ad55
   rules:
   - apiGroups:
     - ""
@@ -135,13 +135,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system::leader-locking-kube-controller-manager
     namespace: kube-system
-    resourceVersion: "226"
-    uid: 70057109-55c2-4f6b-b5c5-a9234c6375f6
+    resourceVersion: "224"
+    uid: 7d6cd429-8faf-44af-976e-d26322dfa7a6
   rules:
   - apiGroups:
     - ""
@@ -163,13 +163,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system::leader-locking-kube-scheduler
     namespace: kube-system
-    resourceVersion: "227"
-    uid: 13701325-2325-4fd2-a08e-2895d3eae52d
+    resourceVersion: "225"
+    uid: 806a9c5a-0c3a-4cf9-b3c6-6f9255b15143
   rules:
   - apiGroups:
     - ""
@@ -191,13 +191,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:bootstrap-signer
     namespace: kube-system
-    resourceVersion: "223"
-    uid: 1397eed0-0211-451c-aafd-13c5653e92c6
+    resourceVersion: "221"
+    uid: f2646279-60b9-491e-bed2-e805c0c32d74
   rules:
   - apiGroups:
     - ""
@@ -212,13 +212,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:cloud-provider
     namespace: kube-system
-    resourceVersion: "224"
-    uid: 2e42202e-c1b3-4b61-b877-dc92b6ff9caa
+    resourceVersion: "222"
+    uid: 8f867ee5-50b0-4c27-9279-d18961743a8f
   rules:
   - apiGroups:
     - ""
@@ -234,13 +234,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:token-cleaner
     namespace: kube-system
-    resourceVersion: "225"
-    uid: 3bd81b20-0018-4ed5-80eb-78dab4f911c5
+    resourceVersion: "223"
+    uid: 6d49d057-c538-49bd-8b23-b7019acd2526
   rules:
   - apiGroups:
     - ""
@@ -266,13 +266,13 @@ items:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
         {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"annotations":{},"labels":{"addonmanager.kubernetes.io/mode":"EnsureExists"},"name":"system:persistent-volume-provisioner","namespace":"kube-system"},"rules":[{"apiGroups":[""],"resources":["endpoints"],"verbs":["watch","create"]},{"apiGroups":[""],"resourceNames":["k8s.io-minikube-hostpath"],"resources":["endpoints"],"verbs":["get","update","create"]}]}
-    creationTimestamp: "2024-06-30T09:08:07Z"
+    creationTimestamp: "2024-09-19T14:29:38Z"
     labels:
       addonmanager.kubernetes.io/mode: EnsureExists
     name: system:persistent-volume-provisioner
     namespace: kube-system
-    resourceVersion: "382"
-    uid: f315f021-0593-4613-a13a-a430ded9d24c
+    resourceVersion: "313"
+    uid: ece3a013-b219-4222-9f7c-5cba1cbc9179
   rules:
   - apiGroups:
     - ""
@@ -300,11 +300,11 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
-    creationTimestamp: "2024-06-30T09:07:52Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: kubeadm:bootstrap-signer-clusterinfo
     namespace: kube-public
-    resourceVersion: "269"
-    uid: 1ebcac5a-0ed8-47dd-b90b-d1e87ae6cae6
+    resourceVersion: "265"
+    uid: 4216f5d7-260c-4305-af88-b70dc61a4e26
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -318,13 +318,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:bootstrap-signer
     namespace: kube-public
-    resourceVersion: "236"
-    uid: e0216bea-bff8-498e-bf1a-4a936c67f392
+    resourceVersion: "233"
+    uid: 1018d954-e269-4b2c-a4ee-d64d2e287291
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -336,11 +336,11 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
-    creationTimestamp: "2024-06-30T09:07:58Z"
+    creationTimestamp: "2024-09-19T14:29:37Z"
     name: kube-proxy
     namespace: kube-system
-    resourceVersion: "293"
-    uid: fd812362-ecb1-46e9-aa84-79afe773ac16
+    resourceVersion: "294"
+    uid: 03b8b926-32a2-47d6-80d9-19e09363a41b
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -352,11 +352,11 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: kubeadm:kubelet-config
     namespace: kube-system
-    resourceVersion: "256"
-    uid: d70f3504-dcc4-4ce3-930c-b9726a7bfe14
+    resourceVersion: "245"
+    uid: b079f29d-6d9d-4da7-965e-1b0a217abb25
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -371,11 +371,11 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: kubeadm:nodes-kubeadm-config
     namespace: kube-system
-    resourceVersion: "253"
-    uid: c54209b2-92dc-490a-909a-785c7edcf4ad
+    resourceVersion: "242"
+    uid: 7130ad24-140b-4699-8a36-8d81df7d5daa
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -392,13 +392,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system::extension-apiserver-authentication-reader
     namespace: kube-system
-    resourceVersion: "229"
-    uid: 1c2da6bd-d472-4302-8e2e-2cab2d6cd132
+    resourceVersion: "227"
+    uid: 9985357a-7be6-456a-a9ee-0c9f480fb8a2
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -415,13 +415,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system::leader-locking-kube-controller-manager
     namespace: kube-system
-    resourceVersion: "230"
-    uid: b200400b-5947-4729-b397-e6b984780490
+    resourceVersion: "228"
+    uid: 2f0a84a4-fae7-4973-ba57-c93a15e6a6ae
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -438,13 +438,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system::leader-locking-kube-scheduler
     namespace: kube-system
-    resourceVersion: "231"
-    uid: d01caa34-a430-4645-a8d0-78cf1de0eaf2
+    resourceVersion: "229"
+    uid: e9f3d06f-b4da-4afa-ab70-dbe0df1e15ba
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -461,13 +461,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:bootstrap-signer
     namespace: kube-system
-    resourceVersion: "232"
-    uid: d13897fc-7570-4c24-a190-d2fde14761c0
+    resourceVersion: "230"
+    uid: b54c1aad-d21f-466b-8692-bd94dca71a59
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -481,13 +481,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:cloud-provider
     namespace: kube-system
-    resourceVersion: "233"
-    uid: 95d06a5b-a2db-4743-a632-512128ae8a86
+    resourceVersion: "231"
+    uid: 2ad6b9dd-0c4f-44bd-a9e0-038aef41ce55
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -501,13 +501,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:token-cleaner
     namespace: kube-system
-    resourceVersion: "235"
-    uid: 203c77a3-8bed-4d1f-97a5-fd34a4c9a747
+    resourceVersion: "232"
+    uid: 654c3119-f004-4466-bf96-1d3c6e499ce4
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -522,13 +522,13 @@ items:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
         {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"RoleBinding","metadata":{"annotations":{},"labels":{"addonmanager.kubernetes.io/mode":"EnsureExists"},"name":"system:persistent-volume-provisioner","namespace":"kube-system"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"Role","name":"system:persistent-volume-provisioner"},"subjects":[{"kind":"ServiceAccount","name":"storage-provisioner","namespace":"kube-system"}]}
-    creationTimestamp: "2024-06-30T09:08:07Z"
+    creationTimestamp: "2024-09-19T14:29:38Z"
     labels:
       addonmanager.kubernetes.io/mode: EnsureExists
     name: system:persistent-volume-provisioner
     namespace: kube-system
-    resourceVersion: "383"
-    uid: 54d77653-2952-4973-b353-4dca2c852fdd
+    resourceVersion: "314"
+    uid: db4014dd-ab04-4807-95b4-54ffc3b85016
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -552,12 +552,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: admin
-    resourceVersion: "348"
-    uid: 7dce999d-26af-4663-9fc9-f81c297d1e8d
+    resourceVersion: "368"
+    uid: 95e6d825-b66f-424d-a457-ff29437b891c
   rules:
   - apiGroups:
     - ""
@@ -863,12 +863,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: cluster-admin
-    resourceVersion: "91"
-    uid: d270ea0a-8ab6-4620-a9ef-4218b02643b5
+    resourceVersion: "111"
+    uid: 4efcf252-a83c-4425-bac9-57bf05eb916e
   rules:
   - apiGroups:
     - '*'
@@ -889,13 +889,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
       rbac.authorization.k8s.io/aggregate-to-admin: "true"
     name: edit
-    resourceVersion: "341"
-    uid: 606288b9-94c0-4903-9c0c-dba7dc15380e
+    resourceVersion: "367"
+    uid: 82a2f092-81cd-404b-b60b-719dfef5762b
   rules:
   - apiGroups:
     - ""
@@ -1179,10 +1179,10 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRole
   metadata:
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: kubeadm:get-nodes
-    resourceVersion: "260"
-    uid: b7a190ad-5b39-4131-89b0-e9cd45a63ef6
+    resourceVersion: "249"
+    uid: f101fd05-f334-4601-a2c4-4b4c38adccdb
   rules:
   - apiGroups:
     - ""
@@ -1195,11 +1195,34 @@ items:
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRole","metadata":{"annotations":{},"name":"kubiscan-clusterrole"},"rules":[{"apiGroups":["*"],"resources":["roles","clusterroles","rolebindings","clusterrolebindings","pods"],"verbs":["get","list"]}]}
-    creationTimestamp: "2024-07-15T09:36:56Z"
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRole","metadata":{"annotations":{},"name":"kubiscan-clusterrole"},"rules":[{"apiGroups":["*"],"resources":["roles","clusterroles","rolebindings","clusterrolebindings","pods","secrets"],"verbs":["get","list"]}]}
+    creationTimestamp: "2024-09-19T14:34:50Z"
     name: kubiscan-clusterrole
-    resourceVersion: "46927"
-    uid: be21c4a4-a48a-462f-ace0-81fbc03bc937
+    resourceVersion: "657"
+    uid: ec2034b8-4b8c-4715-b8a1-996a727ae737
+  rules:
+  - apiGroups:
+    - '*'
+    resources:
+    - roles
+    - clusterroles
+    - rolebindings
+    - clusterrolebindings
+    - pods
+    - secrets
+    verbs:
+    - get
+    - list
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRole
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRole","metadata":{"annotations":{},"name":"kubiscan-clusterrole2"},"rules":[{"apiGroups":["*"],"resources":["roles","clusterroles","rolebindings","clusterrolebindings","pods"],"verbs":["get","list"]}]}
+    creationTimestamp: "2024-09-19T14:34:50Z"
+    name: kubiscan-clusterrole2
+    resourceVersion: "662"
+    uid: 0ae19ae2-5d59-4189-a68b-6e51143c5be2
   rules:
   - apiGroups:
     - '*'
@@ -1216,31 +1239,14 @@ items:
   kind: ClusterRole
   metadata:
     annotations:
-      kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRole","metadata":{"annotations":{},"name":"risky-role"},"rules":[{"apiGroups":["*"],"resources":["*"],"verbs":["*"]}]}
-    creationTimestamp: "2024-08-25T09:37:16Z"
-    name: risky-role
-    resourceVersion: "62652"
-    uid: 7f082a66-b609-4abd-afa1-79f7f9fd5ff2
-  rules:
-  - apiGroups:
-    - '*'
-    resources:
-    - '*'
-    verbs:
-    - '*'
-- apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRole
-  metadata:
-    annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
       rbac.authorization.k8s.io/aggregate-to-admin: "true"
     name: system:aggregate-to-admin
-    resourceVersion: "110"
-    uid: 1d8c5e23-8967-4163-9d4c-7a0bac4b86b8
+    resourceVersion: "119"
+    uid: 9a17ed04-540f-4310-8f6d-0548f8ef0df9
   rules:
   - apiGroups:
     - authorization.k8s.io
@@ -1267,13 +1273,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
       rbac.authorization.k8s.io/aggregate-to-edit: "true"
     name: system:aggregate-to-edit
-    resourceVersion: "112"
-    uid: 5343d70a-5450-417f-8391-4f338016fc65
+    resourceVersion: "120"
+    uid: c436e587-1844-45ff-8400-af596ad2d9c9
   rules:
   - apiGroups:
     - ""
@@ -1433,13 +1439,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
       rbac.authorization.k8s.io/aggregate-to-view: "true"
     name: system:aggregate-to-view
-    resourceVersion: "115"
-    uid: a8ffa35e-c2da-4f74-ab3b-f8010291d2fd
+    resourceVersion: "121"
+    uid: 84075201-4600-473e-956a-fb65ed94daca
   rules:
   - apiGroups:
     - ""
@@ -1572,12 +1578,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:auth-delegator
-    resourceVersion: "128"
-    uid: ce557882-e903-44ea-a52d-e38de3cd2bb7
+    resourceVersion: "127"
+    uid: 6c88e9d9-82c1-4d03-9f26-96c55f31d289
   rules:
   - apiGroups:
     - authentication.k8s.io
@@ -1596,12 +1602,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:basic-user
-    resourceVersion: "99"
-    uid: cd223485-ce19-406a-a5d9-a182806355a2
+    resourceVersion: "114"
+    uid: 01be97ef-5d35-41e7-b4c8-ea3c1eb13c87
   rules:
   - apiGroups:
     - authorization.k8s.io
@@ -1621,12 +1627,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:certificates.k8s.io:certificatesigningrequests:nodeclient
-    resourceVersion: "133"
-    uid: d1b55fca-4dd7-4364-9db3-b0106547e9ea
+    resourceVersion: "132"
+    uid: 28244c2a-f31a-4b51-9ba3-0390023c85c1
   rules:
   - apiGroups:
     - certificates.k8s.io
@@ -1639,12 +1645,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:certificates.k8s.io:certificatesigningrequests:selfnodeclient
-    resourceVersion: "134"
-    uid: 3f398435-c7e1-4fc0-9aac-8637d46fd2a2
+    resourceVersion: "133"
+    uid: bca9d375-2859-44db-9bae-d12539804a1d
   rules:
   - apiGroups:
     - certificates.k8s.io
@@ -1657,12 +1663,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:certificates.k8s.io:kube-apiserver-client-approver
-    resourceVersion: "138"
-    uid: f5035da1-c6df-46fc-91f1-e66a8083ad3a
+    resourceVersion: "137"
+    uid: 7249f620-4844-4792-ad0c-8ee3e2b0db25
   rules:
   - apiGroups:
     - certificates.k8s.io
@@ -1677,12 +1683,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:certificates.k8s.io:kube-apiserver-client-kubelet-approver
-    resourceVersion: "139"
-    uid: c52ab368-af0e-4aeb-acd8-8b4502b0bc1c
+    resourceVersion: "138"
+    uid: af1b8e12-480b-4bfd-97a5-af5b3f958078
   rules:
   - apiGroups:
     - certificates.k8s.io
@@ -1697,12 +1703,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:certificates.k8s.io:kubelet-serving-approver
-    resourceVersion: "137"
-    uid: 1d3db6d7-65c5-4b65-bc67-a22a72a5f419
+    resourceVersion: "136"
+    uid: 14ffe5c7-dd16-4486-b6ca-67ff3edaf9f7
   rules:
   - apiGroups:
     - certificates.k8s.io
@@ -1717,12 +1723,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:certificates.k8s.io:legacy-unknown-approver
-    resourceVersion: "136"
-    uid: a302de13-1369-4754-92ec-aa2cf6473c56
+    resourceVersion: "135"
+    uid: c59ebb75-a1a9-4b83-9228-07e44340f970
   rules:
   - apiGroups:
     - certificates.k8s.io
@@ -1737,12 +1743,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:attachdetach-controller
-    resourceVersion: "143"
-    uid: 62b7ed78-9c47-4e2e-84ae-ebd1910738a2
+    resourceVersion: "142"
+    uid: 8a748cb1-1aaa-4253-ba45-492b05edc7b4
   rules:
   - apiGroups:
     - ""
@@ -1814,12 +1820,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:certificate-controller
-    resourceVersion: "169"
-    uid: daa3936e-35c5-4500-87f4-e95a058bcf0c
+    resourceVersion: "168"
+    uid: 42df889d-69a5-4333-aac8-7d886f9145f0
   rules:
   - apiGroups:
     - certificates.k8s.io
@@ -1876,12 +1882,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:clusterrole-aggregation-controller
-    resourceVersion: "144"
-    uid: 6c9f3fcf-70c7-4d46-969e-2f57c1c85fcf
+    resourceVersion: "143"
+    uid: 3d33afc3-211e-45a8-8a48-e0afda0ab86b
   rules:
   - apiGroups:
     - rbac.authorization.k8s.io
@@ -1899,12 +1905,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:cronjob-controller
-    resourceVersion: "145"
-    uid: 19124b38-bb99-4ee9-931f-e1a6cbf59b6d
+    resourceVersion: "144"
+    uid: 3f7b0298-f3e5-46ff-ab9f-43027c8cb3f4
   rules:
   - apiGroups:
     - batch
@@ -1960,12 +1966,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:daemon-set-controller
-    resourceVersion: "146"
-    uid: 5b2765ed-ce75-4565-9627-fe5f61e5eaef
+    resourceVersion: "145"
+    uid: 2d188e56-28d0-4675-a99a-c2222b9a2e7c
   rules:
   - apiGroups:
     - apps
@@ -2039,12 +2045,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:deployment-controller
-    resourceVersion: "147"
-    uid: d3d81ce2-5e70-4f5e-a70d-731151944439
+    resourceVersion: "146"
+    uid: 678dc736-1f0b-4f1b-b20b-0a5b50664ecc
   rules:
   - apiGroups:
     - apps
@@ -2106,12 +2112,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:disruption-controller
-    resourceVersion: "148"
-    uid: c90903cf-e09c-4325-9ca1-a0771d2886d7
+    resourceVersion: "147"
+    uid: 683e49c7-aa12-4622-ab6f-1bbe1ca3c370
   rules:
   - apiGroups:
     - apps
@@ -2188,12 +2194,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:endpoint-controller
-    resourceVersion: "149"
-    uid: 92642c83-5006-423c-be83-4282e978d098
+    resourceVersion: "148"
+    uid: 11189901-7fe3-4e9e-85f5-11277f19548f
   rules:
   - apiGroups:
     - ""
@@ -2234,12 +2240,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:endpointslice-controller
-    resourceVersion: "150"
-    uid: 4a51b7c1-e48c-4ee2-b5ce-a4d9f24ebbc8
+    resourceVersion: "149"
+    uid: cdf8f851-efc8-438f-8b8a-5d220a2fb82a
   rules:
   - apiGroups:
     - ""
@@ -2281,12 +2287,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:endpointslicemirroring-controller
-    resourceVersion: "151"
-    uid: 1d52b20f-61ff-4593-8f9f-bf24b47bb886
+    resourceVersion: "150"
+    uid: 2d1a1ae2-cd82-40c0-9329-1413e58b5e21
   rules:
   - apiGroups:
     - ""
@@ -2333,12 +2339,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:ephemeral-volume-controller
-    resourceVersion: "153"
-    uid: 1ae72682-500a-4a59-8242-76be62bf51ef
+    resourceVersion: "152"
+    uid: 734bdbba-3ddf-4dbe-9cbc-86c5344dcd08
   rules:
   - apiGroups:
     - ""
@@ -2377,12 +2383,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:expand-controller
-    resourceVersion: "152"
-    uid: 29a9fbd9-ec88-4c5f-827b-c103fe2d2f15
+    resourceVersion: "151"
+    uid: 3ad2db4d-a0de-454e-bd6d-388f85d36a0d
   rules:
   - apiGroups:
     - ""
@@ -2444,12 +2450,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:generic-garbage-collector
-    resourceVersion: "154"
-    uid: 1bfd7449-d0e8-405c-a00a-b949be44ca51
+    resourceVersion: "153"
+    uid: 5543d77f-b985-4b1c-8af1-ddaaf5c6ed14
   rules:
   - apiGroups:
     - '*'
@@ -2476,12 +2482,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:horizontal-pod-autoscaler
-    resourceVersion: "155"
-    uid: 1cdba6fb-13d7-48bc-83d5-ad5cf431b982
+    resourceVersion: "154"
+    uid: 6efbde4b-8895-4ef5-9e18-c24b2bbad724
   rules:
   - apiGroups:
     - autoscaling
@@ -2544,12 +2550,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:job-controller
-    resourceVersion: "156"
-    uid: ef8b18a2-8a00-46e2-a82d-42b423079b60
+    resourceVersion: "155"
+    uid: 29abda2d-9613-45c5-9caa-902de7e82e1f
   rules:
   - apiGroups:
     - batch
@@ -2597,12 +2603,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:legacy-service-account-token-cleaner
-    resourceVersion: "176"
-    uid: da5f5163-0b90-401e-aa70-2782bf32a31b
+    resourceVersion: "174"
+    uid: c7b3aa93-dd7a-43c1-8df4-a712eb967145
   rules:
   - apiGroups:
     - ""
@@ -2624,12 +2630,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:namespace-controller
-    resourceVersion: "157"
-    uid: 0d924450-d9a7-47d4-980a-e6819b956503
+    resourceVersion: "156"
+    uid: e6a02ceb-235e-4e8f-b5db-a4d2e031b8f0
   rules:
   - apiGroups:
     - ""
@@ -2661,12 +2667,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:node-controller
-    resourceVersion: "158"
-    uid: e1fa14dd-d615-410f-8c61-61051f7f1785
+    resourceVersion: "157"
+    uid: 11b33ff5-de53-40ef-aef9-8ed888c46ded
   rules:
   - apiGroups:
     - ""
@@ -2719,12 +2725,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:persistent-volume-binder
-    resourceVersion: "159"
-    uid: 13648035-2224-4a0a-805d-d42b8ef4da27
+    resourceVersion: "158"
+    uid: 1a3a6312-ce51-4cea-b30f-ac4ee5c43a70
   rules:
   - apiGroups:
     - ""
@@ -2826,12 +2832,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:pod-garbage-collector
-    resourceVersion: "160"
-    uid: a8239bdb-88ff-4c26-9312-63e1330dc08d
+    resourceVersion: "159"
+    uid: e4bb1dde-5f41-4297-a68d-6bd61771fdb0
   rules:
   - apiGroups:
     - ""
@@ -2859,12 +2865,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:pv-protection-controller
-    resourceVersion: "171"
-    uid: 4ecf210e-7f4c-46fc-a3b2-75ee13cc2844
+    resourceVersion: "170"
+    uid: f2f30a56-76af-4a61-9c55-4aa798e70acc
   rules:
   - apiGroups:
     - ""
@@ -2889,12 +2895,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:pvc-protection-controller
-    resourceVersion: "170"
-    uid: 7e3c26ed-e369-48b8-9010-e7708c5e70f4
+    resourceVersion: "169"
+    uid: 9c6c120f-6d65-40f9-83a2-99aae93c456f
   rules:
   - apiGroups:
     - ""
@@ -2927,12 +2933,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:replicaset-controller
-    resourceVersion: "161"
-    uid: f43a1bf8-46e4-4547-acb8-0f3466c94f48
+    resourceVersion: "160"
+    uid: 3ad4d35c-3814-45a8-a539-745065f0d05e
   rules:
   - apiGroups:
     - apps
@@ -2982,12 +2988,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:replication-controller
-    resourceVersion: "162"
-    uid: 34415039-079b-4209-b798-4bececf66b02
+    resourceVersion: "161"
+    uid: 1a0361d2-3334-4fcc-ae2d-377d76787d83
   rules:
   - apiGroups:
     - ""
@@ -3034,12 +3040,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:resourcequota-controller
-    resourceVersion: "163"
-    uid: 048155ad-2f6d-4530-8ce0-4ef1d6f613f5
+    resourceVersion: "162"
+    uid: d190832a-9249-4454-a1c4-737eaf4e5d61
   rules:
   - apiGroups:
     - '*'
@@ -3068,12 +3074,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:root-ca-cert-publisher
-    resourceVersion: "174"
-    uid: 69930c72-b979-4ba9-a492-c1a450c94813
+    resourceVersion: "172"
+    uid: 48a96678-44f6-487d-b0d8-78540dba7e40
   rules:
   - apiGroups:
     - ""
@@ -3096,12 +3102,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:route-controller
-    resourceVersion: "164"
-    uid: a28dcfa2-3235-425c-b6e1-ce192851fb4d
+    resourceVersion: "163"
+    uid: 6302f03c-0365-43b4-942a-f1f78a4d6773
   rules:
   - apiGroups:
     - ""
@@ -3130,12 +3136,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:service-account-controller
-    resourceVersion: "165"
-    uid: dadb526b-2266-4a51-9abe-9a20f7f9b036
+    resourceVersion: "164"
+    uid: 8e2227a4-751e-47e9-be58-8550d59e433d
   rules:
   - apiGroups:
     - ""
@@ -3157,12 +3163,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:service-controller
-    resourceVersion: "166"
-    uid: 4d502e08-e0f8-4b87-9315-b649b6b4f3d7
+    resourceVersion: "165"
+    uid: 64383400-79c1-45c0-a863-9a56a947ce37
   rules:
   - apiGroups:
     - ""
@@ -3200,12 +3206,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:statefulset-controller
-    resourceVersion: "167"
-    uid: 0be93aa4-684e-41b0-a72b-e4cda6877257
+    resourceVersion: "166"
+    uid: 035012e2-e56e-424d-ae29-9b3a63783229
   rules:
   - apiGroups:
     - ""
@@ -3284,12 +3290,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:ttl-after-finished-controller
-    resourceVersion: "172"
-    uid: 26dcf2ed-a714-4ffa-a780-fe8b8331277f
+    resourceVersion: "171"
+    uid: 6759b5f3-a92a-4844-adb5-88cbbe4db3c6
   rules:
   - apiGroups:
     - batch
@@ -3314,12 +3320,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:ttl-controller
-    resourceVersion: "168"
-    uid: 5f1be240-e002-4c26-8560-8dc0b6f53b23
+    resourceVersion: "167"
+    uid: 39dcdced-1f9e-45af-ba0a-44ae0d37c66d
   rules:
   - apiGroups:
     - ""
@@ -3344,12 +3350,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:validatingadmissionpolicy-status-controller
-    resourceVersion: "175"
-    uid: 7a548518-f901-4ee1-bdc2-7129b772f92f
+    resourceVersion: "173"
+    uid: 81ea7f03-f07f-4c8e-8104-af08777fa779
   rules:
   - apiGroups:
     - admissionregistration.k8s.io
@@ -3379,10 +3385,10 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRole
   metadata:
-    creationTimestamp: "2024-06-30T09:07:58Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: system:coredns
-    resourceVersion: "282"
-    uid: cae08228-269b-43af-a55b-c3ec96860545
+    resourceVersion: "271"
+    uid: c1dc93c7-7f4b-40c1-8469-731e29035e24
   rules:
   - apiGroups:
     - ""
@@ -3406,12 +3412,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:discovery
-    resourceVersion: "95"
-    uid: cfc1ffdd-9aac-4462-8cc6-6d68a764ade6
+    resourceVersion: "112"
+    uid: bda4e72a-d167-40fd-a541-8b521c5d61f1
   rules:
   - nonResourceURLs:
     - /api
@@ -3432,12 +3438,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:heapster
-    resourceVersion: "117"
-    uid: 88586248-aa26-4ba8-bfd2-042117d768fe
+    resourceVersion: "122"
+    uid: c315f71a-d33f-40ca-8e94-b153971df82f
   rules:
   - apiGroups:
     - ""
@@ -3463,12 +3469,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:kube-aggregator
-    resourceVersion: "129"
-    uid: 215b88a2-0ab2-4694-8f1b-2cf61779246c
+    resourceVersion: "128"
+    uid: 52c76103-1315-4548-bb56-4d33979ebd7e
   rules:
   - apiGroups:
     - ""
@@ -3484,12 +3490,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:kube-controller-manager
-    resourceVersion: "130"
-    uid: 6f00c7d7-17aa-4d89-a961-78347a938e43
+    resourceVersion: "129"
+    uid: e7b7cbd7-4b8a-4dc7-a8c9-dd0a4e6478af
   rules:
   - apiGroups:
     - ""
@@ -3574,12 +3580,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:kube-dns
-    resourceVersion: "131"
-    uid: 0658a6ab-b6c1-4301-ac9d-bfebfe5d55a4
+    resourceVersion: "130"
+    uid: 155af20e-9780-4da3-9b53-96412a690418
   rules:
   - apiGroups:
     - ""
@@ -3594,12 +3600,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:kube-scheduler
-    resourceVersion: "142"
-    uid: 781d9455-9d7a-4f34-9d7c-7c38036bd19c
+    resourceVersion: "141"
+    uid: 8977992f-f8c8-4660-aa16-218fb3a9b2dd
   rules:
   - apiGroups:
     - ""
@@ -3748,12 +3754,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:kubelet-api-admin
     resourceVersion: "125"
-    uid: 67120848-fdc1-41d6-948a-01330c1c1e52
+    uid: b533534a-4724-4fcc-9863-a39111fda6fe
   rules:
   - apiGroups:
     - ""
@@ -3783,12 +3789,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:monitoring
-    resourceVersion: "97"
-    uid: c2ac0057-09e5-4845-876a-64b1788e7d24
+    resourceVersion: "113"
+    uid: 615329e1-f1ab-4f65-a041-16d512c2f06d
   rules:
   - nonResourceURLs:
     - /healthz
@@ -3806,12 +3812,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:node
-    resourceVersion: "119"
-    uid: 325a16f1-37b7-4186-a86f-57e4265fd079
+    resourceVersion: "123"
+    uid: 64855737-e12a-4394-935a-b2d02745594c
   rules:
   - apiGroups:
     - authentication.k8s.io
@@ -3985,12 +3991,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:node-bootstrapper
-    resourceVersion: "127"
-    uid: 6f009c2d-234a-4a47-b627-37295e540275
+    resourceVersion: "126"
+    uid: 8dae2846-bd52-4668-9fb3-d2ae5eb3c223
   rules:
   - apiGroups:
     - certificates.k8s.io
@@ -4006,12 +4012,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:node-problem-detector
-    resourceVersion: "122"
-    uid: 37d25faa-2248-49ab-aef1-1e25668fee0b
+    resourceVersion: "124"
+    uid: e14548ea-3206-477d-a352-e54ae53da5b7
   rules:
   - apiGroups:
     - ""
@@ -4039,12 +4045,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:node-proxier
-    resourceVersion: "141"
-    uid: da010f24-c008-4d08-88de-3b0b7297f5c9
+    resourceVersion: "140"
+    uid: 986ae3d1-0559-46c6-b7d3-8cbc8458ac75
   rules:
   - apiGroups:
     - ""
@@ -4083,12 +4089,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:persistent-volume-provisioner
-    resourceVersion: "132"
-    uid: 185c784a-915c-432e-945a-00507452c79c
+    resourceVersion: "131"
+    uid: b50bcddf-f711-4c9e-9f97-b8db33e9d6c4
   rules:
   - apiGroups:
     - ""
@@ -4137,12 +4143,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:public-info-viewer
-    resourceVersion: "101"
-    uid: e46ba1c6-28ad-4116-9fdf-3849dd4dead4
+    resourceVersion: "115"
+    uid: 97a1807c-a741-473a-9043-ae475bcc5ce6
   rules:
   - nonResourceURLs:
     - /healthz
@@ -4157,12 +4163,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:service-account-issuer-discovery
-    resourceVersion: "140"
-    uid: 629119f7-c55d-4316-bfb1-f04b851cb63c
+    resourceVersion: "139"
+    uid: a8f3d961-4a15-4b2b-8350-16d84edaa90c
   rules:
   - nonResourceURLs:
     - /.well-known/openid-configuration
@@ -4176,12 +4182,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:volume-scheduler
-    resourceVersion: "135"
-    uid: 44b0ec94-8318-473b-bbf0-259a63ef9ba1
+    resourceVersion: "134"
+    uid: 75d109d3-1aa6-44f0-955c-b602dcf1dd39
   rules:
   - apiGroups:
     - ""
@@ -4220,13 +4226,13 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:49Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
       rbac.authorization.k8s.io/aggregate-to-edit: "true"
     name: view
-    resourceVersion: "338"
-    uid: df11ed7f-1228-40e7-9a8e-6fdebd926efb
+    resourceVersion: "365"
+    uid: 925ba4c8-a5c2-4a39-8f4c-ad8452aaf212
   rules:
   - apiGroups:
     - ""
@@ -4365,12 +4371,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: cluster-admin
-    resourceVersion: "177"
-    uid: d98b8f9c-3474-4fa0-8870-e11250ea29c9
+    resourceVersion: "175"
+    uid: c1a031cc-25e8-4b65-b343-f994ec5526f7
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4382,10 +4388,10 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRoleBinding
   metadata:
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: kubeadm:cluster-admins
-    resourceVersion: "249"
-    uid: be6136a4-126f-412f-b086-c1231a1e1eed
+    resourceVersion: "239"
+    uid: 41f3cdfa-fab0-42ce-bcaf-14c812b44b63
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4397,10 +4403,10 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRoleBinding
   metadata:
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: kubeadm:get-nodes
-    resourceVersion: "261"
-    uid: 1b9fe904-9e02-4f04-b0b1-908088be57fb
+    resourceVersion: "250"
+    uid: e925b5a7-d76e-46c4-b690-20aedb500824
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4412,10 +4418,10 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRoleBinding
   metadata:
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: kubeadm:kubelet-bootstrap
-    resourceVersion: "262"
-    uid: b7fd41e7-c81b-4fb3-8bf4-8785600aef8f
+    resourceVersion: "251"
+    uid: 37159893-d5f4-4810-8c93-00540f7024f5
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4427,10 +4433,10 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRoleBinding
   metadata:
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: kubeadm:node-autoapprove-bootstrap
-    resourceVersion: "263"
-    uid: ae778b4c-1f48-40d3-92a8-5598cd05dbb9
+    resourceVersion: "252"
+    uid: cd0b3472-d616-4d9b-82a5-84e1863206ee
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4442,10 +4448,10 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRoleBinding
   metadata:
-    creationTimestamp: "2024-06-30T09:07:51Z"
+    creationTimestamp: "2024-09-19T14:29:36Z"
     name: kubeadm:node-autoapprove-certificate-rotation
-    resourceVersion: "264"
-    uid: 53abcbe2-63a3-4b7c-b206-df4ae5e5eb82
+    resourceVersion: "253"
+    uid: 6a4657d5-ebd2-4aab-bfd1-0f2fbde7c25f
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4457,10 +4463,10 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRoleBinding
   metadata:
-    creationTimestamp: "2024-06-30T09:07:58Z"
+    creationTimestamp: "2024-09-19T14:29:37Z"
     name: kubeadm:node-proxier
-    resourceVersion: "291"
-    uid: b7221516-7666-4e0b-b4c2-cbe343b06cde
+    resourceVersion: "290"
+    uid: 1ea3e946-ff47-42eb-839c-7481b0fad01c
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4475,10 +4481,10 @@ items:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
         {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"kubiscan-clusterrolebinding"},"roleRef":{"apiGroup":"","kind":"ClusterRole","name":"kubiscan-clusterrole"},"subjects":[{"apiGroup":"","kind":"ServiceAccount","name":"kubiscan-sa","namespace":"default"}]}
-    creationTimestamp: "2024-07-15T09:36:56Z"
+    creationTimestamp: "2024-09-19T14:34:50Z"
     name: kubiscan-clusterrolebinding
-    resourceVersion: "46925"
-    uid: fb2b2022-16fd-4a4f-b269-f796205644f2
+    resourceVersion: "655"
+    uid: 2a58f902-dd74-49b9-bb82-6d0c92d347f5
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4490,10 +4496,28 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRoleBinding
   metadata:
-    creationTimestamp: "2024-06-30T09:07:59Z"
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"kubiscan-clusterrolebinding2"},"roleRef":{"apiGroup":"","kind":"ClusterRole","name":"kubiscan-clusterrole2"},"subjects":[{"apiGroup":"","kind":"ServiceAccount","name":"kubiscan-sa2","namespace":"default"}]}
+    creationTimestamp: "2024-09-19T14:34:50Z"
+    name: kubiscan-clusterrolebinding2
+    resourceVersion: "660"
+    uid: c3f027ef-4ea2-41c7-994b-d88d0419b2c6
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: kubiscan-clusterrole2
+  subjects:
+  - kind: ServiceAccount
+    name: kubiscan-sa2
+    namespace: default
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    creationTimestamp: "2024-09-19T14:29:37Z"
     name: minikube-rbac
-    resourceVersion: "295"
-    uid: d3844543-d22b-44a7-bded-c8147ce3a45c
+    resourceVersion: "296"
+    uid: c0d5a40d-d70a-4fa0-aa51-5724475ac549
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4508,12 +4532,12 @@ items:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
         {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"labels":{"addonmanager.kubernetes.io/mode":"EnsureExists"},"name":"storage-provisioner"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"system:persistent-volume-provisioner"},"subjects":[{"kind":"ServiceAccount","name":"storage-provisioner","namespace":"kube-system"}]}
-    creationTimestamp: "2024-06-30T09:08:07Z"
+    creationTimestamp: "2024-09-19T14:29:38Z"
     labels:
       addonmanager.kubernetes.io/mode: EnsureExists
     name: storage-provisioner
-    resourceVersion: "381"
-    uid: 4ed6ceb2-d633-45b2-98b8-2af0677919b0
+    resourceVersion: "312"
+    uid: 9d46a6a8-000d-4d2f-a21b-7c2d09cf87d1
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4527,12 +4551,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:basic-user
-    resourceVersion: "180"
-    uid: 90221655-404c-4a1c-bd3e-d05a6ab42453
+    resourceVersion: "178"
+    uid: 9b38ada3-b9c4-46e5-8268-1efaac40bc57
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4546,12 +4570,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:attachdetach-controller
-    resourceVersion: "189"
-    uid: 30050993-d9c8-47f8-b0be-47ec71f14545
+    resourceVersion: "187"
+    uid: 7073680e-41f8-450b-af25-b40f66f6b8e7
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4565,12 +4589,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:certificate-controller
-    resourceVersion: "215"
-    uid: 97c71141-4c5e-4459-bdb3-22fdab974921
+    resourceVersion: "213"
+    uid: 035f7626-e19b-49fa-8a2a-87aad3745b57
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4584,12 +4608,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:clusterrole-aggregation-controller
-    resourceVersion: "190"
-    uid: 0f33d0f6-7661-4118-bd7a-41cbbd9dcf4f
+    resourceVersion: "188"
+    uid: c985b1c3-6dd7-47d6-8ba6-1e921ad746b7
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4603,12 +4627,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:cronjob-controller
-    resourceVersion: "191"
-    uid: 2c8e67fa-df2d-4edd-ad50-fcd3638d3c4f
+    resourceVersion: "189"
+    uid: 075e02c4-c12b-4586-9e2c-2bac2ee542b4
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4622,12 +4646,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:daemon-set-controller
-    resourceVersion: "192"
-    uid: a89565c4-7efc-4646-b74e-230ab0f9f11e
+    resourceVersion: "190"
+    uid: 90f1786a-7683-4779-8de9-5aab19a98f1a
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4641,12 +4665,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:deployment-controller
-    resourceVersion: "193"
-    uid: 109a2154-db14-4f7e-b8ca-3cf6f80dfece
+    resourceVersion: "191"
+    uid: c57f133c-80fc-4251-8954-fc7706364803
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4660,12 +4684,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:disruption-controller
-    resourceVersion: "194"
-    uid: d58ae5a6-46cd-42a5-b3b8-0f28a0b330d5
+    resourceVersion: "192"
+    uid: ab11c68a-835b-44a3-88bb-7f623e294796
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4679,12 +4703,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:endpoint-controller
-    resourceVersion: "195"
-    uid: 02bc68c3-c4ef-472a-bc87-2a473153fd6b
+    resourceVersion: "193"
+    uid: da67905b-8d2a-4617-95c7-5052a0cf1b22
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4698,12 +4722,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:endpointslice-controller
-    resourceVersion: "196"
-    uid: 17cc3545-216d-4a41-b2c6-9680305d013d
+    resourceVersion: "194"
+    uid: a875c1a7-ff38-478f-9b64-ac2a952a40b2
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4717,12 +4741,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:endpointslicemirroring-controller
-    resourceVersion: "197"
-    uid: b5152c89-21db-451f-b0a8-2c5b531cf6e1
+    resourceVersion: "195"
+    uid: 5e7228c9-f9e2-4807-9b55-507bcd311059
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4736,12 +4760,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:ephemeral-volume-controller
-    resourceVersion: "199"
-    uid: 4cb75c0c-c643-423f-807d-91446b3e07e1
+    resourceVersion: "197"
+    uid: 45501e9e-3023-4bf9-8bae-2d0bb590b7a3
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4755,12 +4779,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:expand-controller
-    resourceVersion: "198"
-    uid: 10f02886-e0a8-4cd2-ade8-e31fc81b621e
+    resourceVersion: "196"
+    uid: 0ee51161-93fb-4f84-a8a3-ac4ba76245f9
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4774,12 +4798,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:generic-garbage-collector
-    resourceVersion: "200"
-    uid: 565ec9a6-4ea1-4c1a-a795-567fc2c6f5c7
+    resourceVersion: "198"
+    uid: df60833a-9475-40c3-806c-bed19a80c313
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4793,12 +4817,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:horizontal-pod-autoscaler
-    resourceVersion: "201"
-    uid: 09e100c9-da2f-4117-8640-6c6033485834
+    resourceVersion: "199"
+    uid: 533d6a45-c86b-4505-bcd1-eba2d8597b85
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4812,12 +4836,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:job-controller
-    resourceVersion: "202"
-    uid: d5237c7b-db84-4385-9b16-c60c233ff7f4
+    resourceVersion: "200"
+    uid: 3429fd37-6b63-4a02-a664-eacf26dce141
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4831,12 +4855,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:legacy-service-account-token-cleaner
-    resourceVersion: "221"
-    uid: 12578326-2fc7-4a6f-a3fe-62c4d602e512
+    resourceVersion: "219"
+    uid: 19625e9d-4128-41dd-884e-ad726aee13b3
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4850,12 +4874,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:namespace-controller
-    resourceVersion: "203"
-    uid: 23e347de-dad7-48e4-969f-46191673dcaf
+    resourceVersion: "201"
+    uid: 1e238cfd-3b6c-48b5-b49f-be99ea3475fe
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4869,12 +4893,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:node-controller
-    resourceVersion: "204"
-    uid: 4fc594f7-7cb2-452e-ac27-f457562447bb
+    resourceVersion: "202"
+    uid: 8bfe60b6-9ab0-4d61-9226-0b3710d8d4a1
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4888,12 +4912,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:persistent-volume-binder
-    resourceVersion: "205"
-    uid: 57566787-9a79-49c3-b478-55353633aba8
+    resourceVersion: "203"
+    uid: 78a95139-18fc-4d5b-a2bc-67c06e775172
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4907,12 +4931,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:pod-garbage-collector
-    resourceVersion: "206"
-    uid: f762dbe9-c6c7-4eee-8725-36c0b3b92afc
+    resourceVersion: "204"
+    uid: 8db47da4-8777-4860-9262-9b3d2ed40579
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4926,12 +4950,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:pv-protection-controller
-    resourceVersion: "217"
-    uid: 38d01b35-e01f-4d39-a3b4-137e78b21d93
+    resourceVersion: "215"
+    uid: 44f6a490-2b13-472f-abe1-30dc7dd3befa
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4945,12 +4969,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:pvc-protection-controller
-    resourceVersion: "216"
-    uid: af3d67e4-fc05-43c3-97a1-dad1806f580d
+    resourceVersion: "214"
+    uid: f0353577-a55b-42be-84e3-125045a5da41
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4964,12 +4988,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:replicaset-controller
-    resourceVersion: "207"
-    uid: ecf763c0-a14c-44f8-b2ce-71ae305d9b68
+    resourceVersion: "205"
+    uid: 03f843e9-a282-4f98-83fa-db317d5647dd
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -4983,12 +5007,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:replication-controller
-    resourceVersion: "208"
-    uid: bc338d6b-722a-42d4-b087-fa98e0a2352d
+    resourceVersion: "206"
+    uid: 239317bc-7596-4db3-b6d1-92bb39b7841e
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5002,12 +5026,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:resourcequota-controller
-    resourceVersion: "209"
-    uid: c702c238-c147-45b4-8664-d7ec6e0b06d9
+    resourceVersion: "207"
+    uid: e34c059a-eae2-4e79-a356-8627b72a4564
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5021,12 +5045,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:root-ca-cert-publisher
-    resourceVersion: "219"
-    uid: c211630a-2a4c-47fe-80cd-678454b1ec33
+    resourceVersion: "217"
+    uid: 929604c4-af3e-42a2-9dd9-0daf09cffe64
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5040,12 +5064,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:route-controller
-    resourceVersion: "210"
-    uid: ee557714-4963-4f5b-b2ce-32256da726da
+    resourceVersion: "208"
+    uid: 4d1d55f6-dc54-4b62-9c45-904be4001178
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5059,12 +5083,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:service-account-controller
-    resourceVersion: "211"
-    uid: 0a0ac775-2946-4f29-9a07-9156173f2305
+    resourceVersion: "209"
+    uid: 4eace58b-eb34-47c1-aa9c-76fa09d6dc35
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5078,12 +5102,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:service-controller
-    resourceVersion: "212"
-    uid: 9e6350f2-bf5b-468e-bcd0-ad8a9f87461d
+    resourceVersion: "210"
+    uid: c7d58156-c931-4fb0-80f4-c8f304dd4f4a
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5097,12 +5121,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:statefulset-controller
-    resourceVersion: "213"
-    uid: dbe013c8-4690-4162-89c2-fb5994c10dbf
+    resourceVersion: "211"
+    uid: 2e825d82-1f53-41c8-8262-122ad2dc4051
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5116,12 +5140,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:ttl-after-finished-controller
-    resourceVersion: "218"
-    uid: 65c41af5-5773-4a1e-adb8-25f2a6a488a5
+    resourceVersion: "216"
+    uid: bdae9244-9a50-45f9-b6d4-d90588cc1cbf
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5135,12 +5159,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:ttl-controller
-    resourceVersion: "214"
-    uid: a135afd9-a8d8-4031-be9d-51ac8caa44ea
+    resourceVersion: "212"
+    uid: a8ce4948-c232-4257-b8ff-3d46d179846d
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5154,12 +5178,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:controller:validatingadmissionpolicy-status-controller
-    resourceVersion: "220"
-    uid: b34ba74b-7c62-458d-ac79-d5ad55f2ed47
+    resourceVersion: "218"
+    uid: 4a741173-41f5-41da-82ff-648bd8a30493
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5171,10 +5195,10 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRoleBinding
   metadata:
-    creationTimestamp: "2024-06-30T09:07:58Z"
+    creationTimestamp: "2024-09-19T14:29:37Z"
     name: system:coredns
-    resourceVersion: "283"
-    uid: 3be4fc06-a754-4718-bf67-54a1e2bad8ce
+    resourceVersion: "281"
+    uid: f29dbb30-d7dd-43b8-a141-3795b5c9a162
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5188,12 +5212,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:discovery
-    resourceVersion: "179"
-    uid: 5c01d184-6b7a-4e63-ae92-ae43fe6c205f
+    resourceVersion: "177"
+    uid: b734cd4c-c23c-432b-b90c-a18d89115ba7
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5207,12 +5231,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:kube-controller-manager
-    resourceVersion: "183"
-    uid: 931aed3f-7462-4537-8990-6884df809831
+    resourceVersion: "181"
+    uid: a3145013-954b-4adb-9a87-80d1a054a1c4
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5226,12 +5250,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:kube-dns
-    resourceVersion: "184"
-    uid: 21ab9de2-38fc-4c8f-a6b9-9e5a67400a12
+    resourceVersion: "182"
+    uid: a7bc6c04-ed56-4a4a-b7c5-6283f139f83b
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5245,12 +5269,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:kube-scheduler
-    resourceVersion: "185"
-    uid: fe0ea8c1-0485-4458-b340-89bfe04179c6
+    resourceVersion: "183"
+    uid: 497a302d-8696-42b2-ac45-c21f34b03aa5
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5264,12 +5288,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:monitoring
-    resourceVersion: "178"
-    uid: 3a1dd78f-5544-48d0-936f-ba8808230928
+    resourceVersion: "176"
+    uid: 8d0af942-6ac2-4bc7-a4c3-fa1506d2bbbc
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5283,12 +5307,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:node
-    resourceVersion: "187"
-    uid: 18aa0e62-3446-421f-b704-9bbed7e28dc9
+    resourceVersion: "185"
+    uid: 0001617a-e1ba-40e8-90f3-ad04690871f2
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5298,12 +5322,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:node-proxier
-    resourceVersion: "182"
-    uid: 98faf1d2-9cd6-4162-9a9c-7eca494ff991
+    resourceVersion: "180"
+    uid: cd518244-5279-4c55-bbbd-9bdf165fc4fd
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5317,12 +5341,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:public-info-viewer
-    resourceVersion: "181"
-    uid: cd042e33-0f06-481c-93ec-f575fc1423d0
+    resourceVersion: "179"
+    uid: 62a77a09-3754-4f70-9370-dff9bbf26415
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5339,12 +5363,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:service-account-issuer-discovery
-    resourceVersion: "188"
-    uid: 4d8a0a5e-9210-40bf-b41a-dc3f0de22d7f
+    resourceVersion: "186"
+    uid: 38c31db2-8f8f-4d4d-bddf-0a980ae5eb22
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5358,12 +5382,12 @@ items:
   metadata:
     annotations:
       rbac.authorization.kubernetes.io/autoupdate: "true"
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:35Z"
     labels:
       kubernetes.io/bootstrapping: rbac-defaults
     name: system:volume-scheduler
-    resourceVersion: "186"
-    uid: 33dbd939-2880-4bd3-baa7-9d75ad587fd2
+    resourceVersion: "184"
+    uid: 5badb672-9bc2-431a-b606-bca771f6dae0
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -5382,20 +5406,67 @@ items:
   data:
     ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCakNDQWU2Z0F3SUJBZ0lCQVRBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwdGFXNXAKYTNWaVpVTkJNQjRYRFRJME1EWXlPVEE1TURjd05Wb1hEVE0wTURZeU9EQTVNRGN3TlZvd0ZURVRNQkVHQTFVRQpBeE1LYldsdWFXdDFZbVZEUVRDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTDEvCmx1WW1waTR4QlpLR0NoUjE1dXBaMGIzbTcwMW9EdFozNlppTzVDaWJmdDA3TnFKRHpSYXBYekVPOUx5M1pUb0IKTkVYSlF3c3dlWDBJNDBmenUrTEVtTUpvM3djTEdkdXl0YkVtbmRib0FXbmYzUEdwVm1XZE16SExLa0U3Q2tUeQowdnpJV1ZFVUNGNHlzc2dFUXIrMThiY3lMM3VmS3FaYjRZV09BNFlQTER2U1RIaGFLcEhjQ2NSYjI3Y3EyWVh2CjdMbVhGQWQ3c251cjFMbG5LVTBtT29VU0RWVjB5eFU4Q3AxbyszUVpOVGxMWDMyZXRQUHM4YkNhVnpvQUVBSTkKQTlOZHNxUE9yZUJ1UDk2dnBhTnVoT2UwelZBOW1DSTduMXNGamVSNDRZbmpYa2o4WEUvenFSSUM5Tmx6WFprVgplbFZ6SjlKZDRtclpnU0llWllrQ0F3RUFBYU5oTUY4d0RnWURWUjBQQVFIL0JBUURBZ0trTUIwR0ExVWRKUVFXCk1CUUdDQ3NHQVFVRkJ3TUNCZ2dyQmdFRkJRY0RBVEFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQjBHQTFVZERnUVcKQkJUMFVCeS9kdkNoNkhmRDFlRUdBd0kwbzZLWWVUQU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFlQ2NYZmxZYgp0NTlXQ3ZGRWY1bGI0ZU1GaGxHd255djBUQ0Z4K0x5ZmJpb3F4TkcyZ3ZiNmROZ2sxM1ptTGtvQ1hyOFhZNnY2Ck5oRk9jckJoY1o4a0ZnZ3RvM0pIVzA2aXBhcERtTnBnZ0I0TVBJQXlpSnV1aXp0S0thWnN6Z00ybk9OOC9wU3EKS0JpRktTWkJYZ3lmSXBpaDBDdUhKYWlENWxmdUVNQ1lUTUp6NURPdGt2UDZvcVIvSnFNcTFOUS8xKzd3dDlBOAp5SFVPZXp5VllGV2s5VzBWRC9kdlIzQzhobEFTdVJacnVFT2VqeGpsMnA1ekMzRHhSOGFSZ1ZoQzIrdm84V1puCnMwMmx0bG10TmNUbnh2ZkNERlpRSGFiaXMrMjNzU25QaEwrTWhzeG51UmZJU3dGSnFjWUMySkxPSEtSdGt5eDkKcFFxK2Q1dWh5N2NLMXc9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
     namespace: ZGVmYXVsdA==
-    token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNkltRmlhRlU1Y0VkeGNEQmZPRXhSZW1kck9VeGZkMjl6ZEhKcFlXWkpjRnAxYjBKalRXeHhhazVCTmxVaWZRLmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUprWldaaGRXeDBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpXTnlaWFF1Ym1GdFpTSTZJbXQxWW1selkyRnVMWE5oTFhObFkzSmxkQ0lzSW10MVltVnlibVYwWlhNdWFXOHZjMlZ5ZG1salpXRmpZMjkxYm5RdmMyVnlkbWxqWlMxaFkyTnZkVzUwTG01aGJXVWlPaUpyZFdKcGMyTmhiaTF6WVNJc0ltdDFZbVZ5Ym1WMFpYTXVhVzh2YzJWeWRtbGpaV0ZqWTI5MWJuUXZjMlZ5ZG1salpTMWhZMk52ZFc1MExuVnBaQ0k2SW1Jek9HTTBaRFk0TFdVMk5USXROR1U0T1MxaE1UWTRMV00yTURobFpqazNPVGd5WmlJc0luTjFZaUk2SW5ONWMzUmxiVHB6WlhKMmFXTmxZV05qYjNWdWREcGtaV1poZFd4ME9tdDFZbWx6WTJGdUxYTmhJbjAuQWZNdDFIUHF6bjZKZzc0R2hCd1JhWUc5SFh4N3dpeUFmZ3VpaU1Cb3hXbjVCbmRidWxveEFYMURYazE0djVKYXdrU0Q2dHFrTnNnOFh5MmdMUzhwTDdRdGRtbW41emxvSWZNUnNOcUxqTWZwb0xFWThBWU5QNk9nSXRtTG1pX1NhalhNTGp3YjR3Yjlpb1FRekw0MlJkWnppWHRLdkk0ODM5eDFOZTZfQnNrUVE4dFhQbGtQVG5yWFZIN1puTnpLMU9HOXpUekdIWlZhX0tGXzd6V0cxbUx0MlRpM09ib2w2YnZ2NERmTnc2R3A3OGpuM1VHN05rcURhcUdxbHluWHduamNCZktHWHpNendNTURQQ2lidV9QZklzTjRGZTZBMU9DTlNFZjVvdlltLUVlblVGb0pzN0lqUjAzb0JvODYzOFhVODZMaGlXX1BUODRUYkRnaWhR
+    token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklrVmZPRVJPVGxjMk9EQjBNbVF0WmpkSWJHZFhjblZPT1ZCYWVFOHhVMnBwVlcxMU9DMDVkVTVaTWswaWZRLmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUprWldaaGRXeDBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpXTnlaWFF1Ym1GdFpTSTZJbXQxWW1selkyRnVMWE5oTFhSdmEyVnVJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpYSjJhV05sTFdGalkyOTFiblF1Ym1GdFpTSTZJbXQxWW1selkyRnVMWE5oSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXpaWEoyYVdObExXRmpZMjkxYm5RdWRXbGtJam9pWkRrNE16VXhOVGd0T1RjMVpDMDBaV0poTFdJMU1ETXRNV05oTXpobE5qY3hZalk1SWl3aWMzVmlJam9pYzNsemRHVnRPbk5sY25acFkyVmhZMk52ZFc1ME9tUmxabUYxYkhRNmEzVmlhWE5qWVc0dGMyRWlmUS5JbUJCUWlwbUhrVlRFc3JIVXc2T0dWUmtrVlFpZTFqR21NeDcxcjJfMGRMb0dHREo2TGM5ZnF3MjYtNjlSYWdrX3V3RWZqVFZoQ1c3WjNFSWJWeFdsUlI2MkxxSVN4bGZ3UDBISVRpVDVCRzRaUE9ZUG9uRExHTEtTMWdycFV6WEcwSkhnQUNhUlFpS2l3cU1sM2tQVEdxeU5KTmFWaTNIRmdKMTlRUUJaVElsbWdQQlRFVEs2bVdiNmpqMDk4VDlzdWZ4QkhvNEpIUVhkYjBzUTl6bmZZakhTeDFGNWNBcXppT2NPR0dfMWtEblBlei0zVUlhMmhjaVRhV2RMTlBiaDFpTEdmNkxSWmVlcTlhaVJnVGVPVzVNMkZlY3JxalpPWGhzcURaLXNTUE56M2s1akJDVUxhT0ZpQkhPNFVOZjNaX3ZaQmdDNDlueElZcmdCRkZCUlE=
   kind: Secret
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"v1","kind":"Secret","metadata":{"annotations":{"kubernetes.io/service-account.name":"kubiscan-sa"},"name":"kubiscan-sa-secret","namespace":"default"},"type":"kubernetes.io/service-account-token"}
+        {"apiVersion":"v1","kind":"Secret","metadata":{"annotations":{"kubernetes.io/service-account.name":"kubiscan-sa"},"name":"kubiscan-sa-token","namespace":"default"},"type":"kubernetes.io/service-account-token"}
       kubernetes.io/service-account.name: kubiscan-sa
-      kubernetes.io/service-account.uid: b38c4d68-e652-4e89-a168-c608ef97982f
-    creationTimestamp: "2024-07-15T09:36:56Z"
-    name: kubiscan-sa-secret
+      kubernetes.io/service-account.uid: d9835158-975d-4eba-b503-1ca38e671b69
+    creationTimestamp: "2024-09-19T14:34:50Z"
+    name: kubiscan-sa-token
     namespace: default
-    resourceVersion: "46926"
-    uid: 3f724bc6-a7e8-40c5-9511-694ca9e25618
+    resourceVersion: "656"
+    uid: 194d2cac-d9a0-4d81-9472-38410c7d03ef
   type: kubernetes.io/service-account-token
+- apiVersion: v1
+  data:
+    ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCakNDQWU2Z0F3SUJBZ0lCQVRBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwdGFXNXAKYTNWaVpVTkJNQjRYRFRJME1EWXlPVEE1TURjd05Wb1hEVE0wTURZeU9EQTVNRGN3TlZvd0ZURVRNQkVHQTFVRQpBeE1LYldsdWFXdDFZbVZEUVRDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTDEvCmx1WW1waTR4QlpLR0NoUjE1dXBaMGIzbTcwMW9EdFozNlppTzVDaWJmdDA3TnFKRHpSYXBYekVPOUx5M1pUb0IKTkVYSlF3c3dlWDBJNDBmenUrTEVtTUpvM3djTEdkdXl0YkVtbmRib0FXbmYzUEdwVm1XZE16SExLa0U3Q2tUeQowdnpJV1ZFVUNGNHlzc2dFUXIrMThiY3lMM3VmS3FaYjRZV09BNFlQTER2U1RIaGFLcEhjQ2NSYjI3Y3EyWVh2CjdMbVhGQWQ3c251cjFMbG5LVTBtT29VU0RWVjB5eFU4Q3AxbyszUVpOVGxMWDMyZXRQUHM4YkNhVnpvQUVBSTkKQTlOZHNxUE9yZUJ1UDk2dnBhTnVoT2UwelZBOW1DSTduMXNGamVSNDRZbmpYa2o4WEUvenFSSUM5Tmx6WFprVgplbFZ6SjlKZDRtclpnU0llWllrQ0F3RUFBYU5oTUY4d0RnWURWUjBQQVFIL0JBUURBZ0trTUIwR0ExVWRKUVFXCk1CUUdDQ3NHQVFVRkJ3TUNCZ2dyQmdFRkJRY0RBVEFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQjBHQTFVZERnUVcKQkJUMFVCeS9kdkNoNkhmRDFlRUdBd0kwbzZLWWVUQU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFlQ2NYZmxZYgp0NTlXQ3ZGRWY1bGI0ZU1GaGxHd255djBUQ0Z4K0x5ZmJpb3F4TkcyZ3ZiNmROZ2sxM1ptTGtvQ1hyOFhZNnY2Ck5oRk9jckJoY1o4a0ZnZ3RvM0pIVzA2aXBhcERtTnBnZ0I0TVBJQXlpSnV1aXp0S0thWnN6Z00ybk9OOC9wU3EKS0JpRktTWkJYZ3lmSXBpaDBDdUhKYWlENWxmdUVNQ1lUTUp6NURPdGt2UDZvcVIvSnFNcTFOUS8xKzd3dDlBOAp5SFVPZXp5VllGV2s5VzBWRC9kdlIzQzhobEFTdVJacnVFT2VqeGpsMnA1ekMzRHhSOGFSZ1ZoQzIrdm84V1puCnMwMmx0bG10TmNUbnh2ZkNERlpRSGFiaXMrMjNzU25QaEwrTWhzeG51UmZJU3dGSnFjWUMySkxPSEtSdGt5eDkKcFFxK2Q1dWh5N2NLMXc9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    namespace: ZGVmYXVsdA==
+    token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklrVmZPRVJPVGxjMk9EQjBNbVF0WmpkSWJHZFhjblZPT1ZCYWVFOHhVMnBwVlcxMU9DMDVkVTVaTWswaWZRLmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUprWldaaGRXeDBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpXTnlaWFF1Ym1GdFpTSTZJbXQxWW1selkyRnVMWE5oTWkxMGIydGxiaUlzSW10MVltVnlibVYwWlhNdWFXOHZjMlZ5ZG1salpXRmpZMjkxYm5RdmMyVnlkbWxqWlMxaFkyTnZkVzUwTG01aGJXVWlPaUpyZFdKcGMyTmhiaTF6WVRJaUxDSnJkV0psY201bGRHVnpMbWx2TDNObGNuWnBZMlZoWTJOdmRXNTBMM05sY25acFkyVXRZV05qYjNWdWRDNTFhV1FpT2lKaVl6aGlZV0kwTnkxbE5UZGlMVFE0WTJVdE9UazBOaTAzWXpVNU5tRmlOakkyTVdJaUxDSnpkV0lpT2lKemVYTjBaVzA2YzJWeWRtbGpaV0ZqWTI5MWJuUTZaR1ZtWVhWc2REcHJkV0pwYzJOaGJpMXpZVElpZlEua0xvSnZ2MVRocXQwamN3RzZpQl91VXZyRDdIcHU2c25HUXYtUUU3cDN6bWozb3l0ZE1ybnFIQTdDWURtejZjWmh5QUtzUDdDT2NNUXg2TmcyRk1rUzNubXh6T1Y4ZXpxaWpHcUZ6dFRYbHN4OGdfSU1ncEFpYWFKQlpVcnhrbTgxdmNGQWVqNE1CZ1Fmbi1qUU5COXJ2d3lzWDVSX29Cb0hiNGl4UXhKd0xjaFdJak5CVzV6WjlsQktCYlFNa0VQOGV2ZzZaRk5iTTRYWUdRQXhkaG56eGVGVlp2NnNuMF83aF9jSnlmWWFkcUFpTC16TWRCdWNhN1BUdy1KMU1GT2tJa3VpVzYwVk51ODM1UnM0RVI0LTJnaF9pMlRDZjc0TXBXOEtDNHV6Q09PTWk4Z1lmOUZ1SXlheEJXMlBVUURvc3hqYlhlR2ZoS3piRjdnYVJLUkZB
+  kind: Secret
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","data":{"ca.crt":"LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCakNDQWU2Z0F3SUJBZ0lCQVRBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwdGFXNXAKYTNWaVpVTkJNQjRYRFRJME1EWXlPVEE1TURjd05Wb1hEVE0wTURZeU9EQTVNRGN3TlZvd0ZURVRNQkVHQTFVRQpBeE1LYldsdWFXdDFZbVZEUVRDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTDEvCmx1WW1waTR4QlpLR0NoUjE1dXBaMGIzbTcwMW9EdFozNlppTzVDaWJmdDA3TnFKRHpSYXBYekVPOUx5M1pUb0IKTkVYSlF3c3dlWDBJNDBmenUrTEVtTUpvM3djTEdkdXl0YkVtbmRib0FXbmYzUEdwVm1XZE16SExLa0U3Q2tUeQowdnpJV1ZFVUNGNHlzc2dFUXIrMThiY3lMM3VmS3FaYjRZV09BNFlQTER2U1RIaGFLcEhjQ2NSYjI3Y3EyWVh2CjdMbVhGQWQ3c251cjFMbG5LVTBtT29VU0RWVjB5eFU4Q3AxbyszUVpOVGxMWDMyZXRQUHM4YkNhVnpvQUVBSTkKQTlOZHNxUE9yZUJ1UDk2dnBhTnVoT2UwelZBOW1DSTduMXNGamVSNDRZbmpYa2o4WEUvenFSSUM5Tmx6WFprVgplbFZ6SjlKZDRtclpnU0llWllrQ0F3RUFBYU5oTUY4d0RnWURWUjBQQVFIL0JBUURBZ0trTUIwR0ExVWRKUVFXCk1CUUdDQ3NHQVFVRkJ3TUNCZ2dyQmdFRkJRY0RBVEFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQjBHQTFVZERnUVcKQkJUMFVCeS9kdkNoNkhmRDFlRUdBd0kwbzZLWWVUQU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFlQ2NYZmxZYgp0NTlXQ3ZGRWY1bGI0ZU1GaGxHd255djBUQ0Z4K0x5ZmJpb3F4TkcyZ3ZiNmROZ2sxM1ptTGtvQ1hyOFhZNnY2Ck5oRk9jckJoY1o4a0ZnZ3RvM0pIVzA2aXBhcERtTnBnZ0I0TVBJQXlpSnV1aXp0S0thWnN6Z00ybk9OOC9wU3EKS0JpRktTWkJYZ3lmSXBpaDBDdUhKYWlENWxmdUVNQ1lUTUp6NURPdGt2UDZvcVIvSnFNcTFOUS8xKzd3dDlBOAp5SFVPZXp5VllGV2s5VzBWRC9kdlIzQzhobEFTdVJacnVFT2VqeGpsMnA1ekMzRHhSOGFSZ1ZoQzIrdm84V1puCnMwMmx0bG10TmNUbnh2ZkNERlpRSGFiaXMrMjNzU25QaEwrTWhzeG51UmZJU3dGSnFjWUMySkxPSEtSdGt5eDkKcFFxK2Q1dWh5N2NLMXc9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==","namespace":"ZGVmYXVsdA==","token":"ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklrVmZPRVJPVGxjMk9EQjBNbVF0WmpkSWJHZFhjblZPT1ZCYWVFOHhVMnBwVlcxMU9DMDVkVTVaTWswaWZRLmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUprWldaaGRXeDBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpXTnlaWFF1Ym1GdFpTSTZJbXQxWW1selkyRnVMWE5oTWkxMGIydGxiaUlzSW10MVltVnlibVYwWlhNdWFXOHZjMlZ5ZG1salpXRmpZMjkxYm5RdmMyVnlkbWxqWlMxaFkyTnZkVzUwTG01aGJXVWlPaUpyZFdKcGMyTmhiaTF6WVRJaUxDSnJkV0psY201bGRHVnpMbWx2TDNObGNuWnBZMlZoWTJOdmRXNTBMM05sY25acFkyVXRZV05qYjNWdWRDNTFhV1FpT2lKaVl6aGlZV0kwTnkxbE5UZGlMVFE0WTJVdE9UazBOaTAzWXpVNU5tRmlOakkyTVdJaUxDSnpkV0lpT2lKemVYTjBaVzA2YzJWeWRtbGpaV0ZqWTI5MWJuUTZaR1ZtWVhWc2REcHJkV0pwYzJOaGJpMXpZVElpZlEua0xvSnZ2MVRocXQwamN3RzZpQl91VXZyRDdIcHU2c25HUXYtUUU3cDN6bWozb3l0ZE1ybnFIQTdDWURtejZjWmh5QUtzUDdDT2NNUXg2TmcyRk1rUzNubXh6T1Y4ZXpxaWpHcUZ6dFRYbHN4OGdfSU1ncEFpYWFKQlpVcnhrbTgxdmNGQWVqNE1CZ1Fmbi1qUU5COXJ2d3lzWDVSX29Cb0hiNGl4UXhKd0xjaFdJak5CVzV6WjlsQktCYlFNa0VQOGV2ZzZaRk5iTTRYWUdRQXhkaG56eGVGVlp2NnNuMF83aF9jSnlmWWFkcUFpTC16TWRCdWNhN1BUdy1KMU1GT2tJa3VpVzYwVk51ODM1UnM0RVI0LTJnaF9pMlRDZjc0TXBXOEtDNHV6Q09PTWk4Z1lmOUZ1SXlheEJXMlBVUURvc3hqYlhlR2ZoS3piRjdnYVJLUkZB"},"kind":"Secret","metadata":{"annotations":{"kubernetes.io/service-account.name":"kubiscan-sa2","kubernetes.io/service-account.uid":"bc8bab47-e57b-48ce-9946-7c596ab6261b"},"creationTimestamp":"2024-09-19T14:34:50Z","name":"kubiscan-sa-token2","namespace":"default","resourceVersion":"661","uid":"d7c1d4ad-8366-4a71-aa66-2a6a7bbe416e"},"type":"kubernetes.io/service-account-token"}
+      kubernetes.io/service-account.name: kubiscan-sa2
+      kubernetes.io/service-account.uid: bc8bab47-e57b-48ce-9946-7c596ab6261b
+    creationTimestamp: "2024-09-19T15:56:52Z"
+    name: kubiscan-sa-token2
+    namespace: default
+    resourceVersion: "4463"
+    uid: c805f3e2-eed3-4408-b96a-a6e5e3727d3d
+  type: kubernetes.io/service-account-token
+- apiVersion: v1
+  data:
+    ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCakNDQWU2Z0F3SUJBZ0lCQVRBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwdGFXNXAKYTNWaVpVTkJNQjRYRFRJME1EWXlPVEE1TURjd05Wb1hEVE0wTURZeU9EQTVNRGN3TlZvd0ZURVRNQkVHQTFVRQpBeE1LYldsdWFXdDFZbVZEUVRDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTDEvCmx1WW1waTR4QlpLR0NoUjE1dXBaMGIzbTcwMW9EdFozNlppTzVDaWJmdDA3TnFKRHpSYXBYekVPOUx5M1pUb0IKTkVYSlF3c3dlWDBJNDBmenUrTEVtTUpvM3djTEdkdXl0YkVtbmRib0FXbmYzUEdwVm1XZE16SExLa0U3Q2tUeQowdnpJV1ZFVUNGNHlzc2dFUXIrMThiY3lMM3VmS3FaYjRZV09BNFlQTER2U1RIaGFLcEhjQ2NSYjI3Y3EyWVh2CjdMbVhGQWQ3c251cjFMbG5LVTBtT29VU0RWVjB5eFU4Q3AxbyszUVpOVGxMWDMyZXRQUHM4YkNhVnpvQUVBSTkKQTlOZHNxUE9yZUJ1UDk2dnBhTnVoT2UwelZBOW1DSTduMXNGamVSNDRZbmpYa2o4WEUvenFSSUM5Tmx6WFprVgplbFZ6SjlKZDRtclpnU0llWllrQ0F3RUFBYU5oTUY4d0RnWURWUjBQQVFIL0JBUURBZ0trTUIwR0ExVWRKUVFXCk1CUUdDQ3NHQVFVRkJ3TUNCZ2dyQmdFRkJRY0RBVEFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQjBHQTFVZERnUVcKQkJUMFVCeS9kdkNoNkhmRDFlRUdBd0kwbzZLWWVUQU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFlQ2NYZmxZYgp0NTlXQ3ZGRWY1bGI0ZU1GaGxHd255djBUQ0Z4K0x5ZmJpb3F4TkcyZ3ZiNmROZ2sxM1ptTGtvQ1hyOFhZNnY2Ck5oRk9jckJoY1o4a0ZnZ3RvM0pIVzA2aXBhcERtTnBnZ0I0TVBJQXlpSnV1aXp0S0thWnN6Z00ybk9OOC9wU3EKS0JpRktTWkJYZ3lmSXBpaDBDdUhKYWlENWxmdUVNQ1lUTUp6NURPdGt2UDZvcVIvSnFNcTFOUS8xKzd3dDlBOAp5SFVPZXp5VllGV2s5VzBWRC9kdlIzQzhobEFTdVJacnVFT2VqeGpsMnA1ekMzRHhSOGFSZ1ZoQzIrdm84V1puCnMwMmx0bG10TmNUbnh2ZkNERlpRSGFiaXMrMjNzU25QaEwrTWhzeG51UmZJU3dGSnFjWUMySkxPSEtSdGt5eDkKcFFxK2Q1dWh5N2NLMXc9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    namespace: ZGVmYXVsdA==
+    token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklrVmZPRVJPVGxjMk9EQjBNbVF0WmpkSWJHZFhjblZPT1ZCYWVFOHhVMnBwVlcxMU9DMDVkVTVaTWswaWZRLmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUprWldaaGRXeDBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpXTnlaWFF1Ym1GdFpTSTZJbXQxWW1selkyRnVMWE5oTWkxMGIydGxiaUlzSW10MVltVnlibVYwWlhNdWFXOHZjMlZ5ZG1salpXRmpZMjkxYm5RdmMyVnlkbWxqWlMxaFkyTnZkVzUwTG01aGJXVWlPaUpyZFdKcGMyTmhiaTF6WVRJaUxDSnJkV0psY201bGRHVnpMbWx2TDNObGNuWnBZMlZoWTJOdmRXNTBMM05sY25acFkyVXRZV05qYjNWdWRDNTFhV1FpT2lKaVl6aGlZV0kwTnkxbE5UZGlMVFE0WTJVdE9UazBOaTAzWXpVNU5tRmlOakkyTVdJaUxDSnpkV0lpT2lKemVYTjBaVzA2YzJWeWRtbGpaV0ZqWTI5MWJuUTZaR1ZtWVhWc2REcHJkV0pwYzJOaGJpMXpZVElpZlEua0xvSnZ2MVRocXQwamN3RzZpQl91VXZyRDdIcHU2c25HUXYtUUU3cDN6bWozb3l0ZE1ybnFIQTdDWURtejZjWmh5QUtzUDdDT2NNUXg2TmcyRk1rUzNubXh6T1Y4ZXpxaWpHcUZ6dFRYbHN4OGdfSU1ncEFpYWFKQlpVcnhrbTgxdmNGQWVqNE1CZ1Fmbi1qUU5COXJ2d3lzWDVSX29Cb0hiNGl4UXhKd0xjaFdJak5CVzV6WjlsQktCYlFNa0VQOGV2ZzZaRk5iTTRYWUdRQXhkaG56eGVGVlp2NnNuMF83aF9jSnlmWWFkcUFpTC16TWRCdWNhN1BUdy1KMU1GT2tJa3VpVzYwVk51ODM1UnM0RVI0LTJnaF9pMlRDZjc0TXBXOEtDNHV6Q09PTWk4Z1lmOUZ1SXlheEJXMlBVUURvc3hqYlhlR2ZoS3piRjdnYVJLUkZB
+  kind: Secret
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Secret","metadata":{"annotations":{"kubernetes.io/service-account.name":"kubiscan-sa2"},"name":"kubiscan-sa2-token","namespace":"default"},"type":"kubernetes.io/service-account-token"}
+      kubernetes.io/service-account.name: kubiscan-sa2
+      kubernetes.io/service-account.uid: bc8bab47-e57b-48ce-9946-7c596ab6261b
+    creationTimestamp: "2024-09-19T14:34:50Z"
+    name: kubiscan-sa2-token
+    namespace: default
+    resourceVersion: "661"
+    uid: d7c1d4ad-8366-4a71-aa66-2a6a7bbe416e
+  type: kubernetes.io/service-account-token
+- apiVersion: v1
+  data:
+    key: dmFsdWU=
+  kind: Secret
+  metadata:
+    creationTimestamp: "2024-09-22T11:43:27Z"
+    name: mysecret
+    namespace: default
+    resourceVersion: "13377"
+    uid: bf918476-9a2f-4e5f-ad4a-ab944e930e68
+  type: Opaque
 kind: List
 metadata:
   resourceVersion: ""
@@ -5407,37 +5478,23 @@ items:
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"another-app"},"name":"another-pod","namespace":"default"},"spec":{"containers":[{"env":[{"name":"ANOTHER_ENV_VAR","value":"another-value"},{"name":"ANOTHER_ACCESS_TOKEN","value":"another-access-token"},{"name":"ANOTHER_API_URL","value":"https://api.another-example.com"}],"image":"nginx:latest","name":"another-container","ports":[{"containerPort":80}],"volumeMounts":[{"mountPath":"/another/path","name":"another-volume"}]}],"volumes":[{"emptyDir":{},"name":"another-volume"}]}}
-    creationTimestamp: "2024-07-08T10:01:56Z"
-    labels:
-      app: another-app
-    name: another-pod
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"test1-no","namespace":"default"},"spec":{"containers":[{"image":"nginx","name":"test1-no"}],"serviceAccountName":"default"}}
+    creationTimestamp: "2024-09-19T14:34:50Z"
+    name: test1-no
     namespace: default
-    resourceVersion: "133946"
-    uid: 8681a2a8-5aa9-4c91-a7ab-05e74c5d7fe8
+    resourceVersion: "24387"
+    uid: e6c7d633-b914-4a12-b22e-6ee6d7792ed8
   spec:
     containers:
-    - env:
-      - name: ANOTHER_ENV_VAR
-        value: another-value
-      - name: ANOTHER_ACCESS_TOKEN
-        value: another-access-token
-      - name: ANOTHER_API_URL
-        value: https://api.another-example.com
-      image: nginx:latest
+    - image: nginx
       imagePullPolicy: Always
-      name: another-container
-      ports:
-      - containerPort: 80
-        protocol: TCP
+      name: test1-no
       resources: {}
       terminationMessagePath: /dev/termination-log
       terminationMessagePolicy: File
       volumeMounts:
-      - mountPath: /another/path
-        name: another-volume
       - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-ghqlg
+        name: kube-api-access-8x6hc
         readOnly: true
     dnsPolicy: ClusterFirst
     enableServiceLinks: true
@@ -5460,9 +5517,7 @@ items:
       operator: Exists
       tolerationSeconds: 300
     volumes:
-    - emptyDir: {}
-      name: another-volume
-    - name: kube-api-access-ghqlg
+    - name: kube-api-access-8x6hc
       projected:
         defaultMode: 420
         sources:
@@ -5483,84 +5538,185 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:15:01Z"
+      lastTransitionTime: "2024-09-23T07:21:06Z"
       status: "True"
       type: PodReadyToStartContainers
     - lastProbeTime: null
-      lastTransitionTime: "2024-07-08T10:01:56Z"
+      lastTransitionTime: "2024-09-19T14:34:50Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:15:01Z"
+      lastTransitionTime: "2024-09-23T07:21:06Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:15:01Z"
+      lastTransitionTime: "2024-09-23T07:21:06Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-07-08T10:01:56Z"
+      lastTransitionTime: "2024-09-19T14:34:50Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://c089692c6c36c32ee8802d54be911f455073a2c27912f3fdedf974721bd4485a
+    - containerID: docker://205a745d31a024ccc431ef35ecde3f892b9520e439b1cebddd19fdefce8328c5
       image: nginx:latest
       imageID: docker-pullable://nginx@sha256:04ba374043ccd2fc5c593885c0eacddebabd5ca375f9323666f28dfd5a9710e3
       lastState:
         terminated:
-          containerID: docker://85d468e5b6f2c7d98c7cdc97e09cf59fb80f7a5876ee5dfa9887fa9f2d92ceae
+          containerID: docker://58c856c5775014a7a39b029753d72f95612724fba3dd119d6543ad0fb18b0d52
           exitCode: 0
-          finishedAt: "2024-09-12T11:13:12Z"
+          finishedAt: "2024-09-23T07:20:47Z"
           reason: Completed
-          startedAt: "2024-09-12T09:27:47Z"
-      name: another-container
+          startedAt: "2024-09-23T07:20:07Z"
+      name: test1-no
       ready: true
-      restartCount: 37
+      restartCount: 9
       started: true
       state:
         running:
-          startedAt: "2024-09-12T11:15:01Z"
+          startedAt: "2024-09-23T07:21:05Z"
     hostIP: 192.168.49.2
     hostIPs:
     - ip: 192.168.49.2
     phase: Running
-    podIP: 10.244.0.189
+    podIP: 10.244.0.94
     podIPs:
-    - ip: 10.244.0.189
+    - ip: 10.244.0.94
     qosClass: BestEffort
-    startTime: "2024-07-08T10:01:56Z"
+    startTime: "2024-09-19T14:34:50Z"
 - apiVersion: v1
   kind: Pod
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"my-app"},"name":"my-pod","namespace":"default"},"spec":{"containers":[{"env":[{"name":"MY_ENV_VAR","value":"my-value"}],"image":"my-image:latest","name":"my-container","ports":[{"containerPort":80}],"volumeMounts":[{"mountPath":"/my/path","name":"my-volume"}]}],"volumes":[{"emptyDir":{},"name":"my-volume"}]}}
-    creationTimestamp: "2024-07-08T09:56:33Z"
-    labels:
-      app: my-app
-    name: my-pod
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"test1-yes","namespace":"default"},"spec":{"containers":[{"image":"nginx","name":"test1-yes"}],"serviceAccountName":"kubiscan-sa"}}
+    creationTimestamp: "2024-09-19T14:34:50Z"
+    name: test1-yes
     namespace: default
-    resourceVersion: "136557"
-    uid: 3ac3ea65-d985-4b3c-b85f-29d6ecf028fb
+    resourceVersion: "24388"
+    uid: 5446e117-9575-4cae-8a81-dd6e8944fd7e
   spec:
     containers:
-    - env:
-      - name: MY_ENV_VAR
-        value: my-value
-      image: my-image:latest
+    - image: nginx
       imagePullPolicy: Always
-      name: my-container
-      ports:
-      - containerPort: 80
-        protocol: TCP
+      name: test1-yes
       resources: {}
       terminationMessagePath: /dev/termination-log
       terminationMessagePolicy: File
       volumeMounts:
-      - mountPath: /my/path
-        name: my-volume
       - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-rrtg9
+        name: kube-api-access-zmzbl
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: kubiscan-sa
+    serviceAccountName: kubiscan-sa
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-zmzbl
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:11Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-19T14:34:50Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:11Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:11Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-19T14:34:50Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://3f419fdfacf376152e7036e4798cfceb56b7d6da52bd852ad482cfb0ccd22d09
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:04ba374043ccd2fc5c593885c0eacddebabd5ca375f9323666f28dfd5a9710e3
+      lastState:
+        terminated:
+          containerID: docker://0155715a4fd6088f6c89de3bd83ffa577e41deaa9c27e9032cc38301954a8c12
+          exitCode: 0
+          finishedAt: "2024-09-23T07:20:46Z"
+          reason: Completed
+          startedAt: "2024-09-23T07:20:12Z"
+      name: test1-yes
+      ready: true
+      restartCount: 9
+      started: true
+      state:
+        running:
+          startedAt: "2024-09-23T07:21:11Z"
+    hostIP: 192.168.49.2
+    hostIPs:
+    - ip: 192.168.49.2
+    phase: Running
+    podIP: 10.244.0.97
+    podIPs:
+    - ip: 10.244.0.97
+    qosClass: BestEffort
+    startTime: "2024-09-19T14:34:50Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"test2b-no","namespace":"default"},"spec":{"containers":[{"image":"nginx","name":"test2b-no","volumeMounts":[{"mountPath":"/var/run/secrets/kubernetes.io/serviceaccount","name":"secret-volume","readOnly":true}]}],"serviceAccountName":"default","volumes":[{"name":"secret-volume","secret":{"secretName":"kubiscan-sa2-token"}}]}}
+    creationTimestamp: "2024-09-19T16:07:02Z"
+    name: test2b-no
+    namespace: default
+    resourceVersion: "24496"
+    uid: 792e465a-2c17-4788-bf0e-6f8d2e705d35
+  spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: test2b-no
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: secret-volume
         readOnly: true
     dnsPolicy: ClusterFirst
     enableServiceLinks: true
@@ -5583,9 +5739,225 @@ items:
       operator: Exists
       tolerationSeconds: 300
     volumes:
-    - emptyDir: {}
-      name: my-volume
-    - name: kube-api-access-rrtg9
+    - name: secret-volume
+      secret:
+        defaultMode: 420
+        secretName: kubiscan-sa2-token
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:28Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-19T16:07:02Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:28Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:28Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-19T16:07:02Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://c3cd733c96c499016103774038b53ca9d5f4beea68fc385a35879d7460042dbb
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:04ba374043ccd2fc5c593885c0eacddebabd5ca375f9323666f28dfd5a9710e3
+      lastState:
+        terminated:
+          containerID: docker://a5693901945d0dc7594a69ae4e8ae86b8beee9aadb11ecbd6ce8a04d664bf6d0
+          exitCode: 0
+          finishedAt: "2024-09-23T07:20:47Z"
+          reason: Completed
+          startedAt: "2024-09-23T07:20:11Z"
+      name: test2b-no
+      ready: true
+      restartCount: 8
+      started: true
+      state:
+        running:
+          startedAt: "2024-09-23T07:21:27Z"
+    hostIP: 192.168.49.2
+    hostIPs:
+    - ip: 192.168.49.2
+    phase: Running
+    podIP: 10.244.0.101
+    podIPs:
+    - ip: 10.244.0.101
+    qosClass: BestEffort
+    startTime: "2024-09-19T16:07:02Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"test3-yes","namespace":"default"},"spec":{"containers":[{"image":"nginx","name":"test3-yes","volumeMounts":[{"mountPath":"/var/run/secrets/tokens2","name":"sa"},{"mountPath":"/var/run/secrets/kubernetes.io/serviceaccount","name":"secret-volume","readOnly":true}]}],"serviceAccountName":"default","volumes":[{"name":"sa","projected":{"sources":[{"serviceAccountToken":{"audience":"some-oidc-audience","expirationSeconds":86400,"path":"sa"}}]}},{"name":"secret-volume","secret":{"secretName":"kubiscan-sa-token"}}]}}
+    creationTimestamp: "2024-09-19T14:42:25Z"
+    name: test3-yes
+    namespace: default
+    resourceVersion: "24381"
+    uid: 7bdc1fd5-3f14-48fd-811b-c7b7198cc470
+  spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: test3-yes
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/tokens2
+        name: sa
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: secret-volume
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: sa
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            audience: some-oidc-audience
+            expirationSeconds: 86400
+            path: sa
+    - name: secret-volume
+      secret:
+        defaultMode: 420
+        secretName: kubiscan-sa-token
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:08Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-19T14:42:25Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:08Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:08Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-19T14:42:25Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://1baf0ce7c19e917e2f4cb89e47c51eac2f8477b8b3fe81d46289ddf4544618d8
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:04ba374043ccd2fc5c593885c0eacddebabd5ca375f9323666f28dfd5a9710e3
+      lastState:
+        terminated:
+          containerID: docker://15c27d210c062f2cc9681b6018fe9596205223596ae7f7d26fd7c36157c8df68
+          exitCode: 0
+          finishedAt: "2024-09-23T07:20:47Z"
+          reason: Completed
+          startedAt: "2024-09-23T07:20:05Z"
+      name: test3-yes
+      ready: true
+      restartCount: 9
+      started: true
+      state:
+        running:
+          startedAt: "2024-09-23T07:21:07Z"
+    hostIP: 192.168.49.2
+    hostIPs:
+    - ip: 192.168.49.2
+    phase: Running
+    podIP: 10.244.0.95
+    podIPs:
+    - ip: 10.244.0.95
+    qosClass: BestEffort
+    startTime: "2024-09-19T14:42:25Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"test5a-yes","namespace":"default"},"spec":{"containers":[{"image":"nginx","name":"test5ac1-no","volumeMounts":[{"mountPath":"/var/run/secrets/kubernetes.io/serviceaccount","name":"default-secret-volume","readOnly":true}]},{"image":"nginx","name":"test5ac2-yes"}],"serviceAccountName":"kubiscan-sa","volumes":[{"name":"default-secret-volume","secret":{"secretName":"my-custom-secret"}}]}}
+    creationTimestamp: "2024-09-23T06:17:19Z"
+    name: test5a-yes
+    namespace: default
+    resourceVersion: "21192"
+    uid: 262f8d25-933d-4f97-bfd3-4bb9bbc58414
+  spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: test5ac1-no
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: default-secret-volume
+        readOnly: true
+    - image: nginx
+      imagePullPolicy: Always
+      name: test5ac2-yes
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-db65s
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: kubiscan-sa
+    serviceAccountName: kubiscan-sa
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: default-secret-volume
+      secret:
+        defaultMode: 420
+        secretName: my-custom-secret
+    - name: kube-api-access-db65s
       projected:
         defaultMode: 420
         sources:
@@ -5606,78 +5978,88 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:57Z"
-      status: "True"
+      lastTransitionTime: "2024-09-23T06:17:19Z"
+      status: "False"
       type: PodReadyToStartContainers
     - lastProbeTime: null
-      lastTransitionTime: "2024-07-08T09:56:33Z"
+      lastTransitionTime: "2024-09-23T06:17:19Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-07-08T09:56:33Z"
-      message: 'containers with unready status: [my-container]'
+      lastTransitionTime: "2024-09-23T06:17:19Z"
+      message: 'containers with unready status: [test5ac1-no test5ac2-yes]'
       reason: ContainersNotReady
       status: "False"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-07-08T09:56:33Z"
-      message: 'containers with unready status: [my-container]'
+      lastTransitionTime: "2024-09-23T06:17:19Z"
+      message: 'containers with unready status: [test5ac1-no test5ac2-yes]'
       reason: ContainersNotReady
       status: "False"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-07-08T09:56:33Z"
+      lastTransitionTime: "2024-09-23T06:17:19Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - image: my-image:latest
+    - image: nginx
       imageID: ""
       lastState: {}
-      name: my-container
+      name: test5ac1-no
       ready: false
       restartCount: 0
       started: false
       state:
         waiting:
-          message: Back-off pulling image "my-image:latest"
-          reason: ImagePullBackOff
+          reason: ContainerCreating
+    - image: nginx
+      imageID: ""
+      lastState: {}
+      name: test5ac2-yes
+      ready: false
+      restartCount: 0
+      started: false
+      state:
+        waiting:
+          reason: ContainerCreating
     hostIP: 192.168.49.2
     hostIPs:
     - ip: 192.168.49.2
     phase: Pending
-    podIP: 10.244.0.187
-    podIPs:
-    - ip: 10.244.0.187
     qosClass: BestEffort
-    startTime: "2024-07-08T09:56:33Z"
+    startTime: "2024-09-23T06:17:19Z"
 - apiVersion: v1
   kind: Pod
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"test-app"},"name":"test-pod","namespace":"default"},"spec":{"containers":[{"args":["infinity"],"command":["sleep"],"image":"ubuntu","name":"test-container"}],"restartPolicy":"Always"}}
-    creationTimestamp: "2024-07-01T05:53:25Z"
-    labels:
-      app: test-app
-    name: test-pod
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"test6-yes","namespace":"default"},"spec":{"containers":[{"image":"nginx","name":"test6a-yes"},{"image":"nginx","name":"test6b-yes"}],"serviceAccountName":"kubiscan-sa"}}
+    creationTimestamp: "2024-09-23T06:17:19Z"
+    name: test6-yes
     namespace: default
-    resourceVersion: "133940"
-    uid: 1be16687-cb6d-49b0-af99-59b231e047d4
+    resourceVersion: "29789"
+    uid: f81d8ec1-dddd-4541-b1b0-4c46dd3bed97
   spec:
     containers:
-    - args:
-      - infinity
-      command:
-      - sleep
-      image: ubuntu
+    - image: nginx
       imagePullPolicy: Always
-      name: test-container
+      name: test6a-yes
       resources: {}
       terminationMessagePath: /dev/termination-log
       terminationMessagePolicy: File
       volumeMounts:
       - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-f98pb
+        name: kube-api-access-f6gww
+        readOnly: true
+    - image: nginx
+      imagePullPolicy: Always
+      name: test6b-yes
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-f6gww
         readOnly: true
     dnsPolicy: ClusterFirst
     enableServiceLinks: true
@@ -5687,8 +6069,8 @@ items:
     restartPolicy: Always
     schedulerName: default-scheduler
     securityContext: {}
-    serviceAccount: default
-    serviceAccountName: default
+    serviceAccount: kubiscan-sa
+    serviceAccountName: kubiscan-sa
     terminationGracePeriodSeconds: 30
     tolerations:
     - effect: NoExecute
@@ -5700,7 +6082,7 @@ items:
       operator: Exists
       tolerationSeconds: 300
     volumes:
-    - name: kube-api-access-f98pb
+    - name: kube-api-access-f6gww
       projected:
         defaultMode: 420
         sources:
@@ -5721,61 +6103,357 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:59Z"
+      lastTransitionTime: "2024-09-23T07:21:31Z"
       status: "True"
       type: PodReadyToStartContainers
     - lastProbeTime: null
-      lastTransitionTime: "2024-07-01T05:53:25Z"
+      lastTransitionTime: "2024-09-23T06:17:19Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:59Z"
-      status: "True"
+      lastTransitionTime: "2024-09-23T09:06:13Z"
+      message: 'containers with unready status: [test6b-yes]'
+      reason: ContainersNotReady
+      status: "False"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:59Z"
-      status: "True"
+      lastTransitionTime: "2024-09-23T09:06:13Z"
+      message: 'containers with unready status: [test6b-yes]'
+      reason: ContainersNotReady
+      status: "False"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-07-01T05:53:25Z"
+      lastTransitionTime: "2024-09-23T06:17:19Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://c630e5dd1641366de861149587f4280eeac4ae61a0eb15679aee3b5023a5b11e
-      image: ubuntu:latest
-      imageID: docker-pullable://ubuntu@sha256:8a37d68f4f73ebf3d4efafbcf66379bf3728902a8038616808f04e34a9ab63ee
+    - containerID: docker://2b206bb74623f0a10a5357ac04b9c9531907a64d9a33878b37183e587e3685eb
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:04ba374043ccd2fc5c593885c0eacddebabd5ca375f9323666f28dfd5a9710e3
       lastState:
         terminated:
-          containerID: docker://51de933eadd4c70bd812cbb063f301a7bf9731c90054eba34829b2b93dae6ab2
-          exitCode: 255
-          finishedAt: "2024-09-12T11:14:40Z"
-          reason: Error
-          startedAt: "2024-09-12T09:27:46Z"
-      name: test-container
+          containerID: docker://8d0375685e9a0532f3bc82a696d01e39bf3a361e3cad53e2b100af474f5a6f00
+          exitCode: 0
+          finishedAt: "2024-09-23T07:20:47Z"
+          reason: Completed
+          startedAt: "2024-09-23T07:20:18Z"
+      name: test6a-yes
       ready: true
-      restartCount: 54
+      restartCount: 2
       started: true
       state:
         running:
-          startedAt: "2024-09-12T11:14:59Z"
+          startedAt: "2024-09-23T07:21:09Z"
+    - containerID: docker://5b93f14a1aed8479c6c8c80f53da511f0860e938ed5b69b01343275defe5abae
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:04ba374043ccd2fc5c593885c0eacddebabd5ca375f9323666f28dfd5a9710e3
+      lastState:
+        terminated:
+          containerID: docker://5b93f14a1aed8479c6c8c80f53da511f0860e938ed5b69b01343275defe5abae
+          exitCode: 1
+          finishedAt: "2024-09-23T09:06:12Z"
+          reason: Error
+          startedAt: "2024-09-23T09:06:10Z"
+      name: test6b-yes
+      ready: false
+      restartCount: 40
+      started: false
+      state:
+        waiting:
+          message: back-off 5m0s restarting failed container=test6b-yes pod=test6-yes_default(f81d8ec1-dddd-4541-b1b0-4c46dd3bed97)
+          reason: CrashLoopBackOff
     hostIP: 192.168.49.2
     hostIPs:
     - ip: 192.168.49.2
     phase: Running
-    podIP: 10.244.0.188
+    podIP: 10.244.0.96
     podIPs:
-    - ip: 10.244.0.188
+    - ip: 10.244.0.96
     qosClass: BestEffort
-    startTime: "2024-07-01T05:53:25Z"
+    startTime: "2024-09-23T06:17:19Z"
 - apiVersion: v1
   kind: Pod
   metadata:
-    creationTimestamp: "2024-06-30T09:08:06Z"
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"test7-yes","namespace":"default"},"spec":{"containers":[{"image":"nginx","name":"test7c1-no","volumeMounts":[{"mountPath":"/var/run/secrets/kubernetes.io/serviceaccount","name":"secret-volume","readOnly":true},{"mountPath":"/var/run/secrets/tokens","name":"not-token-secret"},{"mountPath":"/etc/nginx/nginx.conf","name":"nginx-main-conf","subPath":"nginx.conf"},{"mountPath":"/etc/nginx/conf.d","name":"config-volume"}]},{"image":"nginx","name":"test7c2-yes","volumeMounts":[{"mountPath":"/etc/nginx/nginx.conf","name":"nginx-main-conf","subPath":"nginx.conf"},{"mountPath":"/etc/nginx/conf.d","name":"config-volume"}]}],"serviceAccountName":"kubiscan-sa","volumes":[{"name":"secret-volume","secret":{"secretName":"kubiscan-sa-token"}},{"name":"not-token-secret","secret":{"secretName":"mysecret"}},{"configMap":{"name":"nginx-config"},"name":"config-volume"},{"configMap":{"name":"nginx-main-config"},"name":"nginx-main-conf"}]}}
+    creationTimestamp: "2024-09-23T06:47:46Z"
+    name: test7-yes
+    namespace: default
+    resourceVersion: "29785"
+    uid: 8216e4f9-1d24-4009-88f2-c0684343ebb0
+  spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: test7c1-no
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: secret-volume
+        readOnly: true
+      - mountPath: /var/run/secrets/tokens
+        name: not-token-secret
+      - mountPath: /etc/nginx/nginx.conf
+        name: nginx-main-conf
+        subPath: nginx.conf
+      - mountPath: /etc/nginx/conf.d
+        name: config-volume
+    - image: nginx
+      imagePullPolicy: Always
+      name: test7c2-yes
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /etc/nginx/nginx.conf
+        name: nginx-main-conf
+        subPath: nginx.conf
+      - mountPath: /etc/nginx/conf.d
+        name: config-volume
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-qcls9
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: kubiscan-sa
+    serviceAccountName: kubiscan-sa
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: secret-volume
+      secret:
+        defaultMode: 420
+        secretName: kubiscan-sa-token
+    - name: not-token-secret
+      secret:
+        defaultMode: 420
+        secretName: mysecret
+    - configMap:
+        defaultMode: 420
+        name: nginx-config
+      name: config-volume
+    - configMap:
+        defaultMode: 420
+        name: nginx-main-config
+      name: nginx-main-conf
+    - name: kube-api-access-qcls9
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:33Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T06:47:46Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T09:06:11Z"
+      message: 'containers with unready status: [test7c2-yes]'
+      reason: ContainersNotReady
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T09:06:11Z"
+      message: 'containers with unready status: [test7c2-yes]'
+      reason: ContainersNotReady
+      status: "False"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T06:47:46Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://6cb74c10b38c997359b94fcb2bba4e2579081441e66b96d514a733e3913de560
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:04ba374043ccd2fc5c593885c0eacddebabd5ca375f9323666f28dfd5a9710e3
+      lastState:
+        terminated:
+          containerID: docker://9e981fee0865f71bdfffd0a1a9ac2eacf23d94ad01420847d12943757770d33b
+          exitCode: 0
+          finishedAt: "2024-09-23T07:20:46Z"
+          reason: Completed
+          startedAt: "2024-09-23T07:20:16Z"
+      name: test7c1-no
+      ready: true
+      restartCount: 2
+      started: true
+      state:
+        running:
+          startedAt: "2024-09-23T07:21:25Z"
+    - containerID: docker://3c2a68e90e9e3666287c2f0bbd240b61998316c2d7cc67b6df62901ac04bd670
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:04ba374043ccd2fc5c593885c0eacddebabd5ca375f9323666f28dfd5a9710e3
+      lastState:
+        terminated:
+          containerID: docker://3c2a68e90e9e3666287c2f0bbd240b61998316c2d7cc67b6df62901ac04bd670
+          exitCode: 1
+          finishedAt: "2024-09-23T09:06:10Z"
+          reason: Error
+          startedAt: "2024-09-23T09:06:08Z"
+      name: test7c2-yes
+      ready: false
+      restartCount: 34
+      started: false
+      state:
+        waiting:
+          message: back-off 5m0s restarting failed container=test7c2-yes pod=test7-yes_default(8216e4f9-1d24-4009-88f2-c0684343ebb0)
+          reason: CrashLoopBackOff
+    hostIP: 192.168.49.2
+    hostIPs:
+    - ip: 192.168.49.2
+    phase: Running
+    podIP: 10.244.0.100
+    podIPs:
+    - ip: 10.244.0.100
+    qosClass: BestEffort
+    startTime: "2024-09-23T06:47:46Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"test8-yes","namespace":"default"},"spec":{"containers":[{"image":"nginx","name":"test8c-yes","volumeMounts":[{"mountPath":"/var/run/secrets/kubernetes.io/serviceaccount","name":"secret-volume","readOnly":true},{"mountPath":"/var/run/secrets/tokens","name":"secret-volume2"}]}],"serviceAccountName":"kubiscan-sa","volumes":[{"name":"secret-volume","secret":{"secretName":"kubiscan-sa-token"}},{"name":"secret-volume2","secret":{"secretName":"kubiscan-sa2-token"}}]}}
+    creationTimestamp: "2024-09-19T16:07:02Z"
+    name: test8-yes
+    namespace: default
+    resourceVersion: "24501"
+    uid: dd03b5c1-cd29-499a-a10c-13eb9c18d40c
+  spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: test8c-yes
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: secret-volume
+        readOnly: true
+      - mountPath: /var/run/secrets/tokens
+        name: secret-volume2
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: kubiscan-sa
+    serviceAccountName: kubiscan-sa
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: secret-volume
+      secret:
+        defaultMode: 420
+        secretName: kubiscan-sa-token
+    - name: secret-volume2
+      secret:
+        defaultMode: 420
+        secretName: kubiscan-sa2-token
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:30Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-19T16:07:02Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:30Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-23T07:21:30Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-09-19T16:07:02Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://a10373eca343938455459c46030b4cd2a7113b282fe49945f779bf6fd823648d
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:04ba374043ccd2fc5c593885c0eacddebabd5ca375f9323666f28dfd5a9710e3
+      lastState:
+        terminated:
+          containerID: docker://d83ab183cb7ec8d328b72002b2185afaf239429ab79e373221441cb918421fda
+          exitCode: 0
+          finishedAt: "2024-09-23T07:20:47Z"
+          reason: Completed
+          startedAt: "2024-09-23T07:20:14Z"
+      name: test8c-yes
+      ready: true
+      restartCount: 8
+      started: true
+      state:
+        running:
+          startedAt: "2024-09-23T07:21:29Z"
+    hostIP: 192.168.49.2
+    hostIPs:
+    - ip: 192.168.49.2
+    phase: Running
+    podIP: 10.244.0.102
+    podIPs:
+    - ip: 10.244.0.102
+    qosClass: BestEffort
+    startTime: "2024-09-19T16:07:02Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-09-19T14:29:50Z"
     generateName: coredns-7db6d8ff4d-
     labels:
       k8s-app: kube-dns
       pod-template-hash: 7db6d8ff4d
-    name: coredns-7db6d8ff4d-v72lr
+    name: coredns-7db6d8ff4d-9txg5
     namespace: kube-system
     ownerReferences:
     - apiVersion: apps/v1
@@ -5783,9 +6461,9 @@ items:
       controller: true
       kind: ReplicaSet
       name: coredns-7db6d8ff4d
-      uid: 281d73a7-ad7d-4b74-839f-41718403e206
-    resourceVersion: "133937"
-    uid: ae093258-042a-48fa-ac41-279a470ac5e1
+      uid: 0c8a2ac2-a7a0-4277-8dd7-f48782be2882
+    resourceVersion: "24500"
+    uid: 79b25a45-9d71-4158-9dc2-ae50abb77339
   spec:
     affinity:
       podAntiAffinity:
@@ -5856,7 +6534,7 @@ items:
         name: config-volume
         readOnly: true
       - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-dj4m4
+        name: kube-api-access-z28f9
         readOnly: true
     dnsPolicy: Default
     enableServiceLinks: true
@@ -5893,7 +6571,7 @@ items:
           path: Corefile
         name: coredns
       name: config-volume
-    - name: kube-api-access-dj4m4
+    - name: kube-api-access-z28f9
       projected:
         defaultMode: 420
         sources:
@@ -5914,52 +6592,52 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:55Z"
+      lastTransitionTime: "2024-09-23T07:21:05Z"
       status: "True"
       type: PodReadyToStartContainers
     - lastProbeTime: null
-      lastTransitionTime: "2024-06-30T09:08:11Z"
+      lastTransitionTime: "2024-09-19T14:29:50Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:59Z"
+      lastTransitionTime: "2024-09-23T07:21:29Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:59Z"
+      lastTransitionTime: "2024-09-23T07:21:29Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-06-30T09:08:11Z"
+      lastTransitionTime: "2024-09-19T14:29:50Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://3f51a26bacd6d69a95f3dcc083c1d518b37bb09d30b545117e5449f2ddac15a3
+    - containerID: docker://933d7f328d2a2b476d272549d1e9d376ad9a49aa5eb5e737ba608117d430c2f7
       image: registry.k8s.io/coredns/coredns:v1.11.1
       imageID: docker-pullable://registry.k8s.io/coredns/coredns@sha256:1eeb4c7316bacb1d4c8ead65571cd92dd21e27359f0d4917f1a5822a73b75db1
       lastState:
         terminated:
-          containerID: docker://8145cac0690b84848ab1e77c240dfc89cbf834911ca02213cc1f534fa2322543
+          containerID: docker://7a7d05c963c64ae235bfeba94e02b9fa2588a0b12eb217c8294fe960f72a88ba
           exitCode: 0
-          finishedAt: "2024-09-12T11:13:17Z"
+          finishedAt: "2024-09-23T07:20:51Z"
           reason: Completed
-          startedAt: "2024-09-12T09:27:44Z"
+          startedAt: "2024-09-23T07:19:57Z"
       name: coredns
       ready: true
-      restartCount: 56
+      restartCount: 9
       started: true
       state:
         running:
-          startedAt: "2024-09-12T11:14:54Z"
+          startedAt: "2024-09-23T07:21:04Z"
     hostIP: 192.168.49.2
     hostIPs:
     - ip: 192.168.49.2
     phase: Running
-    podIP: 10.244.0.190
+    podIP: 10.244.0.99
     podIPs:
-    - ip: 10.244.0.190
+    - ip: 10.244.0.99
     qosClass: Burstable
-    startTime: "2024-06-30T09:08:11Z"
+    startTime: "2024-09-19T14:29:50Z"
 - apiVersion: v1
   kind: Pod
   metadata:
@@ -5967,9 +6645,9 @@ items:
       kubeadm.kubernetes.io/etcd.advertise-client-urls: https://192.168.49.2:2379
       kubernetes.io/config.hash: 063d6b9688927e601f52fd818d1305c5
       kubernetes.io/config.mirror: 063d6b9688927e601f52fd818d1305c5
-      kubernetes.io/config.seen: "2024-06-30T09:08:00.431059509Z"
+      kubernetes.io/config.seen: "2024-09-19T14:29:36.925917221Z"
       kubernetes.io/config.source: file
-    creationTimestamp: "2024-06-30T09:08:02Z"
+    creationTimestamp: "2024-09-19T14:29:37Z"
     labels:
       component: etcd
       tier: control-plane
@@ -5980,9 +6658,9 @@ items:
       controller: true
       kind: Node
       name: minikube
-      uid: 8337ace4-41de-4478-a32f-6db4d0c450d1
-    resourceVersion: "133958"
-    uid: d46e9b1d-9aa8-4b14-a41e-8329a1cb49a2
+      uid: aa9b5fb3-39ad-4ad6-b85c-3001e959d19c
+    resourceVersion: "24390"
+    uid: e485cdbd-7fc1-40b2-a011-3cc70429f763
   spec:
     containers:
     - command:
@@ -6071,43 +6749,43 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:49Z"
+      lastTransitionTime: "2024-09-23T07:21:05Z"
       status: "True"
       type: PodReadyToStartContainers
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:48Z"
+      lastTransitionTime: "2024-09-23T07:19:50Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:15:08Z"
+      lastTransitionTime: "2024-09-23T07:21:19Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:15:08Z"
+      lastTransitionTime: "2024-09-23T07:21:19Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:48Z"
+      lastTransitionTime: "2024-09-23T07:19:50Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://7f8165577c51208b2f112ec1b5ca58fc5d5f807b2f34c6e5a3197186786f8bc1
+    - containerID: docker://e35e6e8f3bb51b39a11901b86fb62cb355d26270f600e488bbfcc024f6d4d512
       image: registry.k8s.io/etcd:3.5.12-0
       imageID: docker-pullable://registry.k8s.io/etcd@sha256:44a8e24dcbba3470ee1fee21d5e88d128c936e9b55d4bc51fbef8086f8ed123b
       lastState:
         terminated:
-          containerID: docker://308cff0645599f0a92c4302cf8427ae36a3962fc160b2ef5102f9361bc436387
+          containerID: docker://52122bcb76867d325f5f193069b473fa5fe7be1938d1b966ea61ca4bed7ad148
           exitCode: 0
-          finishedAt: "2024-09-12T11:13:13Z"
+          finishedAt: "2024-09-23T07:20:46Z"
           reason: Completed
-          startedAt: "2024-09-12T09:27:38Z"
+          startedAt: "2024-09-23T07:19:51Z"
       name: etcd
       ready: true
-      restartCount: 56
+      restartCount: 9
       started: true
       state:
         running:
-          startedAt: "2024-09-12T11:14:49Z"
+          startedAt: "2024-09-23T07:21:03Z"
     hostIP: 192.168.49.2
     hostIPs:
     - ip: 192.168.49.2
@@ -6116,7 +6794,7 @@ items:
     podIPs:
     - ip: 192.168.49.2
     qosClass: Burstable
-    startTime: "2024-09-12T11:14:48Z"
+    startTime: "2024-09-23T07:19:50Z"
 - apiVersion: v1
   kind: Pod
   metadata:
@@ -6124,9 +6802,9 @@ items:
       kubeadm.kubernetes.io/kube-apiserver.advertise-address.endpoint: 192.168.49.2:8443
       kubernetes.io/config.hash: 3c555f828409b009ebee39fdbedfcac0
       kubernetes.io/config.mirror: 3c555f828409b009ebee39fdbedfcac0
-      kubernetes.io/config.seen: "2024-06-30T09:07:25.004844877Z"
+      kubernetes.io/config.seen: "2024-09-19T14:29:36.925920604Z"
       kubernetes.io/config.source: file
-    creationTimestamp: "2024-06-30T09:07:52Z"
+    creationTimestamp: "2024-09-19T14:29:37Z"
     labels:
       component: kube-apiserver
       tier: control-plane
@@ -6137,9 +6815,9 @@ items:
       controller: true
       kind: Node
       name: minikube
-      uid: 8337ace4-41de-4478-a32f-6db4d0c450d1
-    resourceVersion: "133941"
-    uid: ef47b535-020e-4f8f-9f82-ba8213e5c92d
+      uid: aa9b5fb3-39ad-4ad6-b85c-3001e959d19c
+    resourceVersion: "24519"
+    uid: 55c3e31b-6611-4885-b532-26c7bbe58e1e
   spec:
     containers:
     - command:
@@ -6267,43 +6945,43 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:49Z"
+      lastTransitionTime: "2024-09-23T07:21:04Z"
       status: "True"
       type: PodReadyToStartContainers
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:48Z"
+      lastTransitionTime: "2024-09-23T07:19:50Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:59Z"
+      lastTransitionTime: "2024-09-23T07:21:35Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:59Z"
+      lastTransitionTime: "2024-09-23T07:21:35Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:48Z"
+      lastTransitionTime: "2024-09-23T07:19:50Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://699fb4f64ff5512b94520ac08c7ad0e1d6f6d0c620e08f6552bc271d823e19dd
+    - containerID: docker://9c11680e16c1940219300def36a1819aedc7a988f74ae930e0754364e3307f1d
       image: registry.k8s.io/kube-apiserver:v1.30.0
       imageID: docker-pullable://registry.k8s.io/kube-apiserver@sha256:6b8e197b2d39c321189a475ac755a77896e34b56729425590fbc99f3a96468a3
       lastState:
         terminated:
-          containerID: docker://eb9dcf5e6916205e7c9193a4b718f09e3ac09039000431b09ae160c1c5773c74
-          exitCode: 0
-          finishedAt: "2024-09-12T11:13:14Z"
-          reason: Completed
-          startedAt: "2024-09-12T09:27:38Z"
+          containerID: docker://829f0f8dbbdc0e19e3f90218501d530c92e1d51a91cfc113d44a00cb095df8f7
+          exitCode: 137
+          finishedAt: "2024-09-23T07:20:56Z"
+          reason: Error
+          startedAt: "2024-09-23T07:19:51Z"
       name: kube-apiserver
       ready: true
-      restartCount: 56
+      restartCount: 9
       started: true
       state:
         running:
-          startedAt: "2024-09-12T11:14:49Z"
+          startedAt: "2024-09-23T07:21:19Z"
     hostIP: 192.168.49.2
     hostIPs:
     - ip: 192.168.49.2
@@ -6312,16 +6990,16 @@ items:
     podIPs:
     - ip: 192.168.49.2
     qosClass: Burstable
-    startTime: "2024-09-12T11:14:48Z"
+    startTime: "2024-09-23T07:19:50Z"
 - apiVersion: v1
   kind: Pod
   metadata:
     annotations:
       kubernetes.io/config.hash: 7fd44e8d11c3e0ffe6b1825e2a1f2270
       kubernetes.io/config.mirror: 7fd44e8d11c3e0ffe6b1825e2a1f2270
-      kubernetes.io/config.seen: "2024-06-30T09:08:00.431065497Z"
+      kubernetes.io/config.seen: "2024-09-19T14:29:36.925921693Z"
       kubernetes.io/config.source: file
-    creationTimestamp: "2024-06-30T09:08:02Z"
+    creationTimestamp: "2024-09-19T14:29:37Z"
     labels:
       component: kube-controller-manager
       tier: control-plane
@@ -6332,9 +7010,9 @@ items:
       controller: true
       kind: Node
       name: minikube
-      uid: 8337ace4-41de-4478-a32f-6db4d0c450d1
-    resourceVersion: "133950"
-    uid: b175f6db-b85d-47c0-864e-2371ef331152
+      uid: aa9b5fb3-39ad-4ad6-b85c-3001e959d19c
+    resourceVersion: "24539"
+    uid: 0b4e3919-97b3-4926-b6a2-610cb9705300
   spec:
     containers:
     - command:
@@ -6455,43 +7133,43 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:49Z"
+      lastTransitionTime: "2024-09-23T07:21:05Z"
       status: "True"
       type: PodReadyToStartContainers
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:48Z"
+      lastTransitionTime: "2024-09-23T07:19:50Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:15:03Z"
+      lastTransitionTime: "2024-09-23T07:21:58Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:15:03Z"
+      lastTransitionTime: "2024-09-23T07:21:58Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:48Z"
+      lastTransitionTime: "2024-09-23T07:19:50Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://6edf2493a7b8cca9c287b2c9322a374218665cb76a4e3a2c5939de4e439db9f5
+    - containerID: docker://847728e5c254b49c03d3a8518d683b187fd25a5de584619abac3bc8fc7c95fe5
       image: registry.k8s.io/kube-controller-manager:v1.30.0
       imageID: docker-pullable://registry.k8s.io/kube-controller-manager@sha256:5f52f00f17d5784b5ca004dffca59710fa1a9eec8d54cebdf9433a1d134150fe
       lastState:
         terminated:
-          containerID: docker://bc6205c83afde7ef9a22fb8e2c1abc68578e80d2c868033a9c1ab80ecdc573f6
-          exitCode: 2
-          finishedAt: "2024-09-12T11:13:13Z"
+          containerID: docker://56b6c2c77a4a4848fb4c02531a1b347793f7625df268044a021d7c903645f96e
+          exitCode: 1
+          finishedAt: "2024-09-23T07:21:14Z"
           reason: Error
-          startedAt: "2024-09-12T09:27:38Z"
+          startedAt: "2024-09-23T07:21:03Z"
       name: kube-controller-manager
       ready: true
-      restartCount: 56
+      restartCount: 10
       started: true
       state:
         running:
-          startedAt: "2024-09-12T11:14:49Z"
+          startedAt: "2024-09-23T07:21:44Z"
     hostIP: 192.168.49.2
     hostIPs:
     - ip: 192.168.49.2
@@ -6500,17 +7178,17 @@ items:
     podIPs:
     - ip: 192.168.49.2
     qosClass: Burstable
-    startTime: "2024-09-12T11:14:48Z"
+    startTime: "2024-09-23T07:19:50Z"
 - apiVersion: v1
   kind: Pod
   metadata:
-    creationTimestamp: "2024-06-30T09:08:06Z"
+    creationTimestamp: "2024-09-19T14:29:50Z"
     generateName: kube-proxy-
     labels:
       controller-revision-hash: 79cf874c65
       k8s-app: kube-proxy
       pod-template-generation: "1"
-    name: kube-proxy-5f5bm
+    name: kube-proxy-s626q
     namespace: kube-system
     ownerReferences:
     - apiVersion: apps/v1
@@ -6518,9 +7196,9 @@ items:
       controller: true
       kind: DaemonSet
       name: kube-proxy
-      uid: c47033f1-73de-49c0-9f8b-e3e224802b7c
-    resourceVersion: "133864"
-    uid: 35fcb6b4-4741-4288-b5ee-cb19b072f83d
+      uid: fd7d0023-f800-49fb-ac89-9dafa861cc1e
+    resourceVersion: "24386"
+    uid: 3773a274-d970-4f0f-a2f2-39e5c216f48c
   spec:
     affinity:
       nodeAffinity:
@@ -6559,7 +7237,7 @@ items:
         name: lib-modules
         readOnly: true
       - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-d2kdr
+        name: kube-api-access-ttfpw
         readOnly: true
     dnsPolicy: ClusterFirst
     enableServiceLinks: true
@@ -6612,7 +7290,7 @@ items:
         path: /lib/modules
         type: ""
       name: lib-modules
-    - name: kube-api-access-d2kdr
+    - name: kube-api-access-ttfpw
       projected:
         defaultMode: 420
         sources:
@@ -6633,43 +7311,43 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:55Z"
+      lastTransitionTime: "2024-09-23T07:21:05Z"
       status: "True"
       type: PodReadyToStartContainers
     - lastProbeTime: null
-      lastTransitionTime: "2024-06-30T09:08:06Z"
+      lastTransitionTime: "2024-09-19T14:29:50Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:55Z"
+      lastTransitionTime: "2024-09-23T07:21:05Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:55Z"
+      lastTransitionTime: "2024-09-23T07:21:05Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-06-30T09:08:06Z"
+      lastTransitionTime: "2024-09-19T14:29:50Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://71d2ea00ed2b517a960650d5112f83cbba4a5004ce0c3b29c19dbd2d8b4f53e0
+    - containerID: docker://b43c8f84e7cb0d6839e1b19491838cab9fc813b3a43f38a866d0a2c11821a76e
       image: registry.k8s.io/kube-proxy:v1.30.0
       imageID: docker-pullable://registry.k8s.io/kube-proxy@sha256:ec532ff47eaf39822387e51ec73f1f2502eb74658c6303319db88d2c380d0210
       lastState:
         terminated:
-          containerID: docker://19686dbdad659f7410bfe0f379f12a828fdd3eb057bf21c1fccedd798ad7b8b6
+          containerID: docker://b0926b8c3a1369dc4cac88b5be28a3c0294bbcc914b483fee27b0b6dea259408
           exitCode: 2
-          finishedAt: "2024-09-12T11:13:13Z"
+          finishedAt: "2024-09-23T07:20:47Z"
           reason: Error
-          startedAt: "2024-09-12T09:27:43Z"
+          startedAt: "2024-09-23T07:19:56Z"
       name: kube-proxy
       ready: true
-      restartCount: 56
+      restartCount: 9
       started: true
       state:
         running:
-          startedAt: "2024-09-12T11:14:54Z"
+          startedAt: "2024-09-23T07:21:03Z"
     hostIP: 192.168.49.2
     hostIPs:
     - ip: 192.168.49.2
@@ -6678,16 +7356,16 @@ items:
     podIPs:
     - ip: 192.168.49.2
     qosClass: BestEffort
-    startTime: "2024-06-30T09:08:06Z"
+    startTime: "2024-09-19T14:29:50Z"
 - apiVersion: v1
   kind: Pod
   metadata:
     annotations:
       kubernetes.io/config.hash: f9c8e1d0d74b1727abdb4b4a31d3a7c1
       kubernetes.io/config.mirror: f9c8e1d0d74b1727abdb4b4a31d3a7c1
-      kubernetes.io/config.seen: "2024-06-30T09:07:25.004846492Z"
+      kubernetes.io/config.seen: "2024-09-19T14:29:36.925922501Z"
       kubernetes.io/config.source: file
-    creationTimestamp: "2024-06-30T09:07:50Z"
+    creationTimestamp: "2024-09-19T14:29:37Z"
     labels:
       component: kube-scheduler
       tier: control-plane
@@ -6698,9 +7376,9 @@ items:
       controller: true
       kind: Node
       name: minikube
-      uid: 8337ace4-41de-4478-a32f-6db4d0c450d1
-    resourceVersion: "133948"
-    uid: 65af7149-50d7-49db-afc5-734ff330c399
+      uid: aa9b5fb3-39ad-4ad6-b85c-3001e959d19c
+    resourceVersion: "24379"
+    uid: 3891a1de-d294-417a-9297-cecb92a1f87f
   spec:
     containers:
     - command:
@@ -6768,43 +7446,43 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:49Z"
+      lastTransitionTime: "2024-09-23T07:21:04Z"
       status: "True"
       type: PodReadyToStartContainers
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:48Z"
+      lastTransitionTime: "2024-09-23T07:19:50Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:15:02Z"
+      lastTransitionTime: "2024-09-23T07:21:19Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:15:02Z"
+      lastTransitionTime: "2024-09-23T07:21:19Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:48Z"
+      lastTransitionTime: "2024-09-23T07:19:50Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://0aa9663eadd4dda749a97e640b9f05544ddc46ce1bfd336d3983ef6e164fbc1b
+    - containerID: docker://5dc2c842ec24078e3d41e464060cc6602993cf90e98a08049d7e8d3844a48df3
       image: registry.k8s.io/kube-scheduler:v1.30.0
       imageID: docker-pullable://registry.k8s.io/kube-scheduler@sha256:2353c3a1803229970fcb571cffc9b2f120372350e01c7381b4b650c4a02b9d67
       lastState:
         terminated:
-          containerID: docker://f1263f170129168aeb5910563a699b8aeb895d8281b2c728e4e937375252b642
+          containerID: docker://481004d82928a871e708838cbfc9954fca12c1e5ad212ead7c477f996564ac6f
           exitCode: 1
-          finishedAt: "2024-09-12T11:13:12Z"
+          finishedAt: "2024-09-23T07:20:46Z"
           reason: Error
-          startedAt: "2024-09-12T09:27:38Z"
+          startedAt: "2024-09-23T07:19:51Z"
       name: kube-scheduler
       ready: true
-      restartCount: 57
+      restartCount: 9
       started: true
       state:
         running:
-          startedAt: "2024-09-12T11:14:49Z"
+          startedAt: "2024-09-23T07:21:03Z"
     hostIP: 192.168.49.2
     hostIPs:
     - ip: 192.168.49.2
@@ -6813,21 +7491,21 @@ items:
     podIPs:
     - ip: 192.168.49.2
     qosClass: Burstable
-    startTime: "2024-09-12T11:14:48Z"
+    startTime: "2024-09-23T07:19:50Z"
 - apiVersion: v1
   kind: Pod
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"risky-pod","namespace":"kube-system"},"spec":{"containers":[{"image":"riskyapp:latest","name":"risky-container","securityContext":{"privileged":true},"volumeMounts":[{"mountPath":"/etc/sensitive","name":"sensitive-volume"}]}],"volumes":[{"hostPath":{"path":"/var/run/secrets/kubernetes.io/serviceaccount","type":"Directory"},"name":"sensitive-volume"}]}}
-    creationTimestamp: "2024-09-09T13:02:18Z"
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"risky-pod","namespace":"kube-system"},"spec":{"containers":[{"image":"nginx","name":"risky-container","securityContext":{"privileged":true},"volumeMounts":[{"mountPath":"/etc/sensitive","name":"sensitive-volume"}]}],"volumes":[{"hostPath":{"path":"/var/run/secrets/kubernetes.io/serviceaccount"},"name":"sensitive-volume"}]}}
+    creationTimestamp: "2024-09-22T11:31:03Z"
     name: risky-pod
     namespace: kube-system
-    resourceVersion: "112218"
-    uid: a3397e58-fa0e-4d55-8c80-7f5a09457e9d
+    resourceVersion: "24380"
+    uid: 3c2de749-bf9c-48b9-810f-d79622b05141
   spec:
     containers:
-    - image: riskyapp:latest
+    - image: nginx
       imagePullPolicy: Always
       name: risky-container
       resources: {}
@@ -6839,7 +7517,7 @@ items:
       - mountPath: /etc/sensitive
         name: sensitive-volume
       - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-29nbf
+        name: kube-api-access-44q69
         readOnly: true
     dnsPolicy: ClusterFirst
     enableServiceLinks: true
@@ -6864,9 +7542,9 @@ items:
     volumes:
     - hostPath:
         path: /var/run/secrets/kubernetes.io/serviceaccount
-        type: Directory
+        type: ""
       name: sensitive-volume
-    - name: kube-api-access-29nbf
+    - name: kube-api-access-44q69
       projected:
         defaultMode: 420
         sources:
@@ -6887,60 +7565,66 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-09T13:02:18Z"
-      status: "False"
+      lastTransitionTime: "2024-09-23T07:21:13Z"
+      status: "True"
       type: PodReadyToStartContainers
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-09T13:02:18Z"
+      lastTransitionTime: "2024-09-22T11:31:03Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-09T13:02:18Z"
-      message: 'containers with unready status: [risky-container]'
-      reason: ContainersNotReady
-      status: "False"
+      lastTransitionTime: "2024-09-23T07:21:13Z"
+      status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-09T13:02:18Z"
-      message: 'containers with unready status: [risky-container]'
-      reason: ContainersNotReady
-      status: "False"
+      lastTransitionTime: "2024-09-23T07:21:13Z"
+      status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-09T13:02:18Z"
+      lastTransitionTime: "2024-09-22T11:31:03Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - image: riskyapp:latest
-      imageID: ""
-      lastState: {}
+    - containerID: docker://74cb05293b993f4d582b0b90d438ac05d62495ea5b5f743089aa684d7e9622b2
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:04ba374043ccd2fc5c593885c0eacddebabd5ca375f9323666f28dfd5a9710e3
+      lastState:
+        terminated:
+          containerID: docker://5050e247a945ccc08c03121862fd3e446d04ad060a6facfc102507e14e729bb5
+          exitCode: 0
+          finishedAt: "2024-09-23T07:20:46Z"
+          reason: Completed
+          startedAt: "2024-09-23T07:20:03Z"
       name: risky-container
-      ready: false
-      restartCount: 0
-      started: false
+      ready: true
+      restartCount: 5
+      started: true
       state:
-        waiting:
-          reason: ContainerCreating
+        running:
+          startedAt: "2024-09-23T07:21:13Z"
     hostIP: 192.168.49.2
     hostIPs:
     - ip: 192.168.49.2
-    phase: Pending
+    phase: Running
+    podIP: 10.244.0.98
+    podIPs:
+    - ip: 10.244.0.98
     qosClass: BestEffort
-    startTime: "2024-09-09T13:02:18Z"
+    startTime: "2024-09-22T11:31:03Z"
 - apiVersion: v1
   kind: Pod
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
         {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"addonmanager.kubernetes.io/mode":"Reconcile","integration-test":"storage-provisioner"},"name":"storage-provisioner","namespace":"kube-system"},"spec":{"containers":[{"command":["/storage-provisioner"],"image":"gcr.io/k8s-minikube/storage-provisioner:v5","imagePullPolicy":"IfNotPresent","name":"storage-provisioner","volumeMounts":[{"mountPath":"/tmp","name":"tmp"}]}],"hostNetwork":true,"serviceAccountName":"storage-provisioner","volumes":[{"hostPath":{"path":"/tmp","type":"Directory"},"name":"tmp"}]}}
-    creationTimestamp: "2024-06-30T09:08:07Z"
+    creationTimestamp: "2024-09-19T14:29:38Z"
     labels:
       addonmanager.kubernetes.io/mode: Reconcile
       integration-test: storage-provisioner
     name: storage-provisioner
     namespace: kube-system
-    resourceVersion: "133980"
-    uid: 67ee5a7d-06bd-4082-96a0-668b0339effb
+    resourceVersion: "24545"
+    uid: 92997986-2fb8-4bb4-9bc8-e3b4395ec44d
   spec:
     containers:
     - command:
@@ -6955,7 +7639,7 @@ items:
       - mountPath: /tmp
         name: tmp
       - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-        name: kube-api-access-rw5ts
+        name: kube-api-access-brgjb
         readOnly: true
     dnsPolicy: ClusterFirst
     enableServiceLinks: true
@@ -6983,7 +7667,7 @@ items:
         path: /tmp
         type: Directory
       name: tmp
-    - name: kube-api-access-rw5ts
+    - name: kube-api-access-brgjb
       projected:
         defaultMode: 420
         sources:
@@ -7004,43 +7688,43 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:14:55Z"
+      lastTransitionTime: "2024-09-23T07:21:05Z"
       status: "True"
       type: PodReadyToStartContainers
     - lastProbeTime: null
-      lastTransitionTime: "2024-06-30T09:08:11Z"
+      lastTransitionTime: "2024-09-19T14:29:49Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:15:30Z"
+      lastTransitionTime: "2024-09-23T07:22:01Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-09-12T11:15:30Z"
+      lastTransitionTime: "2024-09-23T07:22:01Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-06-30T09:08:11Z"
+      lastTransitionTime: "2024-09-19T14:29:49Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://dd4dea5a571f428a0b3ccb6181bad2e9f748a7ba251e029567ab562989f48bac
+    - containerID: docker://a4f822f63945b55718e51505317d385c08e4d1e7f6ff19aa297f9911df8d408a
       image: gcr.io/k8s-minikube/storage-provisioner:v5
       imageID: docker-pullable://gcr.io/k8s-minikube/storage-provisioner@sha256:18eb69d1418e854ad5a19e399310e52808a8321e4c441c1dddad8977a0d7a944
       lastState:
         terminated:
-          containerID: docker://62c340a0bd6cf8e9440e5b483d0f205300f9fc73777ced040484dc64dd0d6b11
+          containerID: docker://1e2169c4f40b58c9a5bf031572c1b770cfd571e1c786b26489dfc478d7d83de5
           exitCode: 1
-          finishedAt: "2024-09-12T11:15:15Z"
+          finishedAt: "2024-09-23T07:21:18Z"
           reason: Error
-          startedAt: "2024-09-12T11:14:54Z"
+          startedAt: "2024-09-23T07:21:18Z"
       name: storage-provisioner
       ready: true
-      restartCount: 136
+      restartCount: 19
       started: true
       state:
         running:
-          startedAt: "2024-09-12T11:15:30Z"
+          startedAt: "2024-09-23T07:22:01Z"
     hostIP: 192.168.49.2
     hostIPs:
     - ip: 192.168.49.2
@@ -7049,7 +7733,7 @@ items:
     podIPs:
     - ip: 192.168.49.2
     qosClass: BestEffort
-    startTime: "2024-06-30T09:08:11Z"
+    startTime: "2024-09-19T14:29:49Z"
 kind: List
 metadata:
   resourceVersion: ""
