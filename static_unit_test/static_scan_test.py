@@ -8,6 +8,8 @@ class TestKubiScan(unittest.TestCase):
     def setUp(self):
         """Set up the environment for each test."""
         self.current_directory = os.getcwd()
+
+        #CHANGE combined.yaml to the json/yaml file you created for the static scan.
         self.json_file_path = os.path.join(self.current_directory, "combined.yaml")
         print(f"Setting up for test in {self.current_directory}")
 
