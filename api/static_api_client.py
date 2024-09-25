@@ -8,7 +8,7 @@ from kubernetes.client import (
     V1RoleList, V1Role, V1ObjectMeta, V1PolicyRule, V1RoleBinding, V1RoleRef, V1Subject, 
     V1RoleBindingList, V1PodList, V1Pod, V1PodSpec, V1Container, V1Volume, V1PodStatus, 
     V1SecurityContext, V1HostPathVolumeSource, V1ProjectedVolumeSource,V1VolumeMount,V1ConfigMapProjection,
-    V1DownwardAPIVolumeFile,V1ObjectFieldSelector,V1ContainerStatus
+    V1DownwardAPIVolumeFile,V1ObjectFieldSelector,V1ContainerStatus,V1Capabilities,V1PodSecurityContext,V1ContainerPort
 )
 
 class StaticApiClient(BaseApiClient):
@@ -18,7 +18,6 @@ class StaticApiClient(BaseApiClient):
         self.all_cluster_roles = self.construct_v1_role_list("ClusterRole", self.get_resources('ClusterRole'))
         self.all_role_bindings = self.construct_v1_role_binding_list("RoleBinding", self.get_resources('RoleBinding'))
         self.all_cluster_role_bindings = self.construct_v1_role_binding_list("ClusterRoleBinding", self.get_resources('ClusterRoleBinding'))
-        self.all_secrets = self.construct_v1_role_list("Secret", self.get_resources('Secret'))
         self.all_pods = self.construct_v1_pod_list("Pod", self.get_resources('Pod'))
 
     def load_combined_file(self, input_file):
@@ -51,32 +50,33 @@ class StaticApiClient(BaseApiClient):
                     resources.extend(item for item in entry['items'] if item.get('kind') == kind)
         return resources
 
-    def construct_v1_role_list(self, kind, items):
-        v1_roles = []
-        for item in items:
 
-            metadata = item['metadata']
-            creation_timestamp_str = metadata.get('creationTimestamp') 
+    def parse_metadata(self, metadata_dict):
+            creation_timestamp_str = metadata_dict.get('creationTimestamp')
             creation_timestamp = None
             if creation_timestamp_str:
                 creation_timestamp = datetime.strptime(creation_timestamp_str, "%Y-%m-%dT%H:%M:%SZ")
+            return V1ObjectMeta(
+                name=metadata_dict['name'],
+                namespace=metadata_dict.get('namespace'),
+                creation_timestamp=creation_timestamp
+            )
 
+    def construct_v1_role_list(self, kind, items):
+        v1_roles = []
+        for item in items:
             v1_role = V1Role(
                 api_version=item['apiVersion'],
                 kind=item['kind'],
-                metadata=V1ObjectMeta(
-                    name=item['metadata']['name'],
-                    namespace=item['metadata'].get('namespace'),
-                    creation_timestamp=creation_timestamp
-                ),
-               rules=[
-                    V1PolicyRule(
-                        api_groups=rule.get('apiGroups', []), 
-                        resources=rule.get('resources', []), 
-                        verbs=rule.get('verbs', []), 
-                        resource_names=rule.get('resourceNames', [])  
-                    ) for rule in item.get('rules', [])
-                ]
+                metadata =self.parse_metadata(item['metadata']),
+                rules=[
+                        V1PolicyRule(
+                            api_groups=rule.get('apiGroups', []), 
+                            resources=rule.get('resources', []), 
+                            verbs=rule.get('verbs', []), 
+                            resource_names=rule.get('resourceNames', [])  
+                        ) for rule in item.get('rules', [])
+                    ]
             )
             v1_roles.append(v1_role)
         
@@ -91,20 +91,12 @@ class StaticApiClient(BaseApiClient):
         v1_role_bindings = []
         for item in items:
 
-            metadata = item['metadata']
-            creation_timestamp_str = metadata.get('creationTimestamp') 
-            creation_timestamp = None
-            if creation_timestamp_str:
-                creation_timestamp = datetime.strptime(creation_timestamp_str, "%Y-%m-%dT%H:%M:%SZ")
+           
 
             v1_role_binding = V1RoleBinding(
                 api_version=item['apiVersion'],
                 kind=item['kind'],
-                metadata=V1ObjectMeta(
-                    name=item['metadata']['name'],
-                    namespace=item['metadata'].get('namespace'),
-                    creation_timestamp=creation_timestamp
-                ),
+                metadata =self.parse_metadata(item['metadata']),
                 subjects=[
                     V1Subject(
                         kind=subject.get('kind'),
@@ -133,7 +125,12 @@ class StaticApiClient(BaseApiClient):
             metadata = item.get('metadata', {})
             spec = item.get('spec', {})
             status = item.get('status', {})
-
+            pod_security_context = V1PodSecurityContext(
+                run_as_user=spec.get('securityContext', {}).get('runAsUser', None),
+                run_as_group=spec.get('securityContext', {}).get('runAsGroup', None),
+                fs_group=spec.get('securityContext', {}).get('fsGroup', None),
+                se_linux_options=spec.get('securityContext', {}).get('seLinuxOptions', None)
+            )
             container_statuses = [
                 V1ContainerStatus(
                     name=container_status.get('name'),
@@ -159,12 +156,26 @@ class StaticApiClient(BaseApiClient):
                     resource_version=metadata.get('resourceVersion', None)
                 ),
                 spec=V1PodSpec(
+                    security_context=pod_security_context,
                     service_account=spec.get('serviceAccount', None), 
                     service_account_name=spec.get('serviceAccountName', None),
+                    node_name=spec.get('nodeName', None),
+                    host_ipc=spec.get('hostIpc', False),
+                    host_pid=spec.get('hostPid', False),  
+                    host_network=spec.get('hostNetwork', False),
+                    restart_policy=spec.get('restartPolicy', 'Always'),
                     containers=[
                         V1Container(
                             name=container['name'],
                             image=container.get('image'),
+                             ports=[
+                                V1ContainerPort(
+                                    container_port=port.get('containerPort'),
+                                    host_port=port.get('hostPort'),
+                                    protocol=port.get('protocol', 'TCP'), 
+                                    name=port.get('name', None)
+                                ) for port in container.get('ports', [])
+                            ],
                             volume_mounts=[  
                                 V1VolumeMount(
                                     mount_path=volume_mount.get('mountPath'),
@@ -176,7 +187,13 @@ class StaticApiClient(BaseApiClient):
                             resources=container.get('resources', {}),
                             security_context=V1SecurityContext(
                                 run_as_user=container.get('securityContext', {}).get('runAsUser', None),
-                                privileged=container.get('securityContext', {}).get('privileged', False)
+                                run_as_group=container.get('securityContext', {}).get('runAsGroup', None),
+                                privileged=container.get('securityContext', {}).get('privileged', False),
+                                allow_privilege_escalation=container.get('securityContext', {}).get('allowPrivilegeEscalation', None),
+                                capabilities=V1Capabilities(
+                                    add=container.get('securityContext', {}).get('capabilities', {}).get('add', []),
+                                    drop=container.get('securityContext', {}).get('capabilities', {}).get('drop', [])
+                                ) if container.get('securityContext', {}).get('capabilities') else None
                             )
                         ) for container in spec.get('containers', [])
                     ],
@@ -217,10 +234,7 @@ class StaticApiClient(BaseApiClient):
                                 ]
                             )
                         ) for volume in spec.get('volumes', [])
-                    ],
-                    node_name=spec.get('nodeName', None),
-                    host_network=spec.get('hostNetwork', False),
-                    restart_policy=spec.get('restartPolicy', 'Always')
+                    ]
                 ),
                 status=V1PodStatus(
                     phase=status.get('phase', 'Unknown'),  # Default phase to 'Unknown'
@@ -253,21 +267,18 @@ class StaticApiClient(BaseApiClient):
         for rolebinding in self.all_role_bindings.items:
             if rolebinding.metadata.name == rolebinding_name and rolebinding.metadata.namespace == namespace:
                 return rolebinding
-        print(f"RoleBinding {rolebinding_name} not found in namespace {namespace}") #TODO REMOVE
         return None
     
     def read_namespaced_role(self, role_name, namespace):
         for role in self.all_roles.items:
             if role.metadata.name == role_name and role.metadata.namespace == namespace:
                 return role
-        print(f"Role {role_name} not found in namespace {namespace}") #TODO REMOVE
         return None
     
     def read_cluster_role(self, role_name):
         for role in self.all_cluster_roles.items:
             if role.metadata.name == role_name:
                 return role
-        print(f"ClusterRole {role_name} not found") #TODO REMOVE
         return None
     
     def list_pod_for_all_namespaces(self, watch):

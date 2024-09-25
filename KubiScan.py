@@ -770,7 +770,10 @@ Requirements:
     if args.risky_subjects:
         print_all_risky_subjects(show_rules=args.rules,priority=args.priority, namespace=args.namespace)
     if args.risky_pods:
-        print_all_risky_containers(priority=args.priority, namespace=args.namespace, read_token_from_container=args.deep)
+        if args.deep and args.file:
+            print('Cannot access pods token in a static scan. In static scan use -rp only.')
+        else:
+            print_all_risky_containers(priority=args.priority, namespace=args.namespace, read_token_from_container=args.deep)
     if args.all:
         print_all(days=args.less_than, priority=args.priority, read_token_from_container=args.deep)
     elif args.privleged_pods:
