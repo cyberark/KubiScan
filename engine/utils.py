@@ -360,11 +360,14 @@ def is_same_user(a_username, a_namespace, b_username, b_namespace):
 
 def get_risky_user_from_container(jwt_body, risky_users):
     risky_user_in_container = None
-    # Correctly access service account name and namespace from the decoded JWT
+    
     service_account_info = jwt_body.get('kubernetes.io', {}).get('serviceaccount', {})
+    if not service_account_info:
+        return None
+    
+    # Check if the service account information is present in the first structure
     service_account_name = service_account_info.get('name')
     service_account_namespace = jwt_body.get('kubernetes.io', {}).get('namespace')
-     # Check if the service account information is present in the first structure
 
     if not service_account_name or not service_account_namespace:
         # Fallback to the alternative structure (kubernetes.io/serviceaccount/...)
@@ -527,6 +530,7 @@ def get_rolebindings_all_namespaces_and_clusterrolebindings():
 
     # TODO: check when this bug will be fixed
     # cluster_rolebindings = api_client.RbacAuthorizationV1Api.list_cluster_role_binding()
+    # cluster_rolebindings = api_client.api_temp.list_cluster_role_binding()
     cluster_rolebindings = api_client.list_cluster_role_binding()
     return namespaced_rolebindings, cluster_rolebindings
 
