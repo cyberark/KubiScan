@@ -22,7 +22,7 @@ the following tools need to be installed:
   - Minikube (or any other local Kubernetes setup)
 
 ### Running tests
-
+```shell
 [1] Commit and push your changes to your repository.
 [2] Make sure docker is installed on the host.
 [3] Start MiniKube.
@@ -33,7 +33,8 @@ the following tools need to be installed:
     "./kubectl_apply.sh"
 [5] For the unit-test run the following command:
     python3 -m pytest -v unit_test.py
-    
+```
+
 ## Releases
 Maintainers only should create releases. Follow these steps to prepare for a release.
 
