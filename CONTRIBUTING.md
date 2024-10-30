@@ -18,24 +18,31 @@ contributor!
 ## Development
 To start developing and testing using our development scripts ,
 the following tools need to be installed:
-
   - Docker
   - Minikube (or any other local Kubernetes setup)
 
 ### Running tests
 
-#TODO
-
-### Setting up a development environment
-
-#TODO
-
+[1] Commit and push your changes to your repository.
+[2] Make sure docker is installed on the host.
+[3] Start MiniKube.
+[4] Type the following commands:
+    "cd /tmp"
+    "git clone <your repo>"
+    "cd KubiScan/unit_test/"
+    "./kubectl_apply.sh"
+[5] For the unit-test run the following command:
+    python3 -m pytest -v unit_test.py
+    
 ## Releases
 Maintainers only should create releases. Follow these steps to prepare for a release.
 
 ### Pre-requisites
 
-#TODO
+1. Review recent commits and ensure the [changelog](CHANGELOG.md) includes all relevant changes, with references to GitHub issues or PRs when applicable.
+2. Verify that any updated dependencies are accurately reflected in the [NOTICES](NOTICES.txt).
+3. Confirm that required documentation is complete and has been approved.
+4. Scan the project for vulnerabilities
 
 ### Release and Promote
 
