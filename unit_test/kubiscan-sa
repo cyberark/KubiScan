@@ -4,6 +4,15 @@ metadata:
   name: kubiscan-sa
   namespace: default
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kubiscan-sa-token
+  namespace: default
+  annotations:
+    kubernetes.io/service-account.name: "kubiscan-sa"
+type: kubernetes.io/service-account-token
+---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata: 
