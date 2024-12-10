@@ -1,9 +1,31 @@
 [![GitHub release][release-img]][release]
 [![License][license-img]][license]
+![Stars](https://img.shields.io/github/stars/cyberark/KubiScan)
 
 <img src="https://github.com/cyberark/KubiScan/blob/assets/kubiscan_logo.png" width="260">  
 A tool for scanning Kubernetes cluster for risky permissions in Kubernetes's Role-based access control (RBAC) authorization model.   
 The tool was published as part of the "Securing Kubernetes Clusters by Eliminating Risky Permissions" research https://www.cyberark.com/threat-research-blog/securing-kubernetes-clusters-by-eliminating-risky-permissions/.
+
+---
+
+## Table of Contents
+- [Overview](#overview)
+- [What can it do?](#what-can-it-do)
+- [Usage](#usage)
+  - [Container](#container)
+  - [Directly with Python3](#directly-with-python3)
+    - [Prerequisites](#prerequisites)
+    - [Example for installation on Ubuntu](#example-for-installation-on-ubuntu)
+    - [With KubeConfig file](#with-kubeconfig-file)
+    - [From a remote with ServiceAccount token](#from-a-remote-with-serviceaccount-token)
+- [Examples](#examples)
+- [Demo](#demo)
+- [Risky Roles YAML](#risky-roles-yaml)
+- [Showcase](#%EF%B8%8F-showcase)
+- [License](#license)
+- [References](#references)
+
+---
 
 ## Overview
 KubiScan helps cluster administrators identify permissions that attackers could potentially exploit to compromise the clusters.
