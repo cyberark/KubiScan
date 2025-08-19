@@ -1,0 +1,34 @@
+name: Master
+
+on:
+  push:
+    branches: master
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to ghcr.io
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          file: ./Dockerfile
+          push: true
+          tags: ghcr.io/cyberark/kubiscan:latest
+          platforms: linux/amd64
+      - name: Build and push (Alpine)
+        uses: docker/build-push-action@v2
+        with:
+          file: ./DockerfileAlpine
+          push: true
+          tags: ghcr.io/cyberark/kubiscan:alpine
+          platforms: linux/amd64
