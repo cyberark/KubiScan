@@ -5,11 +5,15 @@ from datetime import datetime
 from .base_client_api import BaseApiClient
 from kubernetes.client import (
     V1VolumeProjection, V1ServiceAccountTokenProjection, V1SecretProjection, V1DownwardAPIProjection, 
-    V1RoleList, V1Role, V1ObjectMeta, V1PolicyRule, V1RoleBinding, V1RoleRef, V1Subject, 
+    V1RoleList, V1Role, V1ObjectMeta, V1PolicyRule, V1RoleBinding, V1RoleRef,
     V1RoleBindingList, V1PodList, V1Pod, V1PodSpec, V1Container, V1Volume, V1PodStatus, 
     V1SecurityContext, V1HostPathVolumeSource, V1ProjectedVolumeSource,V1VolumeMount,V1ConfigMapProjection,
     V1DownwardAPIVolumeFile,V1ObjectFieldSelector,V1ContainerStatus,V1Capabilities,V1PodSecurityContext,V1ContainerPort
 )
+try:
+    from kubernetes.client import V1Subject
+except ImportError:
+    from kubernetes.client import RbacV1Subject as V1Subject
 
 class StaticApiClient(BaseApiClient):
     def __init__(self, input_file):

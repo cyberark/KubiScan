@@ -28,9 +28,13 @@ from datetime import date, datetime
 from six import PY3, integer_types, iteritems, text_type
 from six.moves.urllib.parse import quote
 
-from kubernetes.client import models, V1ObjectMeta, V1RoleRef, V1Subject, V1ClusterRoleBinding, V1ClusterRole, V1ClusterRoleList, V1ClusterRoleBindingList, V1PolicyRule
+from kubernetes.client import models, V1ObjectMeta, V1RoleRef, V1ClusterRoleBinding, V1ClusterRole, V1ClusterRoleList, V1ClusterRoleBindingList, V1PolicyRule
 from kubernetes.client.configuration import Configuration
 from kubernetes.client.rest import ApiException, RESTClientObject
+try:
+    from kubernetes.client import V1Subject
+except ImportError:
+    from kubernetes.client import RbacV1Subject as V1Subject
 
 class ApiClientTemp(object):
     """
