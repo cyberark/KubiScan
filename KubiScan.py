@@ -337,7 +337,7 @@ def print_associated_rolebindings_to_role(role_name, namespace=None):
 def print_associated_any_rolebindings_to_clusterrole(clusterrole_name):
     associated_rolebindings, associated_clusterrolebindings = engine.utils.get_rolebindings_and_clusterrolebindings_associated_to_clusterrole(role_name=clusterrole_name)
 
-    print("Associated Rolebindings\ClusterRoleBinding to ClusterRole \"{0}\":".format(clusterrole_name))
+    print("Associated Rolebindings\\ClusterRoleBinding to ClusterRole \"{0}\":".format(clusterrole_name))
     t = PrettyTable(['Kind', 'Name', 'Namespace'])
 
     for rolebinding in associated_rolebindings:
@@ -351,7 +351,7 @@ def print_associated_any_rolebindings_to_clusterrole(clusterrole_name):
 def print_associated_rolebindings_and_clusterrolebindings_to_subject(subject_name, kind, namespace=None):
     associated_rolebindings, associated_clusterrolebindings = engine.utils.get_rolebindings_and_clusterrolebindings_associated_to_subject(subject_name, kind, namespace)
 
-    print("Associated Rolebindings\ClusterRoleBindings to subject \"{0}\":".format(subject_name))
+    print("Associated Rolebindings\\ClusterRoleBindings to subject \"{0}\":".format(subject_name))
     t = PrettyTable(['Kind', 'Name', 'Namespace'])
 
     for rolebinding in associated_rolebindings:
@@ -418,7 +418,7 @@ def get_pretty_rules(rules):
 
 def print_rolebinding_rules(rolebinding_name, namespace):
     role = engine.utils.get_rolebinding_role(rolebinding_name, namespace)
-    print("RoleBinding '{0}\{1}' rules:".format(namespace, rolebinding_name))
+    print("RoleBinding '{0}\\{1}' rules:".format(namespace, rolebinding_name))
     t = PrettyTable(['Kind', 'Namespace', 'Name', 'Rules'])
     t.add_row([role.kind, role.metadata.namespace, role.metadata.name, get_pretty_rules(role.rules)])
 
@@ -618,7 +618,7 @@ def print_examples():
 def main():
     opt = ArgumentParser(description='KubiScan.py - script used to get information on risky permissions on Kubernetes', usage="""KubiScan.py [options...]
 
-This tool can get information about risky roles\clusterroles, rolebindings\clusterrolebindings, users and pods.
+This tool can get information about risky roles\\clusterroles, rolebindings\\clusterrolebindings, users and pods.
 Use "KubiScan.py -h" for help or "KubiScan.py -e" to see examples.
 Requirements:
     - Python 3
@@ -644,31 +644,31 @@ Requirements:
     opt.add_argument('-rab', '--risky-any-rolebindings', action='store_true', help='Get all risky RoleBindings and ClusterRoleBindings', required=False)
 
     opt.add_argument('-rs', '--risky-subjects', action='store_true',help='Get all risky Subjects (Users, Groups or Service Accounts)', required=False)
-    opt.add_argument('-rp', '--risky-pods', action='store_true', help='Get all risky Pods\Containers.\n'
-                                                                      'Use the -d\--deep switch to read the tokens from the current running containers', required=False)
-    opt.add_argument('-d', '--deep', action='store_true', help='Works only with -rp\--risky-pods switch. If this is specified, it will execute each pod to get its token.\n'
+    opt.add_argument('-rp', '--risky-pods', action='store_true', help='Get all risky Pods\\Containers.\n'
+                                                                      'Use the -d\\--deep switch to read the tokens from the current running containers', required=False)
+    opt.add_argument('-d', '--deep', action='store_true', help='Works only with -rp\\--risky-pods switch. If this is specified, it will execute each pod to get its token.\n'
                                                                'Without it, it will read the pod mounted service account secret from the ETCD, it less reliable but much faster.', required=False)
-    opt.add_argument('-pp', '--privleged-pods', action='store_true', help='Get all privileged Pods\Containers.',  required=False)
-    opt.add_argument('-a', '--all', action='store_true',help='Get all risky Roles\ClusterRoles, RoleBindings\ClusterRoleBindings, users and pods\containers', required=False)
+    opt.add_argument('-pp', '--privleged-pods', action='store_true', help='Get all privileged Pods\\Containers.',  required=False)
+    opt.add_argument('-a', '--all', action='store_true',help='Get all risky Roles\\ClusterRoles, RoleBindings\\ClusterRoleBindings, users and pods\\containers', required=False)
     opt.add_argument('-cve', '--cve', action='store_true', help=f"Scan of CVE's", required=False)
     opt.add_argument('-jt', '--join-token', action='store_true', help='Get join token for the cluster. OpenSsl must be installed + kubeadm', required=False)
     opt.add_argument('-psv', '--pods-secrets-volume', action='store_true', help='Show all pods with access to secret data throught a Volume', required=False)
     opt.add_argument('-pse', '--pods-secrets-env', action='store_true', help='Show all pods with access to secret data throught a environment variables', required=False)
     opt.add_argument('-ctx', '--context', action='store', help='Context to run. If none, it will run in the current context.', required=False)
-    opt.add_argument('-p', '--priority', action='store', help='Filter by priority (CRITICAL\HIGH\LOW)', required=False)
+    opt.add_argument('-p', '--priority', action='store', help='Filter by priority (CRITICAL\\HIGH\\LOW)', required=False)
 
 
     helper_switches = opt.add_argument_group('Helper switches')
-    helper_switches.add_argument('-lt', '--less-than', action='store', metavar='NUMBER', help='Used to filter object exist less than X days.\nSupported on Roles\ClusterRoles and RoleBindings\ClusterRoleBindings.'
+    helper_switches.add_argument('-lt', '--less-than', action='store', metavar='NUMBER', help='Used to filter object exist less than X days.\nSupported on Roles\\ClusterRoles and RoleBindings\\ClusterRoleBindings.'
                                                                                               'IMPORTANT: If object does not have creation time (usually in ClusterRoleBindings), omit this switch to see it.', required=False)
 
     helper_switches.add_argument('-ns', '--namespace', action='store', help='If present, the namespace scope that will be used', required=False)
     helper_switches.add_argument('-k', '--kind', action='store', help='Kind of the object', required=False)
-    helper_switches.add_argument('-r', '--rules', action='store_true', help='Show rules. Supported only on pinrting risky Roles\ClusterRoles.', required=False)
+    helper_switches.add_argument('-r', '--rules', action='store_true', help='Show rules. Supported only on pinrting risky Roles\\ClusterRoles.', required=False)
     helper_switches.add_argument('-e', '--examples', action='store_true', help='Show examples.', required=False)
     helper_switches.add_argument('-n', '--name', action='store', help='Name', required=False)
-    dumping_tokens = opt.add_argument_group('Dumping tokens', description='Use the switches: name (-n\--name) or namespace (-ns\ --namespace)')
-    dumping_tokens.add_argument('-dt', '--dump-tokens', action='store_true', help='Dump tokens from pod\pods\n'
+    dumping_tokens = opt.add_argument_group('Dumping tokens', description='Use the switches: name (-n\\--name) or namespace (-ns\\ --namespace)')
+    dumping_tokens.add_argument('-dt', '--dump-tokens', action='store_true', help='Dump tokens from pod\\pods\n'
                                                                                   'Example: -dt OR -dt -ns \"kube-system\"\n'
                                                                                   '-dt -n \"nginx1\" -ns \"default\"', required=False)
 
@@ -699,27 +699,27 @@ Requirements:
     helper_switches.add_argument('-q', '--quiet', action='store_true', help='Hide the banner')
     helper_switches.add_argument('-j', '--json', metavar='JSON_FILENAME', help='Export to json')
     helper_switches.add_argument('-nc', '--no-color', action='store_true', help='Print without color')
-    associated_rb_crb_to_role = opt.add_argument_group('Associated RoleBindings\ClusterRoleBindings to Role', description='Use the switch: namespace (-ns\--namespace).')
+    associated_rb_crb_to_role = opt.add_argument_group('Associated RoleBindings\\ClusterRoleBindings to Role', description='Use the switch: namespace (-ns\\--namespace).')
     associated_rb_crb_to_role.add_argument('-aarbr', '--associated-any-rolebindings-role', action='store', metavar='ROLE_NAME',
-                                           help='Get associated RoleBindings\ClusterRoleBindings to a specific role\n'
+                                           help='Get associated RoleBindings\\ClusterRoleBindings to a specific role\n'
                                                 'Example: -aarbr \"read-secrets-role\" -ns \"default\"', required=False)
 
-    associated_rb_crb_to_clusterrole = opt.add_argument_group('Associated RoleBindings\ClusterRoleBindings to ClusterRole')
+    associated_rb_crb_to_clusterrole = opt.add_argument_group('Associated RoleBindings\\ClusterRoleBindings to ClusterRole')
     associated_rb_crb_to_clusterrole.add_argument('-aarbcr', '--associated-any-rolebindings-clusterrole', action='store', metavar='CLUSTERROLE_NAME',
-                                                  help='Get associated RoleBindings\ClusterRoleBindings to a specific role\n'
+                                                  help='Get associated RoleBindings\\ClusterRoleBindings to a specific role\n'
                                                        'Example:  -aarbcr \"read-secrets-clusterrole\"', required=False)
 
 
-    associated_rb_crb_to_subject = opt.add_argument_group('Associated RoleBindings\ClusterRoleBindings to Subject (user, group or service account)',
-                                                           description='Use the switches: namespace (-ns\--namespace) and kind (-k\--kind).\n')
+    associated_rb_crb_to_subject = opt.add_argument_group('Associated RoleBindings\\ClusterRoleBindings to Subject (user, group or service account)',
+                                                           description='Use the switches: namespace (-ns\\--namespace) and kind (-k\\--kind).\n')
     associated_rb_crb_to_subject.add_argument('-aarbs', '--associated-any-rolebindings-subject', action='store', metavar='SUBJECT_NAME',
-                                              help='Get associated Rolebindings\ClusterRoleBindings to a specific Subject (user, group or service account)\n'
+                                              help='Get associated Rolebindings\\ClusterRoleBindings to a specific Subject (user, group or service account)\n'
                                                    'Example: -aarbs \"system:masters\" -k \"Group\"', required=False)
 
-    associated_rb_crb_to_subject = opt.add_argument_group('Associated Roles\ClusterRoles to Subject (user, group or service account)',
-                                                           description='Use the switches: namespace (-ns\--namespace) and kind (-k\--kind).\n')
+    associated_rb_crb_to_subject = opt.add_argument_group('Associated Roles\\ClusterRoles to Subject (user, group or service account)',
+                                                           description='Use the switches: namespace (-ns\\--namespace) and kind (-k\\--kind).\n')
     associated_rb_crb_to_subject.add_argument('-aars', '--associated-any-roles-subject', action='store', metavar='SUBJECT_NAME',
-                                              help='Get associated Roles\ClusterRoles to a specific Subject (user, group or service account)\n'
+                                              help='Get associated Roles\\ClusterRoles to a specific Subject (user, group or service account)\n'
                                                    'Example: -aars \"generic-garbage-collector\" -k \"ServiceAccount\" -ns \"kube-system\"', required=False)
 
     list_subjects = opt.add_argument_group('List Subjects')
@@ -728,7 +728,7 @@ Requirements:
     list_subjects.add_argument('-ss', '--subject-serviceaccounts', action='store_true', help='Get Subjects with ServiceAccount kind', required=False)
 
 
-    list_rules = opt.add_argument_group('List rules of RoleBinding\ClusterRoleBinding')
+    list_rules = opt.add_argument_group('List rules of RoleBinding\\ClusterRoleBinding')
     list_rules.add_argument('-rru', '--rolebinding-rules', action='store', metavar='ROLEBINDING_NAME', help='Get rules of RoleBinding', required=False)
     list_rules.add_argument('-crru', '--clusterrolebinding-rules', action='store', metavar='CLUSTERROLEBINDING_NAME',  help='Get rules of ClusterRoleBinding',required=False)
 

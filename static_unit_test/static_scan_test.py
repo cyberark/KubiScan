@@ -96,7 +96,7 @@ class TestKubiScan(unittest.TestCase):
         self.run_and_compare_scans(["-rb", "-ns", "kube-system"], ["-rb", "-ns", "kube-system"], "Risky RoleBindings with namespace!")
 
     def test_risky_all(self):
-        self.run_and_compare_scans(["-a"], ["-a"], "All risky Roles\ClusterRoles, RoleBindings\ClusterRoleBindings, users and pods\containers.")
+        self.run_and_compare_scans(["-a"], ["-a"], "All risky Roles\\ClusterRoles, RoleBindings\\ClusterRoleBindings, users and pods\\containers.")
 
 
 if __name__ == "__main__":
